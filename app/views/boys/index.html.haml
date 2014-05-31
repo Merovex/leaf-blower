@@ -1,12 +1,25 @@
-%h1 Listing boys
+= title("Woodlands Boys")
 
-%table.table.table-condensed
+%h2 Foxes
+
+%table.table.table-condensed.table-striped
   %tr
     %th Name
-    %th Current rank
-    %th Patrol
-  =render :partial => @boys
+    =render :partial => 'shared/leaf_header'
+  =render :partial => @foxes
 
-%br
+%h2 Hawks
+%table.table.table-condensed.table-striped
+  %tr
+    %th Name
+    =render :partial => 'shared/leaf_header'
+  =render :partial => @hawks
+
+%h2 Lions
+%table.table.table-condensed.table-striped
+  %tr
+    %th Name
+    =render :partial => 'shared/leaf_header'
+  =render :partial => @lions
 
 = link_to 'New Boy', new_boy_path

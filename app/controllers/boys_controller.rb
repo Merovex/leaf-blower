@@ -4,12 +4,16 @@ class BoysController < ApplicationController
   # GET /boys
   # GET /boys.json
   def index
-    @boys = Boy.all
+    # @boys = Boy.all
+    @foxes = Patrol.find(1).boys
+    @hawks = Patrol.find(2).boys
+    @lions = Patrol.find(3).boys
   end
 
   # GET /boys/1
   # GET /boys/1.json
   def show
+    @events = @boy.events.sort_by &:starts_at
   end
 
   # GET /boys/new

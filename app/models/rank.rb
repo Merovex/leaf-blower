@@ -7,4 +7,15 @@ class Rank < ActiveRecord::Base
 	def to_s
 		return name
 	end
+	def leaves(h,b,l,o,p,t,v,s)
+			self.heritage = h
+			self.hobbies = b
+			self.life_skills = l
+			self.outdoor_activities = o
+			self.pioneer_skills = p
+			self.sci_tech = t
+			self.values = v
+			self.service = s
+			self.save
+	end
 end

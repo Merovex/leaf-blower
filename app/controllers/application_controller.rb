@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  add_breadcrumb "home", :root_path
+  add_breadcrumb "Home", :root_path
   
   include Pundit
   # Prevent CSRF attacks by raising an exception.

@@ -1,20 +1,22 @@
-= simple_form_for(@event) do |f|
+= simple_form_for(@event, html: {class: 'form-horizontal' }) do |f|
   = f.error_notification
-
   .form-inputs
-    = f.input :name
+    .form-group
+      = f.input :name
     = f.association :location
+  
+    = leaf_form(f,:heritage)
+    = leaf_form(f,:hobbies)
+    = leaf_form(f,:life_skills)
+    = leaf_form(f,:outdoor_activities)
+    = leaf_form(f,:pioneer_skills)
+    = leaf_form(f,:sci_tech)
+    = leaf_form(f,:values)
+
     = f.input :service
-    = f.input :heritage
-    = f.input :hobbies
-    = f.input :hobbies
-    = f.input :life_skills
-    = f.input :outdoor_activities
-    = f.input :pioneer_skills
-    = f.input :sci_tech
-    = f.input :values
-    = f.input :start
-    = f.input :finish
+
+    = f.input :starts_at
+    = f.input :ends_at
     = f.input :description
 
   .form-actions

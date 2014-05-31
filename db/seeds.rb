@@ -16,37 +16,37 @@ Pack.create(:name => "VA-1115", :location_id => 1)
 
 @boys = {
 	'Fox' => {
-		'Cooper Aldrich' => 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Matthew Doe' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Joshual Dryjanski' => 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Caleb Moore' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-	},
+		'Cooper Aldrich' => 		[0, 0,0,0, 0,0,0, 1,1,1, 1,1,0, 1,1,1, 0,0, 0,0,0],
+		'Matthew Doe' => 			[1, 1,1,1, 1,1,1, 1,1,1, 0,1,1, 0,1,1, 0,0, 0,0,0],
+		'Joshual Dryjanski' => 		[0, 0,1,1, 0,1,1, 0,1,0, 0,0,0, 0,0,0, 0,0, 0,0,0],
+		'Caleb Moore' => 			[0, 0,1,1, 1,1,1, 1,1,1, 1,1,1, 0,0,0, 0,0, 0,0,0]
+	}, # Foxes are current
 	'Hawk' => {
-		'Aidan Baxter' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Lee Beltran' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Jared Crestetto' => 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Sam Colletti' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Thomas Dryjanski' => 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'William Hannesschalger' => [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Joel Heacock' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Joshua Hoyle' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Daniel Kendrick' => 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'William McFarland' => 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Curtis Moore' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Michael Ohaneson' => 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		'Drake Ryan' => 			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		'Aidan Baxter' => 			[0, 1,1,1, 0,1,1, 1,1,0, 0,1,0, 0,0,0, 0,0, 0,0,0],
+		'Lee Beltran' => 			[1, 1,1,1, 0,1,1, 1,1,1, 1,1,0, 1,1,0, 0,0, 0,0,0],
+		'Jared Crestetto' => 		[1, 0,0,0, 0,0,0, 1,1,1, 0,1,0, 1,0,1, 0,0, 0,0,0],
+		'Sam Colletti' => 			[1, 1,1,1, 1,1,0, 0,1,1, 1,0,0, 1,0,1, 0,0, 0,0,0],
+		'Thomas Dryjanski' => 		[0, 0,1,1, 0,1,1, 0,1,1, 0,0,0, 0,0,0, 0,0, 0,0,0],
+		'William Hannesschalger' => [0, 0,1,0, 1,1,0, 1,1,1, 1,1,0, 1,1,1, 0,0, 0,0,0],
+		'Joel Heacock' => 			[0, 0,1,1, 1,1,1, 1,1,1, 0,0,0, 1,1,1, 0,0, 0,0,0],
+		'Joshua Hoyle' => 			[0, 1,1,1, 1,1,0, 0,1,1, 1,1,0, 1,1,1, 0,0, 0,0,0],
+		'Daniel Kendrick' => 		[0, 1,1,1, 1,1,1, 1,0,1, 1,1,0, 0,1,1, 0,0, 0,0,0],
+		'William McFarland' => 		[1, 1,1,1, 1,1,0, 1,1,1, 1,1,0, 1,0,1, 0,0, 0,0,0],
+		'Curtis Moore' => 			[0, 0,1,1, 1,1,1, 1,1,1, 1,0,0, 0,0,0, 0,0, 0,0,0],
+		'Michael Ohaneson' => 		[0, 0,0,0, 0,0,0, 0,1,0, 1,1,1, 0,1,0, 0,0, 0,0,0],
+		'Drake Ryan' => 			[0, 1,1,1, 0,1,1, 1,1,0, 0,0,0, 0,0,1, 0,0, 0,0,0]
 	},
 	'Lion' => {
-		'Brady Aldrich' => 		[0,0,0,0,0,1,1,1,1,1,0,1,0,0,0,0,0],
-		'Hudson Bartolomei' => 	[0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0],
-		'Asa Gleeson' => 		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-		'Daniel Hess' => 		[1,1,1,1,1,1,0,1,0,1,1,1,1,1,0,0,0],
-		'Samuel Kendrick' => 	[1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0],
-		'Silas Ketcham' => 		[1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0],
-		'Gabriel Mateo' => 		[1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
-		'Gabriel Pease' => 		[0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0],
-		'Steven Reese' => 		[0,0,0,0,1,1,1,0,1,1,1,1,0,0,0,0,0],
-		'Nathan Wilson' => 		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0]
+		'Brady Aldrich' => 			[0, 0,0,0, 0,0,1, 1,1,1, 1,1,0, 0,0,1, 0,0, 0,0,0],
+		'Hudson Bartolomei' => 		[0, 0,0,0, 1,0,0, 1,0,0, 0,0,0, 0,0,0, 0,0, 0,0,0],
+		'Asa Gleeson' => 			[0, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 0,0, 0,0,0],
+		'Daniel Hess' => 			[0, 1,1,1, 1,1,1, 1,1,1, 0,1,0, 1,0,1, 0,0, 0,0,0],
+		'Samuel Kendrick' => 		[0, 1,1,1, 1,1,1, 1,0,1, 1,1,1, 0,1,1, 0,0, 0,0,0],
+		'Silas Ketcham' => 			[1, 1,0,1, 1,1,1, 1,1,1, 1,1,0, 1,1,1, 0,0, 0,0,0],
+		'Gabriel Mateo' => 			[1, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 0,1,1, 0,0, 0,0,0],
+		'Gabriel Pease' => 			[0, 0,0,0, 0,0,0, 1,1,1, 0,1,0, 0,1,0, 0,0, 0,0,0],
+		'Steven Reese' => 			[0, 0,0,0, 0,1,1, 1,0,1, 0,1,0, 1,0,0, 0,0, 0,0,0],
+		'Nathan Wilson' => 			[1, 1,1,1, 1,1,1, 1,1,1, 1,0,1, 1,1,1, 0,0, 0,0,0]
 	}
 }
 
@@ -93,7 +93,7 @@ days = [
 # 	puts "-- #{patrol} Events"
 # 	days.each do |date|
 # 		puts "   -- #{date}"
-# 		# Event.create(:name => "#{patrol} Patrol Meeting", :start => date, :finish => date, :heritage => 1)
+# 		# Event.create(:description => "None.", :location_id => 1, :name => "#{patrol} Patrol Meeting", :starts_at => date, :ends_at => date, :heritage => 1)
 # 	end
 # end
 
@@ -102,38 +102,73 @@ days = [
 
 
 # puts "Creating Lion Events"
-@events = []
-@events << Event.create(:name => "Lion Patrol Meeting - January 6", :start => "2014-01-06", :finish => "2014-01-06", :values => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - January 13", :start => "2014-01-13", :finish => "2014-01-13", :values => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - January 27", :start => "2014-01-27", :finish => "2014-01-27", :hobbies => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - February 3", :start => "2014-02-03", :finish => "2014-02-03", :heritage => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - February 10", :start => "2014-02-10", :finish => "2014-02-10", :heritage => 1, :hobbies => 1);
-@events << Event.create(:name => "Lion Patrol Meeting - February 24", :start => "2014-02-24", :finish => "2014-02-24", :heritage => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - March 10", :start => "2014-03-10", :finish => "2014-03-10", :pioneer_skills => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - March 24", :start => "2014-03-24", :finish => "2014-03-24", :pioneer_skills => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - March 31", :start => "2014-03-31", :finish => "2014-03-31", :pioneer_skills => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - April 7", :start => "2014-04-07", :finish => "2014-04-07", :life_skills => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - April 21", :start => "2014-04-21", :finish => "2014-04-21", :life_skills => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - April 28", :start => "2014-04-28", :finish => "2014-04-28", :outdoor_activities => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - May 5", :start => "2014-05-05", :finish => "2014-05-05", :values => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - May 12", :start => "2014-05-12", :finish => "2014-05-12", :values => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - May 19", :start => "2014-05-19", :finish => "2014-05-19", :values => 2);
-@events << Event.create(:name => "Lion Patrol Meeting - June 2", :start => "2014-06-02", :finish => "2014-06-02", :values => 2);
+@events = {'Fox' => [],'Hawk' => [],'Lion' => [] }
 
-@events.each do |event|
-	@boys['Lion'].keys.each do |name|
-		s = @boys['Lion'][name].shift
-		next unless s == 1
-		@kids[name].events << event
-		# Attendance.create(:boy_id => boy.id, :event_id => e.id)
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Spring Family Campout", :starts_at => "2014-04-25 15:00", :ends_at => "2014-04-27 12:00", :outdoor_activities => 5);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - January 6", :starts_at => "2014-01-06 19:00", :ends_at => "2014-01-06 20:00", :values => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - January 13", :starts_at => "2014-01-13 19:00", :ends_at => "2014-01-13 20:00", :values => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - January 27", :starts_at => "2014-01-27 19:00", :ends_at => "2014-01-27 20:00", :hobbies => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - February 3", :starts_at => "2014-02-03 19:00", :ends_at => "2014-02-03 20:00", :heritage => 1, :values => 1);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - February 10", :starts_at => "2014-02-10 19:00", :ends_at => "2014-02-10 20:00", :values => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - February 24", :starts_at => "2014-02-24 19:00", :ends_at => "2014-02-24 20:00", :heritage => 1, :values => 1);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - March 10", :starts_at => "2014-03-10 19:00", :ends_at => "2014-03-10 20:00", :pioneer_skills => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - March 24", :starts_at => "2014-03-24 19:00", :ends_at => "2014-03-24 20:00", :pioneer_skills => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - March 31", :starts_at => "2014-03-31 19:00", :ends_at => "2014-03-31 20:00", :pioneer_skills => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - April 7", :starts_at => "2014-04-07 19:00", :ends_at => "2014-04-07 20:00", :outdoor_activities => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - April 21", :starts_at => "2014-04-21 19:00", :ends_at => "2014-04-21 20:00", :outdoor_activities => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - April 28", :starts_at => "2014-04-28 19:00", :ends_at => "2014-04-28 20:00", :sci_tech => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - May 5", :starts_at => "2014-05-05 19:00", :ends_at => "2014-05-05 20:00", :heritage => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - May 12", :starts_at => "2014-05-12 19:00", :ends_at => "2014-05-12 20:00", :heritage => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - May 19", :starts_at => "2014-05-19 19:00", :ends_at => "2014-05-19 20:00", :heritage => 2);
+@events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Fox Patrol Meeting - June 2", :starts_at => "2014-06-02 19:00", :ends_at => "2014-06-02 20:00", :hobbies => 2);
+
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Spring Family Campout", :starts_at => "2014-04-25 19:00", :ends_at => "2014-04-27 20:00", :outdoor_activities => 5);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - January 6", :starts_at => "2014-01-06 19:00", :ends_at => "2014-01-06 20:00", :life_skills => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - January 13", :starts_at => "2014-01-13 19:00", :ends_at => "2014-01-13 20:00", :life_skills => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - January 27", :starts_at => "2014-01-27 19:00", :ends_at => "2014-01-27 20:00", :life_skills => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - February 3", :starts_at => "2014-02-03 19:00", :ends_at => "2014-02-03 20:00", :hobbies => 1, :values => 1);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - February 10", :starts_at => "2014-02-10 19:00", :ends_at => "2014-02-10 20:00", :life_skills => 1, :values => 1);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - February 24", :starts_at => "2014-02-24 19:00", :ends_at => "2014-02-24 20:00", :life_skills => 1, :pioneer_skills => 1);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - March 10", :starts_at => "2014-03-10 19:00", :ends_at => "2014-03-10 20:00", :pioneer_skills => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - March 24", :starts_at => "2014-03-24 19:00", :ends_at => "2014-03-24 20:00", :sci_tech => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - March 31", :starts_at => "2014-03-31 19:00", :ends_at => "2014-03-31 20:00", :pioneer_skills => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - April 7", :starts_at => "2014-04-07 19:00", :ends_at => "2014-04-07 20:00", :pioneer_skills => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - April 21", :starts_at => "2014-04-21 19:00", :ends_at => "2014-04-21 20:00", :sci_tech => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - April 28", :starts_at => "2014-04-28 19:00", :ends_at => "2014-04-28 20:00", :pioneer_skills => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - May 5", :starts_at => "2014-05-05 19:00", :ends_at => "2014-05-05 20:00", :heritage => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - May 12", :starts_at => "2014-05-12 19:00", :ends_at => "2014-05-12 20:00", :heritage => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - May 19", :starts_at => "2014-05-19 19:00", :ends_at => "2014-05-19 20:00", :values => 2);
+@events['Hawk'] << Event.create(:description => "None.", :location_id => 1, :name => "Hawk Patrol Meeting - June 2", :starts_at => "2014-06-02 19:00", :ends_at => "2014-06-02 20:00", :sci_tech => 2);
+
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Spring Family Campout", :starts_at => "2014-04-25 19:00", :ends_at => "2014-04-27 20:00", :outdoor_activities => 5);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - January 6", :starts_at => "2014-01-06 19:00", :ends_at => "2014-01-06 20:00", :values => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - January 13", :starts_at => "2014-01-13 19:00", :ends_at => "2014-01-13 20:00", :values => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - January 27", :starts_at => "2014-01-27 19:00", :ends_at => "2014-01-27 20:00", :hobbies => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - February 3", :starts_at => "2014-02-03 19:00", :ends_at => "2014-02-03 20:00", :heritage => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - February 10", :starts_at => "2014-02-10 19:00", :ends_at => "2014-02-10 20:00", :heritage => 1, :hobbies => 1);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - February 24", :starts_at => "2014-02-24 19:00", :ends_at => "2014-02-24 20:00", :heritage => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - March 10", :starts_at => "2014-03-10 19:00", :ends_at => "2014-03-10 20:00", :pioneer_skills => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - March 24", :starts_at => "2014-03-24 19:00", :ends_at => "2014-03-24 20:00", :pioneer_skills => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - March 31", :starts_at => "2014-03-31 19:00", :ends_at => "2014-03-31 20:00", :pioneer_skills => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - April 7", :starts_at => "2014-04-07 19:00", :ends_at => "2014-04-07 20:00", :life_skills => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - April 21", :starts_at => "2014-04-21 19:00", :ends_at => "2014-04-21 20:00", :life_skills => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - April 28", :starts_at => "2014-04-28 19:00", :ends_at => "2014-04-28 20:00", :outdoor_activities => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - May 5", :starts_at => "2014-05-05 19:00", :ends_at => "2014-05-05 20:00", :values => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - May 12", :starts_at => "2014-05-12 19:00", :ends_at => "2014-05-12 20:00", :values => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - May 19", :starts_at => "2014-05-19 19:00", :ends_at => "2014-05-19 20:00", :values => 2);
+@events['Lion'] << Event.create(:description => "None.", :location_id => 1, :name => "Lion Patrol Meeting - June 2", :starts_at => "2014-06-02 19:00", :ends_at => "2014-06-02 20:00", :values => 2);
+
+['Fox','Hawk','Lion'].each do |rank|
+	@events[rank].each do |event|
+		@boys[rank].keys.each do |name|
+			s = @boys[rank][name].shift
+			next unless s == 1
+			@kids[name].events << event
+			# Attendance.create(:boy_id => boy.id, :event_id => e.id)
+		end
 	end
 end
-
-# puts "Populating Boy's Attendance"
-# Boy.where(patrol_id: 3).each do |boy|
-# 	# puts boy.current_rank.inspect
-# 	# @events.each do |e|
-# 	# 	attended = boys
-# 	# 	puts Attendance.create(:boy_id => boy.id, :event_id => e.id)
-# 	# end
-# end
+puts "Recalculating Leaves"
+Boy.all.each do |boy|
+	boy.recalcuate_leaves
+end

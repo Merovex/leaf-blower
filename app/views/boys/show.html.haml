@@ -19,14 +19,14 @@
     %th <abbr title='Science & Technology'>T</abbr>
     %th <abbr title='Values'>V</abbr>
   %tr
-    %td= @boy.current_rank.service || 0
-    %td= @boy.current_rank.heritage || 0
-    %td= @boy.current_rank.hobbies || 0
-    %td= @boy.current_rank.life_skills || 0
-    %td= @boy.current_rank.outdoor_activities || 0
-    %td= @boy.current_rank.pioneer_skills || 0
-    %td= @boy.current_rank.sci_tech || 0
-    %td= @boy.current_rank.values || 0
+    %td= subdue_zero(@boy.current_rank.service || 0)
+    %td= subdue_zero(@boy.current_rank.heritage || 0)
+    %td= subdue_zero(@boy.current_rank.hobbies || 0)
+    %td= subdue_zero(@boy.current_rank.life_skills || 0)
+    %td= subdue_zero(@boy.current_rank.outdoor_activities || 0)
+    %td= subdue_zero(@boy.current_rank.pioneer_skills || 0)
+    %td= subdue_zero(@boy.current_rank.sci_tech || 0)
+    %td= subdue_zero(@boy.current_rank.values || 0)
 
 %table.table
   %tr
@@ -34,35 +34,35 @@
     %th{:colspan=>2} &nbsp;
   %tr
     %td (S) Service Hours
-    %td= @boy.current_rank.service || 0
+    %td= subdue_zero(@boy.current_rank.service || 0)
     %td &nbsp;
   %tr
     %td (H) Heritage Branch
-    %td= @boy.current_rank.heritage || 0
+    %td= subdue_zero(@boy.current_rank.heritage || 0)
     %td= show_leaves(@boy.current_rank.heritage)
   %tr
     %td (B) Hobbies Branch
-    %td= @boy.current_rank.hobbies || 0
+    %td= subdue_zero(@boy.current_rank.hobbies || 0)
     %td= show_leaves(@boy.current_rank.hobbies)
   %tr
     %td (L) Life Skills Branch
-    %td= @boy.current_rank.life_skills || 0
+    %td= subdue_zero(@boy.current_rank.life_skills || 0)
     %td= show_leaves(@boy.current_rank.life_skills)
   %tr
     %td (O) Outdoor Activities Branch
-    %td= @boy.current_rank.outdoor_activities || 0
+    %td= subdue_zero(@boy.current_rank.outdoor_activities || 0)
     %td= show_leaves(@boy.current_rank.outdoor_activities)
   %tr
     %td (P) Pioneer Skills Branch
-    %td= @boy.current_rank.pioneer_skills || 0
+    %td= subdue_zero(@boy.current_rank.pioneer_skills || 0)
     %td= show_leaves(@boy.current_rank.pioneer_skills)
   %tr
     %td (T) Sci Tech Branch
-    %td= @boy.current_rank.sci_tech || 0
+    %td= subdue_zero(@boy.current_rank.sci_tech || 0)
     %td= show_leaves(@boy.current_rank.sci_tech)
   %tr
     %td (V) Values Branch
-    %td= @boy.current_rank.values || 0
+    %td= subdue_zero(@boy.current_rank.values || 0)
     %td= show_leaves(@boy.current_rank.values)
 
 %h2 Attendance
@@ -79,7 +79,7 @@
     %th <abbr title='Science & Technology'>T</abbr>
     %th <abbr title='Values'>V</abbr>
 
-  = render :partial => @boy.events
+  = render :partial => @events
 
 = link_to 'Edit', edit_boy_path(@boy)
 \|

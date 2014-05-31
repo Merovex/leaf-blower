@@ -1,47 +1,33 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @event.name
-%p
-  %b Location:
-  = @event.location
-%p
-  %b Service:
-  = @event.service
-%p
-  %b Heritage:
-  = @event.heritage
-%p
-  %b Hobbies:
-  = @event.hobbies
-%p
-  %b Hobbies:
-  = @event.hobbies
-%p
-  %b Life skills:
-  = @event.life_skills
-%p
-  %b Outdoor activities:
-  = @event.outdoor_activities
-%p
-  %b Pioneer skills:
-  = @event.pioneer_skills
-%p
-  %b Sci tech:
-  = @event.sci_tech
-%p
-  %b Values:
-  = @event.values
-%p
-  %b Start:
-  = @event.start
-%p
-  %b Finish:
-  = @event.finish
-%p
-  %b Description:
+.row
+  .col-xs-5
+    = show_map(@event.location)
+  .col-xs-7
+    =title @event.name
+    .h3= event_dtg(@event)
+    %p
+      %strong Address:
+      =@event.location.address
+    %p
+      %strong Description:
+      = @event.description
+
+%div
+  %strong Description:
   = @event.description
+
+%table.table.table-bordered
+  =render :partial => 'shared/leaf_header_full'
+  %tr
+    %td.center= @event.service
+    %td.center= @event.heritage
+    %td.center= @event.hobbies
+    %td.center= @event.life_skills
+    %td.center= @event.outdoor_activities
+    %td.center= @event.pioneer_skills
+    %td.center= @event.sci_tech
+    %td.center= @event.values
 
 = link_to 'Edit', edit_event_path(@event)
 \|

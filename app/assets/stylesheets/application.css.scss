@@ -12,7 +12,16 @@
  *
  *= require_tree .
  *= require_self
+ *= require fullcalendar
+ *= require fullcalendar.print
  */
+
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
 html, body {
   height: 100%;
 }

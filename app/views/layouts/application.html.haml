@@ -15,9 +15,10 @@
         .container
           .row
             .col-sm-8
-              = yield
-              = render_breadcrumbs
               = render 'layouts/messages'
+              %ol.breadcrumb
+                = render_breadcrumbs :tag => :li, :separator => ""
+              = yield
             .col-sm-4
               .ul
                 .li= link_to 'Ranks', ranks_path
@@ -25,6 +26,7 @@
                 .li= link_to 'Boys', boys_path
                 .li= link_to 'Packs', packs_path
                 .li= link_to 'Patrols', patrols_path
+                .li= link_to 'Events', events_path
       %footer{:role => "main-footer"}
         .container
           .row

@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20140531131129) do
     t.datetime "updated_at"
   end
 
+  create_table "event_series", force: true do |t|
+    t.integer  "frequency",  default: 1
+    t.string   "period",     default: "monthly"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.integer  "location_id"
@@ -42,13 +52,16 @@ ActiveRecord::Schema.define(version: 20140531131129) do
     t.integer  "pioneer_skills"
     t.integer  "sci_tech"
     t.integer  "values"
-    t.datetime "start"
-    t.datetime "finish"
+    t.boolean  "all_day",            default: false
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.integer  "event_series_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "events", ["event_series_id"], name: "index_events_on_event_series_id"
   add_index "events", ["location_id"], name: "index_events_on_location_id"
 
   create_table "locations", force: true do |t|
