@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Boy:
+  = @attendance.boy
+%p
+  %b Event:
+  = @attendance.event
+
+= link_to 'Edit', edit_attendance_path(@attendance)
+\|
+= link_to 'Back', attendances_path

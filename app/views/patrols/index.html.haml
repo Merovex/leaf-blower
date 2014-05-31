@@ -1,0 +1,13 @@
+%h1 Listing patrols
+
+%table
+  %tr
+    %th Name
+
+  - @patrols.each do |patrol|
+    %tr
+      %td= link_to patrol.name, patrol
+
+%br
+
+= link_to 'New Patrol', new_patrol_path

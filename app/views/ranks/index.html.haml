@@ -1,0 +1,45 @@
+%h1 Listing ranks
+
+%table
+  %tr
+    %th Name
+    %th Boy
+    %th Is current
+    %th Service
+    %th Heritage
+    %th Hobbies
+    %th Life skills
+    %th Outdoor activities
+    %th Pioneer skills
+    %th Sci tech
+    %th Values
+    %th Start
+    %th Finish
+    %th Awarded
+    %th
+    %th
+    %th
+
+  - @ranks.each do |rank|
+    %tr
+      %td= rank.name
+      %td= rank.boy
+      %td= rank.is_current
+      %td= rank.service
+      %td= rank.heritage
+      %td= rank.hobbies
+      %td= rank.life_skills
+      %td= rank.outdoor_activities
+      %td= rank.pioneer_skills
+      %td= rank.sci_tech
+      %td= rank.values
+      %td= rank.start
+      %td= rank.finish
+      %td= rank.awarded
+      %td= link_to 'Show', rank
+      %td= link_to 'Edit', edit_rank_path(rank)
+      %td= link_to 'Destroy', rank, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Rank', new_rank_path

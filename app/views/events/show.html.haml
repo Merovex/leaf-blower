@@ -1,0 +1,48 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @event.name
+%p
+  %b Location:
+  = @event.location
+%p
+  %b Service:
+  = @event.service
+%p
+  %b Heritage:
+  = @event.heritage
+%p
+  %b Hobbies:
+  = @event.hobbies
+%p
+  %b Hobbies:
+  = @event.hobbies
+%p
+  %b Life skills:
+  = @event.life_skills
+%p
+  %b Outdoor activities:
+  = @event.outdoor_activities
+%p
+  %b Pioneer skills:
+  = @event.pioneer_skills
+%p
+  %b Sci tech:
+  = @event.sci_tech
+%p
+  %b Values:
+  = @event.values
+%p
+  %b Start:
+  = @event.start
+%p
+  %b Finish:
+  = @event.finish
+%p
+  %b Description:
+  = @event.description
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path

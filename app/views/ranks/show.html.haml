@@ -1,0 +1,48 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @rank.name
+%p
+  %b Boy:
+  = @rank.boy
+%p
+  %b Is current:
+  = @rank.is_current
+%p
+  %b Service:
+  = @rank.service
+%p
+  %b Heritage:
+  = @rank.heritage
+%p
+  %b Hobbies:
+  = @rank.hobbies
+%p
+  %b Life skills:
+  = @rank.life_skills
+%p
+  %b Outdoor activities:
+  = @rank.outdoor_activities
+%p
+  %b Pioneer skills:
+  = @rank.pioneer_skills
+%p
+  %b Sci tech:
+  = @rank.sci_tech
+%p
+  %b Values:
+  = @rank.values
+%p
+  %b Start:
+  = @rank.start
+%p
+  %b Finish:
+  = @rank.finish
+%p
+  %b Awarded:
+  = @rank.awarded
+
+= link_to 'Edit', edit_rank_path(@rank)
+\|
+= link_to 'Back', ranks_path

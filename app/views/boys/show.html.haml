@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @boy.name
+%p
+  %b Current rank:
+  = @boy.current_rank
+%p
+  %b Patrol:
+  = @boy.patrol
+
+= link_to 'Edit', edit_boy_path(@boy)
+\|
+= link_to 'Back', boys_path

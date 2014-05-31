@@ -1,0 +1,14 @@
+= title(@location.name)
+
+%p#notice= notice
+
+= show_map(@location)
+
+%p
+  %b Address:
+  = @location.address
+
+
+= link_to 'Edit', edit_location_path(@location)
+\|
+= link_to 'Back', locations_path

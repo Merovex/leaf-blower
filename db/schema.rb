@@ -11,7 +11,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531111243) do
+ActiveRecord::Schema.define(version: 20140531121713) do
+
+  create_table "boys", force: true do |t|
+    t.string   "name"
+    t.integer  "current_rank_id"
+    t.integer  "patrol_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", force: true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "packs", force: true do |t|
+    t.string   "name"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "packs", ["location_id"], name: "index_packs_on_location_id"
+
+  create_table "patrols", force: true do |t|
+    t.string   "name"
+    t.integer  "pack_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "patrols", ["pack_id"], name: "index_patrols_on_pack_id"
+
+  create_table "ranks", force: true do |t|
+    t.string   "name"
+    t.integer  "boy_id"
+    t.boolean  "is_current"
+    t.integer  "service"
+    t.integer  "heritage"
+    t.integer  "hobbies"
+    t.integer  "life_skills"
+    t.integer  "outdoor_activities"
+    t.integer  "pioneer_skills"
+    t.integer  "sci_tech"
+    t.integer  "values"
+    t.date     "start"
+    t.date     "finish"
+    t.date     "awarded"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

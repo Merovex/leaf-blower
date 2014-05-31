@@ -1,0 +1,17 @@
+= title('Packs')
+
+%table.table.table-bordered
+  %tr
+    %th Name
+    %th Location
+    %th
+
+  - @packs.each do |pack|
+    %tr
+      %td= link_to pack.name, pack
+      %td= pack.location.address
+      %td= link_to 'Destroy', pack, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Pack', new_pack_path

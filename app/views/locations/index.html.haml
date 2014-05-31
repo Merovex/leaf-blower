@@ -1,0 +1,15 @@
+%h1 Listing locations
+
+%table.table.table-bordered
+  %tr
+    %th Name
+    %th Address
+
+
+  - @locations.each do |location|
+    %tr
+      %td= link_to location.address, location.name
+      %td= location
+%br
+
+= link_to 'New Location', new_location_path

@@ -1,0 +1,16 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @patrol.name
+%p
+  %b Pack:
+  = @patrol.pack
+
+%ul
+  - @patrol.boys.each do |d|
+    %li= link_to d.name, d
+
+= link_to 'Edit', edit_patrol_path(@patrol)
+\|
+= link_to 'Back', patrols_path

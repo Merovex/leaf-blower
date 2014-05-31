@@ -1,0 +1,10 @@
+= simple_form_for(@boy) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.association :current_rank
+    = f.association :patrol
+
+  .form-actions
+    = f.button :submit

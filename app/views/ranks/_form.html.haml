@@ -1,0 +1,21 @@
+= simple_form_for(@rank) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.association :boy
+    = f.input :is_current
+    = f.input :service
+    = f.input :heritage
+    = f.input :hobbies
+    = f.input :life_skills
+    = f.input :outdoor_activities
+    = f.input :pioneer_skills
+    = f.input :sci_tech
+    = f.input :values
+    = f.input :start
+    = f.input :finish
+    = f.input :awarded
+
+  .form-actions
+    = f.button :submit
