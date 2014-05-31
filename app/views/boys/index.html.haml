@@ -1,22 +1,11 @@
 %h1 Listing boys
 
-%table
+%table.table.table-condensed
   %tr
     %th Name
     %th Current rank
     %th Patrol
-    %th
-    %th
-    %th
-
-  - @boys.each do |boy|
-    %tr
-      %td= boy.name
-      %td= boy.current_rank
-      %td= boy.patrol
-      %td= link_to 'Show', boy
-      %td= link_to 'Edit', edit_boy_path(boy)
-      %td= link_to 'Destroy', boy, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  =render :partial => @boys
 
 %br
 

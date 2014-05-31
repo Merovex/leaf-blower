@@ -1,44 +1,18 @@
 %h1 Listing events
 
-%table
+%table.table.table-bordered
   %tr
-    %th Name
-    %th Location
-    %th Service
-    %th Heritage
-    %th Hobbies
-    %th Hobbies
-    %th Life skills
-    %th Outdoor activities
-    %th Pioneer skills
-    %th Sci tech
-    %th Values
-    %th Start
-    %th Finish
-    %th Description
-    %th
-    %th
-    %th
+    %th Event
+    %th <abbr title='Service Hours'>S</abbr>
+    %th <abbr title='Heritage'>H</abbr>
+    %th <abbr title='Hobbies'>B</abbr>
+    %th <abbr title='Life Skills'>L</abbr>
+    %th <abbr title='Outdoor Activities'>O</abbr>
+    %th <abbr title='Pioneering Skills'>P</abbr>
+    %th <abbr title='Science & Technology'>T</abbr>
+    %th <abbr title='Values'>V</abbr>
 
-  - @events.each do |event|
-    %tr
-      %td= event.name
-      %td= event.location
-      %td= event.service
-      %td= event.heritage
-      %td= event.hobbies
-      %td= event.hobbies
-      %td= event.life_skills
-      %td= event.outdoor_activities
-      %td= event.pioneer_skills
-      %td= event.sci_tech
-      %td= event.values
-      %td= event.start
-      %td= event.finish
-      %td= event.description
-      %td= link_to 'Show', event
-      %td= link_to 'Edit', edit_event_path(event)
-      %td= link_to 'Destroy', event, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  = render :partial => @events
 
 %br
 

@@ -1,0 +1,18 @@
+%tr
+  %td
+    %strong= link_to event.name, event
+    = event.location
+    %p 
+      From
+      %strong= event.start.to_formatted_s(:short)
+      to
+      %strong= event.finish.to_formatted_s(:short)
+    %p= event.description || 'No Event Description.'
+  %td= event.service
+  %td= event.heritage
+  %td= event.hobbies
+  %td= event.life_skills
+  %td= event.outdoor_activities
+  %td= event.pioneer_skills
+  %td= event.sci_tech
+  %td= event.values

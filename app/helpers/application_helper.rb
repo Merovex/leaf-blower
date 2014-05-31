@@ -12,7 +12,10 @@ module ApplicationHelper
     html.html_safe
   end
   def title(t)
-    return "<h1>#{t}</h1>".html_safe
+    return "<h1>#{t.titlecase}</h1>".html_safe
+  end
+  def subtitle(s)
+    "<div class='subtitle'>#{s.titlecase}</div>".html_safe
   end
   def show_map(location)
     return image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{location.latitude}%2C#{location.longitude}" 

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531121713) do
+ActiveRecord::Schema.define(version: 20140531131129) do
+
+  create_table "attendances", force: true do |t|
+    t.integer  "boy_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attendances", ["boy_id"], name: "index_attendances_on_boy_id"
+  add_index "attendances", ["event_id"], name: "index_attendances_on_event_id"
 
   create_table "boys", force: true do |t|
     t.string   "name"
@@ -20,6 +30,26 @@ ActiveRecord::Schema.define(version: 20140531121713) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.integer  "location_id"
+    t.integer  "service"
+    t.integer  "heritage"
+    t.integer  "hobbies"
+    t.integer  "life_skills"
+    t.integer  "outdoor_activities"
+    t.integer  "pioneer_skills"
+    t.integer  "sci_tech"
+    t.integer  "values"
+    t.datetime "start"
+    t.datetime "finish"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["location_id"], name: "index_events_on_location_id"
 
   create_table "locations", force: true do |t|
     t.string   "address"
@@ -41,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140531121713) do
 
   create_table "patrols", force: true do |t|
     t.string   "name"
+    t.string   "rank"
     t.integer  "pack_id"
     t.datetime "created_at"
     t.datetime "updated_at"
