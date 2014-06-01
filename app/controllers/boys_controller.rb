@@ -1,8 +1,10 @@
 class BoysController < ApplicationController
   before_action :set_boy, only: [:show, :edit, :update, :destroy]
+  before_action :breadcrumb, only: [:show, :edit, :new]
 
-  # GET /boys
-  # GET /boys.json
+  def breadcrumb
+    add_breadcrumb "Woodland Boys", boys_path, :title => "Back to the Events List"
+  end
   def index
     # @boys = Boy.all
     @foxes = Patrol.find(1).boys
@@ -13,6 +15,7 @@ class BoysController < ApplicationController
   # GET /boys/1
   # GET /boys/1.json
   def show
+
     @events = @boy.events.sort_by &:starts_at
   end
 

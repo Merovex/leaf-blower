@@ -3,21 +3,36 @@
   .form-inputs
     .form-group
       = f.input :name
-    = f.association :location
+    .form-group
+      = f.association :location
   
-    = leaf_form(f,:heritage)
-    = leaf_form(f,:hobbies)
-    = leaf_form(f,:life_skills)
-    = leaf_form(f,:outdoor_activities)
-    = leaf_form(f,:pioneer_skills)
-    = leaf_form(f,:sci_tech)
-    = leaf_form(f,:values)
+    %h3 Leaves
+    .row
+      .col-xs-3
+        = leaf_form(f,:heritage)
+      .col-xs-3
+        = leaf_form(f,:hobbies)
+      .col-xs-3
+        = leaf_form(f,:life_skills)
+      .col-xs-3
+        = leaf_form(f,:outdoor_activities)
+    .row
+      .col-xs-3
+        = leaf_form(f,:pioneer_skills)
+      .col-xs-3
+        = leaf_form(f,:sci_tech)
+      .col-xs-3
+        = leaf_form(f,:values)
 
     = f.input :service
 
-    = f.input :starts_at
-    = f.input :ends_at
+    = f.input :starts_at, as: :string
+    = f.input :ends_at, as: :string
     = f.input :description
 
   .form-actions
     = f.button :submit
+
+:javascript
+  $('#event_starts_at').datetimepicker();
+  $('#event_ends_at').datetimepicker();

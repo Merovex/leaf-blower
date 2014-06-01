@@ -23,6 +23,10 @@ class Event < ActiveRecord::Base
       errors[:base] << "Start Time must be less than End Time"
     end
   end
+  def address
+    return  "No Address Given" if location.nil?
+    return location.address
+  end
   
   def update_events(events, event)
     events.each do |e|
@@ -47,8 +51,8 @@ class Event < ActiveRecord::Base
       end
     end
     
-    event_series.attributes = event
-    event_series.save
+    # event_series.attributes = event
+    # event_series.save
   end
 
   # need to override the json view to return what full_calendar is expecting.

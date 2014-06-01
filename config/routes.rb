@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'site/about'
+
+  get 'site/terms'
+
+  get 'site/privacy'
+
+  get 'site/contact'
+
   get 'calendar/index'
 
   resources :events do 

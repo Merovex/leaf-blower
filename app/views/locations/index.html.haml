@@ -8,8 +8,8 @@
 
   - @locations.each do |location|
     %tr
-      %td= link_to location.address, location.name
-      %td= location
+      %td= link_to location.name, location
+      %td= location.address
 %br
 
 = link_to 'New Location', new_location_path

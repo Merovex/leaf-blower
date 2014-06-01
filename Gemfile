@@ -22,6 +22,7 @@ gem 'unicorn-rails'
 gem 'geocoder'
 gem 'breadcrumbs_on_rails'
 gem 'fullcalendar-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'better_errors'

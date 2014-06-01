@@ -23,6 +23,7 @@ module ApplicationHelper
     "<div class='subtitle'>#{s.titlecase}</div>".html_safe
   end
   def show_map(location)
+    return "" if location.nil?
     html = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{location.latitude}%2C#{location.longitude}" 
     html += p location.address
     return "<div>#{html}</div>".html_safe

@@ -1,20 +1,27 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :breadcrumb, only: [:show, :edit, :new]
 
+  def breadcrumb
+    add_breadcrumb "Events", events_path, :title => "Back to the Events List"
+  end
   def new
     @event = Event.new(:ends_at => 1.hour.from_now, :period => "Does not repeat")
     # render :json => {:form => render_to_string(:partial => 'form')}
   end
   
   def create
+
     if params[:event][:period] == "Does not repeat"
       event = Event.new(event_params)
     else
       #      @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starts_at => params[:event][:starts_at], :ends_at => params[:event][:ends_at], :all_day => params[:event][:all_day])
-      event = EventSeries.new(event_params)
+      # event = EventSeries.new(event_params)
+      event = Event.new(event_params)
     end
     if event.save
-      render :nothing => true
+      format.html { redirect_to @event, notice: 'Event was successfully created.' }
+      format.json { render :show, status: :created, location: @event }
     else
       render :text => event.errors.full_messages.to_sentence, :status => 422
     end
@@ -62,6 +69,7 @@ class EventsController < ApplicationController
   end
   
   def update
+    # raise params.inspect
     # @event = Event.find_by_id(params[:event][:id])
     # if params[:event][:commit_button] == "Update All Occurrence"
     #   @events = @event.event_series.events #.find(:all, :conditions => ["starts_at > '#{@event.starts_at.to_formatted_s(:db)}' "])
@@ -94,21 +102,17 @@ class EventsController < ApplicationController
     else
       @event.destroy
     end
-    render :nothing => true   
+    redirect_to :action => 'index' 
   end
 
   private
     def event_params
-      params.require(:event).permit('name', 'description', 'starts_at(1i)', 'starts_at(2i)', 'starts_at(3i)', 'starts_at(4i)', 'starts_at(5i)', 'ends_at(1i)', 'ends_at(2i)', 'ends_at(3i)', 'ends_at(4i)', 'ends_at(5i)', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values)
+      params.require(:event).permit('name', 'description', 'starts_at', 'ends_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)    
     end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:name, :location_id, :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :start, :finish, :description)
     end
 end

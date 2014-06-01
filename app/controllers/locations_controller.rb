@@ -1,8 +1,11 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
-  # GET /locations
-  # GET /locations.json
+  before_action :breadcrumb, only: [:show, :edit, :new]
+
+  def breadcrumb
+    add_breadcrumb "Locations", locations_path, :title => "Back to the locations List"
+  end
   def index
     @locations = Location.all
   end
