@@ -1,42 +1,34 @@
-.row
-  .col-xs-5
-    = show_map(@event.location)
-  .col-xs-7
-    =title @event.name
-    .h3= event_dtg(@event)
-    %p
-      %strong Address:
-      =@event.address
-    %p
-      %strong Description:
-      = @event.description
+= render :partial => "events/header"
 
-%div
-  %strong Description:
-  = @event.description
+%h2 Roster
 
-%table.table.table-bordered
-  =render :partial => 'shared/leaf_header_full'
+%h3 Attended
+
+%table.table
   %tr
-    %td.center= @event.service
-    %td.center= @event.heritage
-    %td.center= @event.hobbies
-    %td.center= @event.life_skills
-    %td.center= @event.outdoor_activities
-    %td.center= @event.pioneer_skills
-    %td.center= @event.sci_tech
-    %td.center= @event.values
+    %th.col-xs-6 Woodland Boy
+    %th.col-xs-4 Patrol
+    %th.col-xs-2 &nbsp;
 
-%h2 Attendees
+  - @attendees.each do |attendee|
+    %tr
+      %td= link_to attendee.boy.name, boy_path(attendee.boy.id)
+      %td= attendee.boy.patrol.name
+      %td= link_to 'Remove', attendee, :method => :delete
+      
+%h3 Absent
 
-%ol
-  - @boys.each do |b|
-    %li= b.name
+%table.table
+  %tr
+    %th.col-xs-6 Woodland Boy
+    %th.col-xs-4 Patrol
+    %th.col-xs-2 &nbsp;
 
-%h2 Non-Attendees
-%ol
-  - @nonattendees.each do |b|
-    %li= b.name
+  - @candidates.each do |boy|
+    %tr
+      %td= boy.name
+      %td= boy.patrol.name
+      %td= link_to 'Add', add_event_attendance_path(@event.id, boy.id)
 
 
 = link_to 'Edit', edit_event_path(@event)

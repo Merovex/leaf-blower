@@ -1,7 +1,13 @@
 class AttendancesController < ApplicationController
   before_action :set_event, except: [:destroy]
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+  before_action :breadcrumb, only: [:index]
 
+  def breadcrumb
+    add_breadcrumb "Events", events_path, :title => "Back to the Events List"
+    add_breadcrumb @event.name, event_path(@event)
+    add_breadcrumb "Attendees"
+  end
   def index
     @attendees = @event.attendances.sort_by(&:name)
     @candidates = (Boy.all - @event.boys).sort_by(&:name)
@@ -16,7 +22,7 @@ class AttendancesController < ApplicationController
     respond_to do |format|
       if @attendance.save
         @boy.recalcuate_leaves
-        format.html { redirect_to event_attendances_url(@event), notice: 'Attendance was successfully created.' }
+        format.html { redirect_to event_url(@event), notice: 'Attendance was successfully created.' }
         format.json { render :show, status: :created, location: @attendance }
       else
         format.html { render :new }
@@ -45,8 +51,6 @@ class AttendancesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /attendances/1
-  # PATCH/PUT /attendances/1.json
   def update
     respond_to do |format|
       if @attendance.update(attendance_params)
@@ -59,15 +63,13 @@ class AttendancesController < ApplicationController
     end
   end
 
-  # DELETE /attendances/1
-  # DELETE /attendances/1.json
   def destroy
     @event = @attendance.event
     @boy = @attendance.boy
     @attendance.destroy
     @boy.recalcuate_leaves
     respond_to do |format|
-      format.html { redirect_to event_attendances_url(@event), notice: 'Attendance was successfully destroyed.' }
+      format.html { redirect_to event_url(@event), notice: 'Attendance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

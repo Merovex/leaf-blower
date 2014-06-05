@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :breadcrumb, only: [:show, :edit, :new]
 
   def breadcrumb
-    add_breadcrumb "Events", events_path, :title => "Back to the Events List"
+    add_breadcrumb "Events", events_path, :title => "Back to the Events List"  
+    add_breadcrumb @event.name if @event
   end
   def new
     @event = Event.new(:ends_at => 1.hour.from_now, :period => "Does not repeat")
@@ -20,7 +21,7 @@ class EventsController < ApplicationController
       event = Event.new(event_params)
     end
     if event.save
-      format.html { redirect_to @event, notice: 'Event was successfully created.' }
+      format.html { redirect_to event_url @event, notice: 'Event was successfully created.' }
       format.json { render :show, status: :created, location: @event }
     else
       render :text => event.errors.full_messages.to_sentence, :status => 422
@@ -31,8 +32,6 @@ class EventsController < ApplicationController
     @events = Event.all.sort_by(&:starts_at).reverse
     
   end
-  
-  
   def get_events
     @events = Event.find(:all, :conditions => ["starts_at >= '#{Time.at(params['start'].to_i).to_formatted_s(:db)}' and ends_at <= '#{Time.at(params['end'].to_i).to_formatted_s(:db)}'"] )
     events = [] 
@@ -68,8 +67,8 @@ class EventsController < ApplicationController
     # render :json => { :form => render_to_string(:partial => 'edit_form') } 
   end
   def show
-    @boys = @event.boys
-    @nonattendees = Boy.all - @boys
+    @attendees = @event.attendances.sort_by(&:name)
+    @candidates = (Boy.all - @event.boys).sort_by(&:name)
   end
   def update
     # raise params.inspect

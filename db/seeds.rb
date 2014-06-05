@@ -11,6 +11,7 @@ puts 'CREATED ADMIN USER: ' << user.email
 # Locations
 
 Location.create(:name => "Immanuel Bible Church", :address => "6911 Braddock Rd, Springfield, VA 22151")
+Location.create(:name => "Camp Sandy Cove", :address => "RT 1 Box 471 High View, WV 26808")
 
 Pack.create(:name => "VA-1115", :location_id => 1)
 
