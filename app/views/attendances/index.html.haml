@@ -1,21 +1,26 @@
-%h1 Listing attendances
+= title(@event.name + " Event Attendees")
 
-%table
+%h2 Attendees
+
+%table.table
+  %tr
+    %th Boy
+    %th
+
+  - @attendees.each do |attendee|
+    %tr
+      %td= link_to attendee.boy.name, boy_path(attendee.boy.id)
+      %td= link_to 'Remove', attendee, :method => :delete
+      
+%h2 Did Not Attend
+
+%table.table
   %tr
     %th Boy
     %th Event
     %th
-    %th
-    %th
 
-  - @attendances.each do |attendance|
+  - @candidates.each do |boy|
     %tr
-      %td= attendance.boy
-      %td= attendance.event
-      %td= link_to 'Show', attendance
-      %td= link_to 'Edit', edit_attendance_path(attendance)
-      %td= link_to 'Destroy', attendance, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Attendance', new_attendance_path
+      %td= boy.name
+      %td= link_to 'Add to Event?', add_event_attendance_path(@event.id, boy.id)

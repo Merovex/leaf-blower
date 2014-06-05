@@ -27,6 +27,18 @@
     %td.center= @event.sci_tech
     %td.center= @event.values
 
+%h2 Attendees
+
+%ol
+  - @boys.each do |b|
+    %li= b.name
+
+%h2 Non-Attendees
+%ol
+  - @nonattendees.each do |b|
+    %li= b.name
+
+
 = link_to 'Edit', edit_event_path(@event)
 \|
 = link_to 'Back', events_path

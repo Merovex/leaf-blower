@@ -1,20 +1,28 @@
 class AttendancesController < ApplicationController
+  before_action :set_event, except: [:destroy]
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
 
-  # GET /attendances
-  # GET /attendances.json
   def index
-    @attendances = Attendance.all
+    @attendees = @event.attendances.sort_by(&:name)
+    @candidates = (Boy.all - @event.boys).sort_by(&:name)
   end
 
-  # GET /attendances/1
-  # GET /attendances/1.json
-  def show
-  end
 
   # GET /attendances/new
-  def new
-    @attendance = Attendance.new
+  def add
+    @boy = Boy.find(params[:id])
+    @attendance = Attendance.new({:boy_id => @boy.id, :event_id => @event.id})
+    
+    respond_to do |format|
+      if @attendance.save
+        @boy.recalcuate_leaves
+        format.html { redirect_to event_attendances_url(@event), notice: 'Attendance was successfully created.' }
+        format.json { render :show, status: :created, location: @attendance }
+      else
+        format.html { render :new }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /attendances/1/edit
@@ -54,15 +62,21 @@ class AttendancesController < ApplicationController
   # DELETE /attendances/1
   # DELETE /attendances/1.json
   def destroy
+    @event = @attendance.event
+    @boy = @attendance.boy
     @attendance.destroy
+    @boy.recalcuate_leaves
     respond_to do |format|
-      format.html { redirect_to attendances_url, notice: 'Attendance was successfully destroyed.' }
+      format.html { redirect_to event_attendances_url(@event), notice: 'Attendance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_event
+      @event = Event.find(params[:event_id])
+    end
     def set_attendance
       @attendance = Attendance.find(params[:id])
     end

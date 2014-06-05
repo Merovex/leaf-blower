@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   end
   
   def index
-    @events = Event.all
+    @events = Event.all.sort_by(&:starts_at).reverse
     
   end
   
@@ -67,7 +67,10 @@ class EventsController < ApplicationController
     @event = Event.find_by_id(params[:id])
     # render :json => { :form => render_to_string(:partial => 'edit_form') } 
   end
-  
+  def show
+    @boys = @event.boys
+    @nonattendees = Boy.all - @boys
+  end
   def update
     # raise params.inspect
     # @event = Event.find_by_id(params[:event][:id])
@@ -109,8 +112,6 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit('name', 'description', 'starts_at', 'ends_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)    
     end
-
-  private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])

@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get 'calendar/index'
 
   resources :events do 
+    resources :attendances do
+      member do 
+        get 'add'
+      end
+    end
     collection do 
       get :get_events
       post :move
@@ -17,9 +22,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :attendances
-
   resources :packs
+
+  resources :attendances
 
   resources :patrols
 

@@ -4,6 +4,9 @@ class Event < ActiveRecord::Base
   belongs_to :location
   scope :before, lambda {|end_time|  {:conditions => ["ends_at < ?", Event.format_date(end_time)] }}
   scope :after, lambda {|start_time| {:conditions => ["starts_at > ?", Event.format_date(start_time)] }}
+
+  has_many :attendances
+  has_many :boys, through: :attendances
   
   validates_presence_of :name, :description
   validate :validate_timings
