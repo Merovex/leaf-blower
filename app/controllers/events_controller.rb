@@ -6,8 +6,22 @@ class EventsController < ApplicationController
     add_breadcrumb "Events", events_path, :title => "Back to the Events List"  
     add_breadcrumb @event.name if @event
   end
+  def from_template
+    raise params.permit('name', 'description', 'starts_at', 'ends_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)    
+    
+  end
   def new
-    @event = Event.new(:ends_at => 1.hour.from_now, :period => "Does not repeat")
+    p = {
+      :life_skills => params[:life_skills].to_i || 0,
+      :heritage => params[:heritage].to_i || 0,
+      :hobbies => params[:hobbies].to_i || 0,
+      :pioneer_skills => params[:pioneer_skills].to_i || 0,
+      :life_skills => params[:life_skills].to_i || 0,
+      :values => params[:values].to_i || 0,
+      :outdoor_activities => params[:outdoor_activities].to_i || 0,
+      :period => "Does not repeat"
+     }
+    @event = Event.new(p)
     # render :json => {:form => render_to_string(:partial => 'form')}
   end
   

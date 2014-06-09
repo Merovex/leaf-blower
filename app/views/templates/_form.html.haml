@@ -1,0 +1,19 @@
+= simple_form_for(@template) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.input :heritage
+    = f.input :hobbies
+    = f.input :outdoor_activities
+    = f.input :pioneer_skills
+    = f.input :sci_tech
+    = f.input :life_skills
+    = f.input :values
+    = f.input :life_skills
+    = f.input :service
+    = f.input :rank
+
+  .form-actions
+    = f.button :submit

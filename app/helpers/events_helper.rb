@@ -13,21 +13,36 @@ module EventsHelper
 		return "#{start}#{finish}".html_safe
 		# return e.starts_at.strftime('%d %b %Y')
 	end
-	def leaf_header(event)
+	def leaf_header(obj)
 		output = [
-			["Svc", "Service", event.service],
-			["Hrg", "heritage", event.heritage],
-			["Hob", "Hobbies", event.hobbies],
-			["Lif", "Life Skills", event.life_skills],
-			["Out", "Outdoor Activities", event.outdoor_activities],
-			["Pin", "Pioneer Skills", event.pioneer_skills],
-			["S&T", "Science & Technology", event.sci_tech],
-			["Val", "Values", event.values	]	
+			["Svc", "Service", obj.service],
+			["Hrg", "heritage", obj.heritage],
+			["Hob", "Hobbies", obj.hobbies],
+			["Lif", "Life Skills", obj.life_skills],
+			["Out", "Outdoor Activities", obj.outdoor_activities],
+			["Pin", "Pioneer Skills", obj.pioneer_skills],
+			["S&T", "Science & Technology", obj.sci_tech],
+			["Val", "Values", obj.values	]	
 		].map do |leaf|
 			next if leaf.last.nil? or leaf.last.zero?
-			"<tr><th><abbr title='#{leaf[1]}'>#{leaf.first}</abbr></th><td>#{leaf.last}</td></tr>"
+			"<tr><th><abbr title='#{leaf[1]}'>#{leaf.first.titlecase}</abbr></th><td>#{leaf.last}</td></tr>"
 		end
 		return output.join("\n").html_safe
-	 
+	end
+	def leaf_header_full(obj)
+		output = [
+			["Service", obj.service],
+			["heritage", obj.heritage],
+			["Hobbies", obj.hobbies],
+			["Life Skills", obj.life_skills],
+			["Outdoor Activities", obj.outdoor_activities],
+			["Pioneer Skills", obj.pioneer_skills],
+			["Science & Technology", obj.sci_tech],
+			["Values", obj.values	]	
+		].map do |leaf|
+			next if leaf.last.nil? or leaf.last.zero?
+			"<tr><th>#{leaf.first.titlecase}</th><td>#{leaf.last}</td></tr>"
+		end
+		return output.join("\n").html_safe
 	end
 end

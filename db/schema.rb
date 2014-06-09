@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531131129) do
+ActiveRecord::Schema.define(version: 20140609122727) do
 
   create_table "attendances", force: true do |t|
     t.integer  "boy_id"
@@ -112,6 +112,22 @@ ActiveRecord::Schema.define(version: 20140531131129) do
   end
 
   add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id"
+
+  create_table "templates", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "heritage"
+    t.integer  "hobbies"
+    t.integer  "outdoor_activities"
+    t.integer  "pioneer_skills"
+    t.integer  "sci_tech"
+    t.integer  "life_skills"
+    t.integer  "values"
+    t.integer  "service"
+    t.string   "rank"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

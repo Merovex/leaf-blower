@@ -1,0 +1,14 @@
+=title("Template: #{@template.rank} - #{@template.name}" )
+
+= link_to "Edit #{@template.name}", edit_template_path(@template)
+
+%h3 Leaves
+
+%table.table
+  = leaf_header_full(@template)
+
+%h3 Description
+
+%p= @template.description || "No Description"
+
+= link_to "Create Event with this Template", new_event_path(template_params(@template)), :class => "btn btn-primary"

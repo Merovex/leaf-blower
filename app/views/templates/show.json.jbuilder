@@ -1,0 +1,1 @@
+json.extract! @template, :id, :name, :description, :heritage, :hobbies, :outdoor_activities, :pioneer_skills, :sci_tech, :life_skills, :values, :life_skills, :service_hours, :rank, :created_at, :updated_at

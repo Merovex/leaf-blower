@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :templates
+
+  get 'templates/by/:scope', to: 'templates#scope'
+  # get 'events/template', to: 'events#from_template'
+
   get 'site/about'
 
   get 'site/terms'
