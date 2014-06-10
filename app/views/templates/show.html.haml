@@ -1,6 +1,7 @@
 =title("Template: #{@template.rank} - #{@template.name}" )
 
-= link_to "Edit #{@template.name}", edit_template_path(@template)
+- if policy(@template).update?
+  = link_to "Edit #{@template.name}", edit_template_path(@template)
 
 %h3 Leaves
 

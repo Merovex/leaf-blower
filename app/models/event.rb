@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  include ActiveModel::Validations
+
   attr_accessor :period, :frequency, :commit_button
 
   belongs_to :location
@@ -9,6 +11,8 @@ class Event < ActiveRecord::Base
   has_many :boys, through: :attendances
   
   validates_presence_of :name, :description
+  # validate :validate_leaf_count
+  validates_with EventValidator
   validate :validate_timings
   
   belongs_to :event_series
@@ -20,9 +24,14 @@ class Event < ActiveRecord::Base
     "Monthly"        ,
     "Yearly"         
   ]
-  
+  def leaf_count
+    return [heritage, hobbies, life_skills, outdoor_activities, pioneer_skills, sci_tech, values ].inject(:+)
+  end  
   def validate_timings
-    if (starts_at >= ends_at) and !all_day
+    if (starts_at.nil? or ends_at.nil?)
+      errors[:base] << "Can't have an event without a start and end time."
+      # return
+    elsif (starts_at >= ends_at) and !all_day
       errors[:base] << "Start Time must be less than End Time"
     end
   end

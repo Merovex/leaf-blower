@@ -19,26 +19,36 @@ class EventsController < ApplicationController
       :life_skills => params[:life_skills].to_i || 0,
       :values => params[:values].to_i || 0,
       :outdoor_activities => params[:outdoor_activities].to_i || 0,
-      :period => "Does not repeat"
+      :period => "Does not repeat",
+      :starts_at => (DateTime.now.change(:min => 59, :sec => 00) + 1.minute).strftime('%Y-%m-%d %H:%M'),
+      :ends_at => (DateTime.now.change(:min => 59, :sec => 00) + 1.hour + 1.minute).strftime('%Y-%m-%d %H:%M')
      }
     @event = Event.new(p)
-    # render :json => {:form => render_to_string(:partial => 'form')}
   end
   
   def create
-
     if params[:event][:period] == "Does not repeat"
-      event = Event.new(event_params)
+      @event = Event.new(event_params)
     else
-      #      @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starts_at => params[:event][:starts_at], :ends_at => params[:event][:ends_at], :all_day => params[:event][:all_day])
+      # @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starts_at => params[:event][:starts_at], :ends_at => params[:event][:ends_at], :all_day => params[:event][:all_day])
       # event = EventSeries.new(event_params)
-      event = Event.new(event_params)
+      @event = Event.new(event_params)
+      # raise event.inspect
     end
-    if event.save
-      format.html { redirect_to event_url @event, notice: 'Event was successfully created.' }
-      format.json { render :show, status: :created, location: @event }
-    else
-      render :text => event.errors.full_messages.to_sentence, :status => 422
+
+    respond_to do |format|
+      if @event.save
+
+      # raise @event.inspect
+        format.html { redirect_to event_url @event, notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
+      else
+        
+      # raise @event.inspect
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+        # render :text => event.errors.full_messages.to_sentence, :status => 422
+      end
     end
   end
   

@@ -23,8 +23,8 @@
         = leaf_form(f,:sci_tech)
       .col-xs-3
         = leaf_form(f,:values)
-
-    = f.input :service
+      .col-xs-3
+        = f.input :service
 
     = f.input :starts_at, as: :string
     = f.input :ends_at, as: :string
@@ -34,5 +34,5 @@
     = f.button :submit
 
 :javascript
-  $('#event_starts_at').datetimepicker();
+  $('#event_starts_at').datetimepicker({dateFormat: "yy-mm-dd"});
   $('#event_ends_at').datetimepicker();
