@@ -26,6 +26,11 @@ class EventsController < ApplicationController
     @event = Event.new(p)
   end
   
+  def take_attendance
+    @title = "Taking Attendance"
+    @events = Event.where(starts_at: 7.days.ago..(Time.now.midnight + 4.hours)).sort_by(&:starts_at).reverse
+    render :index
+  end
   def create
     if params[:event][:period] == "Does not repeat"
       @event = Event.new(event_params)
@@ -53,6 +58,7 @@ class EventsController < ApplicationController
   end
   
   def index
+    @title = "Events"
     @events = Event.all.sort_by(&:starts_at).reverse
     
   end

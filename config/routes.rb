@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       end
     end
     collection do 
+      get :take_attendance
       get :get_events
       post :move
       post :resize
