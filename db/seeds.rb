@@ -462,6 +462,7 @@ end
 
 puts "- Creating Badges"
 badge = Badge.create(:name => "Worthy Life - Lion", :rank => 'lion')
+
 puts "  - Adding Requirements"
 ["Service to Church",
 "Service to Church (2)",
