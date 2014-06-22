@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  resources :achievements do
+    member do
+      get 'fine'
+      get 'undo'
+    end
+  end
+
+  resources :requirements
+
+  resources :badges
+
   resources :templates
 
   get 'templates/by/:scope', to: 'templates#scope'

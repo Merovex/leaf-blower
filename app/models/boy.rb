@@ -1,34 +1,54 @@
 class Boy < ActiveRecord::Base
+  extend FriendlyId
+  
   belongs_to :current_rank, class_name: "Rank"
   belongs_to :patrol
   has_many :ranks
+  
   has_many :attendances
   has_many :events, through: :attendances
+
+  has_many :awards
+  has_many :achievements
+
+  friendly_id :name, use: [:slugged, :finders]
   def set_current_rank
   	self.current_rank = Rank.find_or_create_by_name(patrol.rank.downcase, self.id)
   	self.save
   end
-  def recalcuate_leaves
-  	leaves = {:h => 0, :b => 0, :l => 0, :o => 0, :p => 0, :t => 0, :v => 0, :s => 0}
-  	self.events.each do |event|
-		leaves[:h] += event.heritage || 0
-		leaves[:b] += event.hobbies || 0
-		leaves[:l] += event.life_skills || 0
-		leaves[:o] += event.outdoor_activities || 0
-		leaves[:p] += event.pioneer_skills || 0
-		leaves[:t] += event.sci_tech || 0
-		leaves[:v] += event.values || 0
-		leaves[:s] += event.service || 0
-  	end
-  	self.current_rank.leaves(
-  		leaves[:h],
-		leaves[:b],
-		leaves[:l],
-		leaves[:o],
-		leaves[:p],
-		leaves[:t],
-		leaves[:v],
-		leaves[:s],
-  	)
+
+  def check_badges
+    badges = Badge.where(:rank => self.current_rank.name, :active => true)
+    # self.awards.delete_all # << for testing purposes.
+    if self.awards.length != badges.length
+      ids = self.awards.map{|a| a.badge_id}
+      badges.each {|b| self.awards.create(:badge_id => b.id) unless ids.include?(b.id) }
+    end
+    # self.awards.each {|a| a.check_achievements }
+    self.awards.first.set_achievements
+  end
+  def promote
+    case 
+      when type == 'Woodland'
+        n = 'Navigator'
+      when type == 'Navigator'
+        n = 'Adventurer'
+      else
+        n = 'Adventurer'
+    end
+    type = n
+    save!
+  end
+  def demote
+    case 
+      when type == 'Adventurer'
+        n = 'Navigator'
+      when type == 'Navigator'
+        n = 'Woodland'
+      else
+        n = 'Woodland'
+    end
+    type = n
+    save!
   end
 end

@@ -15,8 +15,10 @@ class BoysController < ApplicationController
   # GET /boys/1
   # GET /boys/1.json
   def show
-
     @events = @boy.events.sort_by &:starts_at
+    @badges = Badge.all
+    @boy.check_badges
+    render {:show }
   end
 
   # GET /boys/new

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Requirement:
+  = @achievement.requirement
+%p
+  %b Done:
+  = @achievement.completed_on
+
+= link_to 'Edit', edit_achievement_path(@achievement)
+\|
+= link_to 'Back', achievements_path

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609122727) do
+ActiveRecord::Schema.define(version: 20140622203853) do
+
+  create_table "achievements", force: true do |t|
+    t.integer  "award_id"
+    t.integer  "requirement_id"
+    t.date     "completed_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "achievements", ["award_id"], name: "index_achievements_on_award_id"
+  add_index "achievements", ["requirement_id"], name: "index_achievements_on_requirement_id"
 
   create_table "attendances", force: true do |t|
     t.integer  "boy_id"
@@ -23,8 +34,32 @@ ActiveRecord::Schema.define(version: 20140609122727) do
   add_index "attendances", ["boy_id"], name: "index_attendances_on_boy_id"
   add_index "attendances", ["event_id"], name: "index_attendances_on_event_id"
 
+  create_table "awards", force: true do |t|
+    t.integer  "boy_id"
+    t.integer  "badge_id"
+    t.integer  "progress"
+    t.date     "completed_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "awards", ["badge_id"], name: "index_awards_on_badge_id"
+  add_index "awards", ["boy_id"], name: "index_awards_on_boy_id"
+
+  create_table "badges", force: true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "description"
+    t.string   "rank"
+    t.boolean  "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "boys", force: true do |t|
     t.string   "name"
+    t.string   "slug"
+    t.string   "type"
     t.integer  "current_rank_id"
     t.integer  "patrol_id"
     t.datetime "created_at"
@@ -44,14 +79,15 @@ ActiveRecord::Schema.define(version: 20140609122727) do
   create_table "events", force: true do |t|
     t.string   "name"
     t.integer  "location_id"
-    t.integer  "service"
-    t.integer  "heritage"
-    t.integer  "hobbies"
-    t.integer  "life_skills"
-    t.integer  "outdoor_activities"
-    t.integer  "pioneer_skills"
-    t.integer  "sci_tech"
-    t.integer  "values"
+    t.integer  "service",            default: 0
+    t.integer  "heritage",           default: 0
+    t.integer  "hobbies",            default: 0
+    t.integer  "life_skills",        default: 0
+    t.integer  "outdoor_activities", default: 0
+    t.integer  "pioneer_skills",     default: 0
+    t.integer  "sci_tech",           default: 0
+    t.integer  "values",             default: 0
+    t.integer  "nights",             default: 0
     t.boolean  "all_day",            default: false
     t.datetime "starts_at"
     t.datetime "ends_at"
@@ -69,6 +105,7 @@ ActiveRecord::Schema.define(version: 20140609122727) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "name"
+    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -104,6 +141,7 @@ ActiveRecord::Schema.define(version: 20140609122727) do
     t.integer  "pioneer_skills"
     t.integer  "sci_tech"
     t.integer  "values"
+    t.integer  "nights"
     t.date     "start"
     t.date     "finish"
     t.date     "awarded"
@@ -112,6 +150,16 @@ ActiveRecord::Schema.define(version: 20140609122727) do
   end
 
   add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id"
+
+  create_table "requirements", force: true do |t|
+    t.string   "name"
+    t.text     "text"
+    t.integer  "badge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "requirements", ["badge_id"], name: "index_requirements_on_badge_id"
 
   create_table "templates", force: true do |t|
     t.string   "name"

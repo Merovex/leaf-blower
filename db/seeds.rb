@@ -60,10 +60,13 @@ puts "Populating Patrol:"
 	patrol = Patrol.create(:name => rank, :pack_id => 1, :rank => rank.downcase)
 	@boys[rank].keys.each do |name|
 		puts "  -- Creating '#{name}'"
-		@kids[name] = patrol.boys.create(:name => name)
+		@kids[name] = Woodland.create(:name => name)
+		# @kids[name] = patrol.boys.create(:name => name)
+		patrol.boys << @kids[name]
 		@kids[name].set_current_rank
 	end
 end
+
 days = [
 	"2014-01-06",
 	"2014-01-13",
@@ -98,7 +101,7 @@ days = [
 # 	end
 # end
 
-
+puts "Creating Templates for Woodlands."
 
 Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year A - A-1-1", :rank => "Fox", :values => 2)
 Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year A - A-1-1", :rank => "Fox", :values => 2)
@@ -357,7 +360,8 @@ Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year B -
 Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year B - B-12-1", :rank => "Lion", :values => 1, :heritage => 1)
 Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year B - B-12-HT", :rank => "Lion", :values => 3)
 
-# puts "Creating Lion Events"
+
+puts "Creating Historic Events"
 @events = {'Fox' => [],'Hawk' => [],'Lion' => [] }
 
 @events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Spring Family Campout", :starts_at => "2014-04-25 15:00", :ends_at => "2014-04-27 12:00", :outdoor_activities => 5);
@@ -439,17 +443,40 @@ Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year B -
 @events['Hawk'] << @events['Lion'].last
 @events['Fox']  << @events['Lion'].last
 
+puts Event.first.inspect
 
+puts "Adding Attendance to Events"
 ['Fox','Hawk','Lion'].each do |rank|
 	@events[rank].each do |event|
 		@boys[rank].keys.each do |name|
 			s = @boys[rank][name].shift
 			next unless s == 1
-			@kids[name].events << event
+			begin
+				@kids[name].events << event
+			rescue
+				puts "Fuck: #{name} #{@kids[name].to_s} #{event.to_s} ".inspect
+				exit
+			end
 			# Attendance.create(:boy_id => boy.id, :event_id => e.id)
 		end
 	end
 end
+
+puts "Creating Badges"
+badge = Badge.create(:name => "Worthy Life - Lion", :rank => 'lion')
+badge.requirements.create(:name => "Service to Church")
+badge.requirements.create(:name => "Service to Church (2)")
+badge.requirements.create(:name => "Perform / Lead Grace")
+badge.requirements.create(:name => "Lord's Prayer Study")
+badge.requirements.create(:name => "Holiday Service Discussion")
+badge.requirements.create(:name => "Obstacles of Faith")
+badge.requirements.create(:name => "Hero of Faith - Timothy")
+badge.requirements.create(:name => "Hero of Faith - Peter")
+badge.requirements.create(:name => "Family Devotional - Impact")
+badge.requirements.create(:name => "Religous Emblem")
+badge.requirements.create(:name => "Family Devotional - Family's Role")
+badge.requirements.create(:name => "Capstone")
+
 puts "Recalculating Leaves"
 Boy.all.each do |boy|
 	boy.recalcuate_leaves

@@ -12,6 +12,7 @@ class CreateRanks < ActiveRecord::Migration
       t.integer :pioneer_skills
       t.integer :sci_tech
       t.integer :values
+      t.integer :nights
       t.date :start
       t.date :finish
       t.date :awarded

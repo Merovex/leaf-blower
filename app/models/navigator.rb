@@ -1,0 +1,1 @@
+class Navigator < Boy; end
