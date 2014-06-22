@@ -51,15 +51,15 @@ Pack.create(:name => "VA-1115", :location_id => 1)
 	}
 }
 
-puts "Populating Patrol:"
+puts "- Populating Patrol:"
 
 @kids = {}
 @patrols = {}
 ["Fox", "Hawk", "Lion"].each do |rank|
-	puts " - Creating '#{rank}' Patrol"
+	puts "-  - Creating '#{rank}' Patrol"
 	patrol = Patrol.create(:name => rank, :pack_id => 1, :rank => rank.downcase)
 	@boys[rank].keys.each do |name|
-		puts "  -- Creating '#{name}'"
+		puts "-   -- Creating '#{name}'"
 		@kids[name] = Woodland.create(:name => name)
 		# @kids[name] = patrol.boys.create(:name => name)
 		patrol.boys << @kids[name]
@@ -91,17 +91,17 @@ days = [
 	# "2014-05-26", Memorial Day
 	"2014-06-02"]
 
-# puts "Creating Events"
+# puts "- Creating Events"
 
 # ["Fox", "Hawk"].each do |patrol|
-# 	puts "-- #{patrol} Events"
+# 	puts "- -- #{patrol} Events"
 # 	days.each do |date|
-# 		puts "   -- #{date}"
+# 		puts "-    -- #{date}"
 # 		# Event.create(:description => "None.", :location_id => 1, :name => "#{patrol} Patrol Meeting", :starts_at => date, :ends_at => date, :heritage => 1)
 # 	end
 # end
 
-puts "Creating Templates for Woodlands."
+puts "- Creating Templates for Woodlands."
 
 Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year A - A-1-1", :rank => "Fox", :values => 2)
 Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year A - A-1-1", :rank => "Fox", :values => 2)
@@ -361,7 +361,7 @@ Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year B -
 Template.create(:description => "From WT Lesson Plan (2014)", :name => "Year B - B-12-HT", :rank => "Lion", :values => 3)
 
 
-puts "Creating Historic Events"
+puts "- Creating Historic Events"
 @events = {'Fox' => [],'Hawk' => [],'Lion' => [] }
 
 @events['Fox'] << Event.create(:description => "None.", :location_id => 1, :name => "Spring Family Campout", :starts_at => "2014-04-25 15:00", :ends_at => "2014-04-27 12:00", :outdoor_activities => 5);
@@ -443,9 +443,7 @@ puts "Creating Historic Events"
 @events['Hawk'] << @events['Lion'].last
 @events['Fox']  << @events['Lion'].last
 
-puts Event.first.inspect
-
-puts "Adding Attendance to Events"
+puts "- Adding Attendance to Events"
 ['Fox','Hawk','Lion'].each do |rank|
 	@events[rank].each do |event|
 		@boys[rank].keys.each do |name|
@@ -454,7 +452,7 @@ puts "Adding Attendance to Events"
 			begin
 				@kids[name].events << event
 			rescue
-				puts "Problem: #{name} #{@kids[name].to_s} #{event.to_s} ".inspect
+				puts "- Problem: #{name} #{@kids[name].to_s} #{event.to_s} ".inspect
 				exit
 			end
 			# Attendance.create(:boy_id => boy.id, :event_id => e.id)
@@ -462,22 +460,26 @@ puts "Adding Attendance to Events"
 	end
 end
 
-puts "Creating Badges"
+puts "- Creating Badges"
 badge = Badge.create(:name => "Worthy Life - Lion", :rank => 'lion')
-badge.requirements.create(:name => "Service to Church")
-badge.requirements.create(:name => "Service to Church (2)")
-badge.requirements.create(:name => "Perform / Lead Grace")
-badge.requirements.create(:name => "Lord's Prayer Study")
-badge.requirements.create(:name => "Holiday Service Discussion")
-badge.requirements.create(:name => "Obstacles of Faith")
-badge.requirements.create(:name => "Hero of Faith - Timothy")
-badge.requirements.create(:name => "Hero of Faith - Peter")
-badge.requirements.create(:name => "Family Devotional - Impact")
-badge.requirements.create(:name => "Religous Emblem")
-badge.requirements.create(:name => "Family Devotional - Family's Role")
-badge.requirements.create(:name => "Capstone")
+puts "  - Adding Requirements"
+["Service to Church",
+"Service to Church (2)",
+"Perform / Lead Grace",
+"Lord's Prayer Study",
+"Holiday Service Discussion",
+"Obstacles of Faith",
+"Hero of Faith - Timothy",
+"Hero of Faith - Peter",
+"Family Devotional - Impact",
+"Religous Emblem",
+"Family Devotional - Family's Role",
+"Capstone"].each do |name|
+	puts "    - Adding #{name}"
+	badge.requirements.create(:name => name)
+end
 
-puts "Recalculating Leaves"
+puts "- Recalculating Leaves"
 Boy.all.each do |boy|
 	boy.recalcuate_leaves
 end
