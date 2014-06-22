@@ -454,7 +454,7 @@ puts "Adding Attendance to Events"
 			begin
 				@kids[name].events << event
 			rescue
-				puts "Fuck: #{name} #{@kids[name].to_s} #{event.to_s} ".inspect
+				puts "Problem: #{name} #{@kids[name].to_s} #{event.to_s} ".inspect
 				exit
 			end
 			# Attendance.create(:boy_id => boy.id, :event_id => e.id)

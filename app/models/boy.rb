@@ -8,6 +8,7 @@ class Boy < ActiveRecord::Base
   has_many :attendances
   has_many :events, through: :attendances
 
+  has_many :badges
   has_many :awards
   has_many :achievements
 
