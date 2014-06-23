@@ -2,34 +2,15 @@
 
 %h2 Roster
 
-%h3 Attended
+%h3 Present
 
-%table.table
-  %tr
-    %th.col-xs-6 Woodland Boy
-    %th.col-xs-4 Patrol
-    %th.col-xs-2 &nbsp;
-
-  - @attendees.each do |attendee|
-    %tr
-      %td= link_to attendee.boy.name, boy_path(attendee.boy.id)
-      %td= attendee.boy.patrol.name
-      %td= link_to 'Remove', attendee, :method => :delete
+%div#present
+  = render :partial => 'attendances/attendance', :collection => @attendees
       
 %h3 Absent
 
-%table.table
-  %tr
-    %th.col-xs-6 Woodland Boy
-    %th.col-xs-4 Patrol
-    %th.col-xs-2 &nbsp;
-
-  - @candidates.each do |boy|
-    %tr
-      %td= boy.name
-      %td= boy.patrol.name
-      %td= link_to 'Add', add_event_attendance_path(@event.id, boy.id)
-
+%div#absent
+  =render :partial => "events/candidate", :collection => @candidates
 
 = link_to 'Edit', edit_event_path(@event)
 \|

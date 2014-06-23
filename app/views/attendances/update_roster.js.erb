@@ -1,0 +1,2 @@
+$("#present").html("<%= j(render('events/attendees', :attendees=> @event.attendances.sort_by(&:name))) %>");
+$("#absent").html("<%= j(render('events/candidates')) %>")

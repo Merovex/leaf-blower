@@ -1,0 +1,4 @@
+%div.row
+  %div.col-xs-6= attendance.name
+  %div.col-xs-4= attendance.boy.patrol.name
+  %div.col-xs-2= link_to 'Remove', del_event_attendance_path(@event, attendance), class: "btn btn-danger", :remote => true

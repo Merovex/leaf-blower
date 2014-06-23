@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :attendances do
       member do 
         get 'add'
+        get 'del'
       end
     end
     collection do 
