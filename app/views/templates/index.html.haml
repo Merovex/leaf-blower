@@ -1,11 +1,29 @@
 %h1 Templates
 
+%ul#toc
+  %li= link_to "Fox Templates", "#fox"
+  %li= link_to "Hawk Templates", "#hawk"
+  %li= link_to "Lion Templates", "#lion"
+
 - [:fox, :hawk, :lion].each do |rank|
-  %h2= rank.to_s.titleize
+  %h2{:id => rank.to_s}
+    = rank.to_s.titleize
+    Event Templates
+
+  %p
+    To use a template to create an event, click the "Create Event from Template" link. That will open a new window and create the event. You will then need to edit the date to coincide with when you scheduled the templated event.
+
+  %ul
+    %li= link_to "Back to top", "#toc"
+    %li= link_to "Fox Templates", "#fox"
+    %li= link_to "Hawk Templates", "#hawk"
+    %li= link_to "Lion Templates", "#lion"
+
+
   %table.table.table-bordered
     %tr
       %th Event
       =render :partial => 'shared/leaf_header'
-    = render :partial => @templates[rank]
+    = render :partial => @templates[rank], :locals => {:rank => rank}
 
 = link_to 'New Template', new_template_path, :class => "btn btn-primary"

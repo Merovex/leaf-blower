@@ -12,9 +12,9 @@ class EventsController < ApplicationController
   def new
     if params[:tid]
       template = Template.find(params[:tid])
-      
+      name = [template.rank, Date.today.year, template.name].join(" - ")
       p = {
-        :name => [template.rank, Date.today.year, template.name].join(" - "),
+        :name => name,
         :location_id => 1,
         :life_skills => template.life_skills.to_i || 0,
         :heritage => template.heritage.to_i || 0,
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
         :values => template.values.to_i || 0,
         :outdoor_activities => template.outdoor_activities.to_i || 0,
         :period => "Does not repeat",
-        :description => "None.",
+        :description => "Cloned from Template: #{name}",
         :starts_at => (DateTime.now.change(hour: 18)).strftime('%Y-%m-%d %H:%M')
        }
        respond_to do |format|

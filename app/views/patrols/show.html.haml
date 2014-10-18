@@ -1,15 +1,8 @@
-%p#notice= notice
+%h1= "#{@patrol.pack.name}: #{@patrol.name}"
 
-%p
-  %b Name:
-  = @patrol.name
-%p
-  %b Pack:
-  = @patrol.pack
-
-%ul
+%ul.list-group
   - @patrol.boys.each do |d|
-    %li= link_to d.name, d
+    %li.list-group-item= link_to d.name, d.becomes(Boy)
 
 = link_to 'Edit', edit_patrol_path(@patrol)
 \|

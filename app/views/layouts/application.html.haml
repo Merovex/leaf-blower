@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -14,24 +15,24 @@
       %main{:role => "main"}
         .container
           .row
-            .col-sm-8
+            .col-sm-8.col-xs-12
               = render 'layouts/messages'
               %ol.breadcrumb
                 = render_breadcrumbs :tag => :li, :separator => ""
               = yield
-            .col-sm-4
-              .ul
-                .li= link_to 'Ranks', ranks_path
-                .li= link_to 'Locations', locations_path
-                .li= link_to 'Boys', boys_path
-                .li= link_to 'Packs', packs_path
-                .li= link_to 'Patrols', patrols_path
-                .li= link_to 'Events', events_path
-                .li= link_to 'Templates', templates_path
+            .col-sm-4.col-xs-12
+              .ul.list-group
+                .li.list-group-item= link_to 'Ranks', ranks_path
+                .li.list-group-item= link_to 'Locations', locations_path
+                .li.list-group-item= link_to 'Boys', boys_path
+                .li.list-group-item= link_to 'Packs', packs_path
+                .li.list-group-item= link_to 'Patrols', patrols_path
+                .li.list-group-item= link_to 'Events', events_path
+                .li.list-group-item= link_to 'Templates', templates_path
       %footer{:id => "main-footer"}
         .container
           .row
-            #footer-1.col-sm-5
+            #footer-1.col-sm-5.col-xs-12
               %h3 WHAT IS LEAF BLOWER?
               %p
                 %strong Leaf Blower
@@ -40,7 +41,7 @@
               .counter 413
               .featured-clues Featured Clues
             / footer-1
-            #footer-2.col-sm-4
+            #footer-2.col-sm-4.col-xs-12
               %h3 FOLLOW US
               %p
                 Follow us on our
@@ -60,7 +61,7 @@
                 %li
                   %a.rss{"data-toggle" => "tooltip", :href => "feed/themes.rss", :target => "black", :title => "Subscribe RSS"} Subscribe RSS
             / footer-2
-            #footer-3.col-sm-3
+            #footer-3.col-sm-3.col-xs-12
               %h3 NEWSLETTER
               %p
                 Enter your email to receive our

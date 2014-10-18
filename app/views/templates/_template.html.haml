@@ -1,6 +1,6 @@
 %tr
   %td
-    %strong= link_to template.name, template
+    %strong= link_to "#{rank.to_s.titleize} - #{template.name}", template
     %p= template.description || 'No template Description.'
     %p= link_to "Create Event with this Template", new_event_path() + "?tid=#{template.id}", :target => "_blank"
   %td= template.service

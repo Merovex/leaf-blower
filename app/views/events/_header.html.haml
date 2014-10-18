@@ -1,7 +1,5 @@
 .row
-  .col-xs-3
-    = show_map(@event.location)
-  .col-xs-6
+  .col-xs-9.col-md.9
     =title @event.name
     .h3= event_dtg(@event)
     %p
@@ -10,7 +8,7 @@
     %p
       %strong Description:
       = @event.description
-  .col-xs-3
+  .col-xs-3.col-md-3
     %table.table
       %tr
         %th{:colspan => 2} Leaves

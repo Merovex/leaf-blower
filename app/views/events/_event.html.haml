@@ -1,15 +1,19 @@
-%tr
-  %td
-    %strong= link_to event.name, event
-    %p= event.address
-    %p 
-      %strong= event.starts_at.to_formatted_s(:short)
-    %p= event.description || 'No Event Description.'
-  %td= event.service
-  %td= event.heritage
-  %td= event.hobbies
-  %td= event.life_skills
-  %td= event.outdoor_activities
-  %td= event.pioneer_skills
-  %td= event.sci_tech
-  %td= event.values
+%li.list-group-item
+  = link_to "#{event.name} - #{event.starts_at.strftime("%B %d")}", event
+  %span.badge= event.attendances.length
+/ %tr
+/   %td
+/     %strong= link_to event.name, event
+/     %span.badge= event.attendances.length
+/     %p= event.address
+/     %p 
+/       %strong= event.starts_at.to_formatted_s(:short)
+/     %p= event.description || 'No Event Description.'
+/   %td= event.service
+/   %td= event.heritage
+/   %td= event.hobbies
+/   %td= event.life_skills
+/   %td= event.outdoor_activities
+/   %td= event.pioneer_skills
+/   %td= event.sci_tech
+/   %td= event.values
