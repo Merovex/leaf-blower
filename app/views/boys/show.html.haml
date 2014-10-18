@@ -21,9 +21,18 @@
 
 =render :partial => "#{@boy.type.downcase}s/progress"
 
-%h2 Achievements
+-unless @boy.awards.empty?
+  %h2 Achievements
 
-= render :partial => @boy.awards
+  = render :partial => @boy.awards
+
+%h2 Bonus Leaves
+
+= render :partial => @boy.bonums
+
+%div.row
+  %div.col-md-12
+    = link_to 'Add Bonus', edit_boy_path(@boy), :class => "btn btn-primary"
 
 %h2 Attendance
 

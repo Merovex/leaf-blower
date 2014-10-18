@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :bonums
+
   resources :achievements do
     member do
       get 'fine'
@@ -48,7 +50,9 @@ Rails.application.routes.draw do
 
   resources :patrols
 
-  resources :boys
+  resources :boys do 
+    resources :bonums
+  end
 
   resources :ranks
 

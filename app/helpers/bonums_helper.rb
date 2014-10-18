@@ -1,0 +1,2 @@
+module BonumsHelper
+end

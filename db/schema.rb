@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018135244) do
+ActiveRecord::Schema.define(version: 20141018182647) do
 
   create_table "achievements", force: true do |t|
     t.integer  "award_id"
@@ -55,6 +55,29 @@ ActiveRecord::Schema.define(version: 20141018135244) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "bonums", force: true do |t|
+    t.integer  "boy_id"
+    t.integer  "rank_id"
+    t.string   "name"
+    t.string   "reported_by"
+    t.string   "summary"
+    t.date     "earned_on"
+    t.integer  "service"
+    t.integer  "heritage"
+    t.integer  "hobbies"
+    t.integer  "life_skills"
+    t.integer  "outdoor_activities"
+    t.integer  "pioneer_skills"
+    t.integer  "sci_tech"
+    t.integer  "values"
+    t.integer  "nights"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bonums", ["boy_id"], name: "index_bonums_on_boy_id"
+  add_index "bonums", ["rank_id"], name: "index_bonums_on_rank_id"
 
   create_table "boys", force: true do |t|
     t.string   "name"

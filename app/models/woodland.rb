@@ -15,16 +15,18 @@ class Woodland < Boy
       :v => grace || 0, 
       :s => grace || 0
     }
-  	self.events.each do |event|
-  		leaves[:h] += event.heritage || 0
-  		leaves[:b] += event.hobbies || 0
-  		leaves[:l] += event.life_skills || 0
-  		leaves[:o] += event.outdoor_activities || 0
-  		leaves[:p] += event.pioneer_skills || 0
-  		leaves[:t] += event.sci_tech || 0
-  		leaves[:v] += event.values || 0
-  		leaves[:s] += event.service || 0
-  	end
+    [self.events, self.bonums].each do |c|
+    	c.each do |event|
+    		leaves[:h] += event.heritage || 0
+    		leaves[:b] += event.hobbies || 0
+    		leaves[:l] += event.life_skills || 0
+    		leaves[:o] += event.outdoor_activities || 0
+    		leaves[:p] += event.pioneer_skills || 0
+    		leaves[:t] += event.sci_tech || 0
+    		leaves[:v] += event.values || 0
+    		leaves[:s] += event.service || 0
+    	end
+    end
   	self.current_rank.leaves(
   		leaves[:h],
   		leaves[:b],

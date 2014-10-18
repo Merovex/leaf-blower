@@ -1,0 +1,31 @@
+= simple_form_for(@bonum, :url => boy_bonums_path(@boy,@bonum).gsub(".","/")) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :reported_by
+    = f.input :summary
+    = f.input :earned_on, as: :string
+    %h3 Leaves
+    .row
+      .col-xs-3
+        = leaf_form(f,:heritage)
+      .col-xs-3
+        = leaf_form(f,:hobbies)
+      .col-xs-3
+        = leaf_form(f,:life_skills)
+      .col-xs-3
+        = leaf_form(f,:outdoor_activities)
+    .row
+      .col-xs-3
+        = leaf_form(f,:pioneer_skills)
+      .col-xs-3
+        = leaf_form(f,:sci_tech)
+      .col-xs-3
+        = leaf_form(f,:values)
+      .col-xs-3
+        = f.input :service
+  .row.form-actions
+    .col-md-12= f.button :submit
+:javascript
+  $('#bonum_earned_on').datetimepicker({dateFormat: "yy-mm-dd"});

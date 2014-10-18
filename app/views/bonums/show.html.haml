@@ -1,0 +1,24 @@
+%h1
+  .small= @bonum.boy.name
+  =@bonum.name
+
+%div.row
+  %div.col-md-6.col-xs-12
+    %h2 Details
+    %p
+      %b Reported by:
+      = @bonum.reported_by
+    %p
+      %b Summary:
+      = @bonum.summary
+    %p
+      %b Earned On:
+      = @bonum.earned_on
+
+  %div.col-md-6.col-xs-12
+    %h2 Leaves
+    %ul.list-group
+      =leaf_list_item(@bonum)
+
+
+= link_to 'Edit', edit_boy_bonum_path(@boy, @bonum), :class => "btn btn-primary"

@@ -34,7 +34,10 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
-
+  def set_boy
+    # id = 
+    @boy = Boy.find(params[:boy_id] || params[:id])
+  end
   def user_not_authorized
     # flash[:alert] = "Access denied."
     flash[:error] = "You are not authorized to perform this action."

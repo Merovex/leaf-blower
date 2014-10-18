@@ -1,0 +1,7 @@
+%h1
+  .small= @boy.name
+  Bonuses
+
+= render :partial => @bonums
+
+= link_to 'New Bonum', new_boy_bonum_path(@boy), :class => "btn btn-primary"
