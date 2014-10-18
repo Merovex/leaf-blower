@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get 'calendar/index'
 
+  resources :events
+
   resources :events do 
     resources :attendances do
       member do 

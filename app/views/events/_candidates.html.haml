@@ -1,1 +1,3 @@
-= render :partial => 'events/candidate', :collection => @candidates
+- %w(fox hawk lion).each do |r|
+  %h4= r.titleize
+  = render :partial => 'events/candidate', :collection => @candidates[r.to_sym]

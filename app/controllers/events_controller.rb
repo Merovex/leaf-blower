@@ -7,23 +7,32 @@ class EventsController < ApplicationController
     add_breadcrumb @event.name if @event
   end
   def from_template
-    raise params.permit('name', 'description', 'starts_at', 'ends_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)    
-    
+    raise params.permit('name', 'description', 'starts_at', 'ends_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)
   end
   def new
-    p = {
-      :life_skills => params[:life_skills].to_i || 0,
-      :heritage => params[:heritage].to_i || 0,
-      :hobbies => params[:hobbies].to_i || 0,
-      :pioneer_skills => params[:pioneer_skills].to_i || 0,
-      :life_skills => params[:life_skills].to_i || 0,
-      :values => params[:values].to_i || 0,
-      :outdoor_activities => params[:outdoor_activities].to_i || 0,
-      :period => "Does not repeat",
-      :starts_at => (DateTime.now.change(:min => 59, :sec => 00) + 1.minute).strftime('%Y-%m-%d %H:%M'),
-      :ends_at => (DateTime.now.change(:min => 59, :sec => 00) + 1.hour + 1.minute).strftime('%Y-%m-%d %H:%M')
-     }
-    @event = Event.new(p)
+    if params[:tid]
+      template = Template.find(params[:tid])
+      
+      p = {
+        :name => [template.rank, Date.today.year, template.name].join(" - "),
+        :location_id => 1,
+        :life_skills => template.life_skills.to_i || 0,
+        :heritage => template.heritage.to_i || 0,
+        :hobbies => template.hobbies.to_i || 0,
+        :pioneer_skills => template.pioneer_skills.to_i || 0,
+        :life_skills => template.life_skills.to_i || 0,
+        :values => template.values.to_i || 0,
+        :outdoor_activities => template.outdoor_activities.to_i || 0,
+        :period => "Does not repeat",
+        :description => "None.",
+        :starts_at => (DateTime.now.change(hour: 18)).strftime('%Y-%m-%d %H:%M')
+       }
+       respond_to do |format|
+         @event = Event.create(p)
+         format.html { redirect_to edit_event_path(@event), notice: 'event was successfully updated.' }
+       end
+     end
+    @event = Event.new
   end
   
   def take_attendance
@@ -32,6 +41,7 @@ class EventsController < ApplicationController
     render :index
   end
   def create
+    # raise 'here'
     if params[:event][:period] == "Does not repeat"
       @event = Event.new(event_params)
     else
@@ -75,7 +85,7 @@ class EventsController < ApplicationController
     @event = Event.find_by_id params[:id]
     if @event
       @event.starts_at = (params[:minute_delta].to_i).minutes.from_now((params[:day_delta].to_i).days.from_now(@event.starts_at))
-      @event.ends_at = (params[:minute_delta].to_i).minutes.from_now((params[:day_delta].to_i).days.from_now(@event.ends_at))
+      # @event.ends_at = (params[:minute_delta].to_i).minutes.from_now((params[:day_delta].to_i).days.from_now(@event.ends_at))
       @event.all_day = params[:all_day]
       @event.save
     end
@@ -86,7 +96,7 @@ class EventsController < ApplicationController
   def resize
     @event = Event.find_by_id params[:id]
     if @event
-      @event.ends_at = (params[:minute_delta].to_i).minutes.from_now((params[:day_delta].to_i).days.from_now(@event.ends_at))
+      # @event.ends_at = (params[:minute_delta].to_i).minutes.from_now((params[:day_delta].to_i).days.from_now(@event.ends_at))
       @event.save
     end    
     render :nothing => true
@@ -98,7 +108,16 @@ class EventsController < ApplicationController
   end
   def show
     @attendees = @event.attendances.sort_by(&:name)
-    @candidates = (Boy.all - @event.boys).sort_by(&:name)
+    # @candidates = {
+    #   :fox => [],
+    #   :hawk => [],
+    #   :lion => [],
+    # }
+    # (Boy.all - @event.boys).each do |b|
+    #   @candidates[:fox] << b
+    # end
+    # @candidates = (Boy.all - @event.boys).sort_by(&:name)
+    find_candidates
   end
   def update
     # raise params.inspect
@@ -122,7 +141,11 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
-  end  
+  end
+  def template
+    @template = Template.find(params[:template_id])
+    # raise @template.inspect
+  end
   
   def destroy
     @event = Event.find_by_id(params[:id])
@@ -139,7 +162,7 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit('name', 'description', 'starts_at', 'ends_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)    
+      params.require(:event).permit('name', 'description', 'starts_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)    
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_event

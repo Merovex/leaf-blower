@@ -2,6 +2,17 @@ class ApplicationController < ActionController::Base
 
   add_breadcrumb "Home", :root_path
 
+  def find_candidates
+    @candidates = {
+      :fox => [],
+      :hawk => [],
+      :lion => [],
+    }
+    # @candidates = (Boy.all - @event.boys).sort_by(&:name)
+    (Boy.all - @event.boys).each do |b|
+      @candidates[b.current_rank.name.to_sym] << b
+    end
+  end
 
   include Pundit
   # Prevent CSRF attacks by raising an exception.

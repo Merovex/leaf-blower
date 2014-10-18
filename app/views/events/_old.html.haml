@@ -1,10 +1,10 @@
-= simple_form_for(@event) do |f|
+= simple_form_for(@event, :url => "/events", :method => :post) do |f|
   = f.error_notification
   .form-inputs
     .form-group
       = f.input :name
     .form-group
-      = f.association :location
+      / = f.association :location
   
     %h3 Leaves
     .row

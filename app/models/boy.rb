@@ -1,5 +1,6 @@
 class Boy < ActiveRecord::Base
   extend FriendlyId
+  validates :name, presence: true
   
   belongs_to :current_rank, class_name: "Rank"
   belongs_to :patrol
@@ -20,13 +21,14 @@ class Boy < ActiveRecord::Base
 
   def check_badges
     badges = Badge.where(:rank => self.current_rank.name, :active => true)
-    # self.awards.delete_all # << for testing purposes.
+    
     if self.awards.length != badges.length
       ids = self.awards.map{|a| a.badge_id}
       badges.each {|b| self.awards.create(:badge_id => b.id) unless ids.include?(b.id) }
     end
     # self.awards.each {|a| a.check_achievements }
-    self.awards.first.set_achievements
+    self.awards.first.set_achievements unless self.awards.first.nil?
+    return self.awards.first
   end
   def promote
     case 

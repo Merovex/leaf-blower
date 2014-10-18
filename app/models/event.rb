@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   
   validates_presence_of :name, :description
   # validate :validate_leaf_count
-  validates_with EventValidator
+  # validates_with EventValidator
   validate :validate_timings
   
   belongs_to :event_series
@@ -28,11 +28,11 @@ class Event < ActiveRecord::Base
     return [heritage, hobbies, life_skills, outdoor_activities, pioneer_skills, sci_tech, values ].inject(:+)
   end  
   def validate_timings
-    if (starts_at.nil? or ends_at.nil?)
-      errors[:base] << "Can't have an event without a start and end time."
+    if (starts_at.nil?)# or ends_at.nil?)
+      errors[:base] << "Can't have an event without a start time."
       # return
-    elsif (starts_at >= ends_at) and !all_day
-      errors[:base] << "Start Time must be less than End Time"
+    # elsif (starts_at >= ends_at) and !all_day
+    #   errors[:base] << "Start Time must be less than End Time"
     end
   end
   def address
@@ -69,7 +69,7 @@ class Event < ActiveRecord::Base
 
   # need to override the json view to return what full_calendar is expecting.
   # http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
-  def as_json(options = {})
+  def xas_json(options = {})
     {
       :id => self.id,
       :title => self.title,

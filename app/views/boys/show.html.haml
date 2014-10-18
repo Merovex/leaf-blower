@@ -7,8 +7,15 @@
   = "#{@boy.type}, #{@boy.current_rank.to_s}"
 
 %p
+  %b Grace:
+  = @boy.grace
+  %p.small Grace points are given to boys who arrive later in the rank cycle (e.g. 3rd Grade Hawk) to give them a chance to advance.
+
+%p
   %b Patrol:
-  = @boy.patrol
+  = @boy.patrol.name
+
+= link_to 'Edit', edit_boy_path(@boy), :class => "btn btn-primary"
 
 %h2 Progress
 
@@ -33,7 +40,3 @@
     %th <abbr title='Values'>V</abbr>
 
   = render :partial => @events
-
-= link_to 'Edit', edit_boy_path(@boy)
-\|
-= link_to 'Back', boys_path

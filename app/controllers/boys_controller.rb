@@ -6,38 +6,28 @@ class BoysController < ApplicationController
     add_breadcrumb "Woodland Boys", boys_path, :title => "Back to the Events List"
   end
   def index
-    # @boys = Boy.all
     @foxes = Patrol.find(1).boys
     @hawks = Patrol.find(2).boys
     @lions = Patrol.find(3).boys
   end
 
-  # GET /boys/1
-  # GET /boys/1.json
   def show
     @events = @boy.events.sort_by &:starts_at
     @badges = Badge.all
     @boy.check_badges
     render {:show }
   end
-
-  # GET /boys/new
   def new
     @boy = Boy.new
   end
-
-  # GET /boys/1/edit
   def edit
   end
-
-  # POST /boys
-  # POST /boys.json
   def create
     @boy = Boy.new(boy_params)
 
     respond_to do |format|
       if @boy.save
-        format.html { redirect_to @boy, notice: 'Boy was successfully created.' }
+        format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
         format.json { render :show, status: :created, location: @boy }
       else
         format.html { render :new }
@@ -51,7 +41,7 @@ class BoysController < ApplicationController
   def update
     respond_to do |format|
       if @boy.update(boy_params)
-        format.html { redirect_to @boy, notice: 'Boy was successfully updated.' }
+        format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully updated.' }
         format.json { render :show, status: :ok, location: @boy }
       else
         format.html { render :edit }
@@ -78,6 +68,6 @@ class BoysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boy_params
-      params.require(:boy).permit(:name, :current_rank_id, :patrol_id)
+      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, :grace)
     end
 end

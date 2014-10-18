@@ -16,7 +16,22 @@ class TemplatesController < ApplicationController
     # @templates = Template
   end
   def index
-    @templates = Template.all
+    # @templates = Template.all
+    # raise @templates.first.inspect
+    # @templates = {
+    #   :fox => Template.find_all_by_rank("Fox"),
+    # }
+    @templates = {
+      :fox => [],
+      :hawk => [],
+      :lion => []
+    }
+    Template.all.each do |t|
+      key = t.rank.downcase.to_sym
+      puts key.inspect
+      @templates[key] << t
+    end
+
   end
 
   # GET /templates/1

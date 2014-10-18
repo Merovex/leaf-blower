@@ -2,6 +2,7 @@
   %td
     %strong= link_to template.name, template
     %p= template.description || 'No template Description.'
+    %p= link_to "Create Event with this Template", new_event_path() + "?tid=#{template.id}", :target => "_blank"
   %td= template.service
   %td= template.heritage
   %td= template.hobbies

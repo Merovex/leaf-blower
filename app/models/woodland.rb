@@ -1,15 +1,29 @@
 class Woodland < Boy
+  # def self.model_name
+  #   Boy.model_name
+  # end
+  before_save :recalcuate_leaves
   def recalcuate_leaves
-  	leaves = {:h => 0, :b => 0, :l => 0, :o => 0, :p => 0, :t => 0, :v => 0, :s => 0}
+
+  	leaves = {
+      :h => grace || 0, 
+      :b => grace || 0, 
+      :l => grace || 0, 
+      :o => grace || 0, 
+      :p => grace || 0, 
+      :t => grace || 0, 
+      :v => grace || 0, 
+      :s => grace || 0
+    }
   	self.events.each do |event|
-		leaves[:h] += event.heritage || 0
-		leaves[:b] += event.hobbies || 0
-		leaves[:l] += event.life_skills || 0
-		leaves[:o] += event.outdoor_activities || 0
-		leaves[:p] += event.pioneer_skills || 0
-		leaves[:t] += event.sci_tech || 0
-		leaves[:v] += event.values || 0
-		leaves[:s] += event.service || 0
+  		leaves[:h] += event.heritage || 0
+  		leaves[:b] += event.hobbies || 0
+  		leaves[:l] += event.life_skills || 0
+  		leaves[:o] += event.outdoor_activities || 0
+  		leaves[:p] += event.pioneer_skills || 0
+  		leaves[:t] += event.sci_tech || 0
+  		leaves[:v] += event.values || 0
+  		leaves[:s] += event.service || 0
   	end
   	self.current_rank.leaves(
   		leaves[:h],

@@ -8,26 +8,28 @@ class AttendancesController < ApplicationController
   end
   def index
     @attendees = @event.attendances.sort_by(&:name)
-    get_candidates
+    update_candidates
   end
   def del
     @attendance = Attendance.find(params[:id])
     @boy = @attendance.boy
     @attendance.destroy
-    get_candidates
+    update_candidates
 
   end
   def add
     @boy = Boy.find(params[:id])
     @attendance = Attendance.new({:boy_id => @boy.id, :event_id => @event.id})
     @attendance.save
-    get_candidates    
+    update_candidates    
   end
 
   private
-    def get_candidates
+    def update_candidates
       @boy.recalcuate_leaves
-      @candidates = (Boy.all - @event.boys).sort_by(&:name)
+      # @candidates = (Boy.all - @event.boys).sort_by(&:name)
+      find_candidates
+
       respond_to do |format|
         format.js { render :update_roster }
       end

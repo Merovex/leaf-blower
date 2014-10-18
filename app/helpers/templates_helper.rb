@@ -1,6 +1,9 @@
 module TemplatesHelper
 	def template_params(t)
+		return {:tid => t.id}
+		
 		p = {
+			:name => t.name,
 			:life_skills => t.life_skills,
 		 	:heritage => t.heritage,
 		 	:hobbies => t.hobbies,

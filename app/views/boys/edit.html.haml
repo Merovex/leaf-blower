@@ -1,7 +1,3 @@
-%h1 Editing boy
+%h1= "Editing #{@boy.name}"
 
 = render 'form'
-
-= link_to 'Show', @boy
-\|
-= link_to 'Back', boys_path

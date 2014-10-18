@@ -3,10 +3,7 @@
     %strong= link_to event.name, event
     %p= event.address
     %p 
-      From
       %strong= event.starts_at.to_formatted_s(:short)
-      to
-      %strong= event.ends_at.to_formatted_s(:short)
     %p= event.description || 'No Event Description.'
   %td= event.service
   %td= event.heritage
