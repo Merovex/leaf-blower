@@ -37,6 +37,7 @@ class ApplicationController < ActionController::Base
   def set_boy
     # id = 
     @boy = Boy.find(params[:boy_id] || params[:id])
+    # raise @boy.inspect
   end
   def user_not_authorized
     # flash[:alert] = "Access denied."

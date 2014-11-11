@@ -21,6 +21,14 @@ class Boy < ActiveRecord::Base
   end
 
   def check_badges
+    self.set_current_rank if self.current_rank.nil?
+    if self.type.nil?
+      self.type = "Woodland"
+      self.save
+    end
+    # raise self.inspect
+    # raise Boy.first.inspect
+    # raise self.current_rank.inspect
     badges = Badge.where(:rank => self.current_rank.name, :active => true)
     
     if self.awards.length != badges.length

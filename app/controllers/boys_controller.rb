@@ -18,12 +18,12 @@ class BoysController < ApplicationController
     render {:show }
   end
   def new
-    @boy = Boy.new
+    @boy = Woodland.new
   end
   def edit
   end
   def create
-    @boy = Boy.new(boy_params)
+    @boy = Woodland.new(boy_params)
 
     respond_to do |format|
       if @boy.save
