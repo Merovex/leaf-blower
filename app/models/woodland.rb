@@ -6,14 +6,14 @@ class Woodland < Boy
   def recalcuate_leaves
     self.set_current_rank if self.current_rank.nil?
   	leaves = {
-      :h => self.grace || 0, 
-      :b => self.grace || 0, 
-      :l => self.grace || 0, 
-      :o => self.grace || 0, 
-      :p => self.grace || 0, 
-      :t => self.grace || 0, 
-      :v => self.grace || 0, 
-      :s => self.grace || 0
+      :h => 0, 
+      :b => 0, 
+      :l => 0, 
+      :o => 0, 
+      :p => 0, 
+      :t => 0, 
+      :v => 0, 
+      :s => 0
     }
     [self.events, self.bonums].each do |c|
     	c.each do |event|

@@ -5,9 +5,9 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    %title= content_for?(:title) ? yield(:title) : 'Leaf Blower'
+    %title= content_for?(:title) ? yield(:title) : 'Leaf Tracker'
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Leaf Blower'}"}
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Leaf Tracker'}"}
   %body
     #wrapper
       %header
@@ -30,65 +30,25 @@
                 .li.list-group-item= link_to 'Events', events_path
                 .li.list-group-item= link_to 'Templates', templates_path
       %footer{:id => "main-footer"}
-        .container
-          .row
-            #footer-1.col-sm-5.col-xs-12
-              %h3 WHAT IS LEAF BLOWER?
-              %p
-                %strong Leaf Blower
-                is the finest.
-              .pipe.pull-left
-              .counter 413
-              .featured-clues Featured Clues
-            / footer-1
-            #footer-2.col-sm-4.col-xs-12
-              %h3 FOLLOW US
-              %p
-                Follow us on our
-                %strong social networks
-                or
-                %strong subscribe RSS
-                to receive updates. You will be notified every time a new theme is posted!
-              %ul.follow-icons.clearfix
-                %li
-                  %a.tw-share{"data-toggle" => "tooltip", :href => "http://twitter.com/themeclue", :target => "black", :title => "Twitter"} Twitter
-                %li
-                  %a.fb-share{"data-toggle" => "tooltip", :href => "http://facebook.com/themeclue", :target => "black", :title => "Facebook"} Facebook
-                %li
-                  %a.pin-share{"data-toggle" => "tooltip", :href => "http://pinterest.com/themeclue/", :target => "black", :title => "Pinterest"} Pinterest
-                %li
-                  %a.gp-share{"data-toggle" => "tooltip", :href => "http://plus.google.com/102081405076952572353", :target => "black", :title => "Google+"} Google+
-                %li
-                  %a.rss{"data-toggle" => "tooltip", :href => "feed/themes.rss", :target => "black", :title => "Subscribe RSS"} Subscribe RSS
-            / footer-2
-            #footer-3.col-sm-3.col-xs-12
-              %h3 NEWSLETTER
-              %p
-                Enter your email to receive our
-                %strong newsletter
-              %form{:method => "post", :name => "newsletter"}
-                %input.col-sm-3{:name => "email", :placeholder => "", :type => "text"}/
-                %button.btn{:onclick => "ctrl_newsletter('',2)", :type => "button"} SUBSCRIBE
-            / footer-3
-          #bottom-footer.container
-            .pull-left
-              %p
-                %strong
-                  %a{:href => ""} Themeclue
-                Copyright &copy; 2013. All themes &copy; their respective owners |
-                %strong
-                  %a{:href => "/site/about"} About
-                |
-                %strong
-                  %a{:href => "/site/compendium"} Compendium
-                |
-                %strong
-                  %a{:href => "/site/terms"} Terms
-                |
-                %strong
-                  %a{:href => "/site/privacy"} Privacy
-            .pull-right
-              %p
-                Contact us at
-                %strong
-                  %a{:href => "mailto:dausha@gmail.com"} dausha@gmail.com
+        #bottom-footer.container
+          .pull-left
+            %p
+              %strong
+                %a{:href => ""} Ben Wilson
+              Copyright &copy; 2014. |
+              %strong
+                %a{:href => "/site/about"} About
+              |
+              %strong
+                %a{:href => "/site/compendium"} Compendium
+              |
+              %strong
+                %a{:href => "/site/terms"} Terms
+              |
+              %strong
+                %a{:href => "/site/privacy"} Privacy
+          .pull-right
+            %p
+              Contact at
+              %strong
+                %a{:href => "mailto:dausha@gmail.com"} dausha@gmail.com

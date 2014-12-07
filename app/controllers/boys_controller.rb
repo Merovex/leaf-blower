@@ -64,6 +64,6 @@ class BoysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boy_params
-      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, :grace)
+      params.require(:boy).permit(:name, :current_rank_id, :patrol_id)
     end
 end
