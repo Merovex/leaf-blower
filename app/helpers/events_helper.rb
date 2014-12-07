@@ -79,4 +79,11 @@ module EventsHelper
 		end
 		return output.join("\n").html_safe
 	end
+	def bif(i,d=nil)
+		if i == 0
+			return i if d.nil?
+			return d
+		end
+		return "<strong>#{i}</strong>".html_safe
+	end
 end

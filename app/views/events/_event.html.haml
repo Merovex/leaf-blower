@@ -1,19 +1,15 @@
-%li.list-group-item
-  = link_to "#{event.name} - #{event.starts_at.strftime("%B %d")}", event
-  %span.badge= event.attendances.length
-/ %tr
-/   %td
-/     %strong= link_to event.name, event
-/     %span.badge= event.attendances.length
-/     %p= event.address
-/     %p 
-/       %strong= event.starts_at.to_formatted_s(:short)
-/     %p= event.description || 'No Event Description.'
-/   %td= event.service
-/   %td= event.heritage
-/   %td= event.hobbies
-/   %td= event.life_skills
-/   %td= event.outdoor_activities
-/   %td= event.pioneer_skills
-/   %td= event.sci_tech
-/   %td= event.values
+/ %li.list-group-item
+/   = link_to "#{event.name} - #{event.starts_at.strftime("%B %d")}", event
+/   %span.badge= event.attendances.length
+%tr
+  %td
+    %strong= link_to event.name, event
+    %span.badge= event.attendances.length
+  %td.text-center= bif(event.service,"")
+  %td.text-center= bif(event.heritage,"")
+  %td.text-center= bif(event.hobbies,"")
+  %td.text-center= bif(event.life_skills,"")
+  %td.text-center= bif(event.outdoor_activities,"")
+  %td.text-center= bif(event.pioneer_skills,"")
+  %td.text-center= bif(event.sci_tech,"")
+  %td.text-center= bif(event.values,"")
