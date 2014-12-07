@@ -16,16 +16,21 @@ class BoysController < ApplicationController
     @events = @boy.events.sort_by &:starts_at
     @badges = Badge.all
     @boy.check_badges
-    # raise @boy.current_rank.inspect
     render {:show }
   end
   def new
     @boy = Woodland.new
+    @rank = Rank.new
   end
   def edit
+    @rank = @boy.current_rank
   end
   def create
+    b = boy_params
+    raise b.inspect
     @boy = Woodland.new(boy_params)
+    # raise @boy.inspect
+
 
     respond_to do |format|
       if @boy.save
@@ -40,7 +45,12 @@ class BoysController < ApplicationController
   def update
     # raise @boy.inspect
     respond_to do |format|
-      if @boy.update(boy_params)
+      p = boy_params
+      rank = p[:rank] 
+      p.delete(:rank)
+      # raise [p, rank].inspect
+      if @boy.update(p)
+        @boy.current_rank.update(rank)
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully updated.' }
         format.json { render :show, status: :ok, location: @boy }
       else
@@ -64,6 +74,6 @@ class BoysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boy_params
-      params.require(:boy).permit(:name, :current_rank_id, :patrol_id)
+      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, rank: [:grace])
     end
 end

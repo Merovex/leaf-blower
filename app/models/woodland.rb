@@ -2,15 +2,16 @@ class Woodland < Boy
   before_save :recalcuate_leaves
   def recalcuate_leaves
     self.set_current_rank if self.current_rank.nil?
+    grace = self.current_rank.grace
   	leaves = {
-      :h => 0, 
-      :b => 0, 
-      :l => 0, 
-      :o => 0, 
-      :p => 0, 
-      :t => 0, 
-      :v => 0, 
-      :s => 0
+       :h => grace || 0, 
+       :b => grace || 0, 
+       :l => grace || 0, 
+       :o => grace || 0, 
+       :p => grace || 0, 
+       :t => grace || 0, 
+       :v => grace || 0, 
+       :s => grace || 0
     }
     # raise self.bonums.inspect
     [self.events, self.bonums].each do |c|

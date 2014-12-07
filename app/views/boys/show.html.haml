@@ -7,6 +7,12 @@
   = "#{@boy.type}, #{@boy.current_rank.to_s}"
 
 %p
+  %b Grace:
+  = @boy.current_rank.grace
+  %p.small Grace points are given to boys who arrive later in the rank cycle (e.g. 3rd Grade Hawk) to give them a chance to advance.
+
+
+%p
   %b Patrol:
   = @boy.patrol.name
 

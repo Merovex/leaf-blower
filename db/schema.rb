@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207192208) do
+ActiveRecord::Schema.define(version: 20141207204749) do
 
   create_table "achievements", force: true do |t|
     t.integer  "award_id"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20141207192208) do
     t.date     "awarded"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "grace",              default: 0
   end
 
   add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id"
