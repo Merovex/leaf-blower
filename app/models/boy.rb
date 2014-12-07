@@ -16,7 +16,8 @@ class Boy < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
   def set_current_rank
-  	self.current_rank = Rank.find_or_create_by_name(patrol.rank.downcase, self.id)
+    r = self.ranks.create(:name => self.patrol.rank.downcase, :is_current => true)
+    self.current_rank = r
   	self.save
   end
 
@@ -26,16 +27,12 @@ class Boy < ActiveRecord::Base
       self.type = "Woodland"
       self.save
     end
-    # raise self.inspect
-    # raise Boy.first.inspect
-    # raise self.current_rank.inspect
     badges = Badge.where(:rank => self.current_rank.name, :active => true)
     
     if self.awards.length != badges.length
       ids = self.awards.map{|a| a.badge_id}
       badges.each {|b| self.awards.create(:badge_id => b.id) unless ids.include?(b.id) }
     end
-    # self.awards.each {|a| a.check_achievements }
     self.awards.first.set_achievements unless self.awards.first.nil?
     return self.awards.first
   end

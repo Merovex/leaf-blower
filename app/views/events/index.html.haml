@@ -3,17 +3,16 @@
 %p.right
   = link_to 'New Event', new_event_path, {class: 'btn btn-primary btn-lg'}
 
-/ %table.table.table-bordered
-/   %tr
-/     %th Event
-/     %th <abbr title='Service Hours'>S</abbr>
-/     %th <abbr title='Heritage'>H</abbr>
-/     %th <abbr title='Hobbies'>B</abbr>
-/     %th <abbr title='Life Skills'>L</abbr>
-/     %th <abbr title='Outdoor Activities'>O</abbr>
-/     %th <abbr title='Pioneering Skills'>P</abbr>
-/     %th <abbr title='Science & Technology'>T</abbr>
-/     %th <abbr title='Values'>V</abbr>
+%table.table.table-bordered
+  %tr
+    %th Event
+    %th <abbr title='Service Hours'>S</abbr>
+    %th <abbr title='Heritage'>H</abbr>
+    %th <abbr title='Hobbies'>B</abbr>
+    %th <abbr title='Life Skills'>L</abbr>
+    %th <abbr title='Outdoor Activities'>O</abbr>
+    %th <abbr title='Pioneering Skills'>P</abbr>
+    %th <abbr title='Science & Technology'>T</abbr>
+    %th <abbr title='Values'>V</abbr>
 
-%ul.list-group
   = render :partial => @events

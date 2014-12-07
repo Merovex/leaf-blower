@@ -1,7 +1,4 @@
 class Woodland < Boy
-  # def self.model_name
-  #   Boy.model_name
-  # end
   before_save :recalcuate_leaves
   def recalcuate_leaves
     self.set_current_rank if self.current_rank.nil?
@@ -15,6 +12,7 @@ class Woodland < Boy
       :v => 0, 
       :s => 0
     }
+    # raise self.bonums.inspect
     [self.events, self.bonums].each do |c|
     	c.each do |event|
     		leaves[:h] += event.heritage || 0

@@ -9,12 +9,14 @@ class BoysController < ApplicationController
     @foxes = Patrol.find(1).boys
     @hawks = Patrol.find(2).boys
     @lions = Patrol.find(3).boys
+
   end
 
   def show
     @events = @boy.events.sort_by &:starts_at
     @badges = Badge.all
     @boy.check_badges
+    # raise @boy.current_rank.inspect
     render {:show }
   end
   def new
@@ -35,10 +37,8 @@ class BoysController < ApplicationController
       end
     end
   end
-
-  # PATCH/PUT /boys/1
-  # PATCH/PUT /boys/1.json
   def update
+    # raise @boy.inspect
     respond_to do |format|
       if @boy.update(boy_params)
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully updated.' }
