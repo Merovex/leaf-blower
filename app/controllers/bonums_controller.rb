@@ -25,7 +25,7 @@ class BonumsController < ApplicationController
     respond_to do |format|
       if @bonum.save
         @boy.recalcuate_leaves
-        format.html { redirect_to boy_bonum_path(@boy, @bonum), notice: 'Bonum was successfully created.' }
+        format.html { redirect_to boy_path(@boy), notice: 'Bonum was successfully created.' }
         format.json { render :show, status: :created, location: @bonum }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class BonumsController < ApplicationController
     respond_to do |format|
       if @bonum.update(bonum_params)
         @boy.recalcuate_leaves
-        format.html { redirect_to boy_bonum_path(@boy, @bonum), notice: 'Bonum was successfully updated.' }
+        format.html { redirect_to boy_path(@boy), notice: 'Bonum was successfully updated.' }
         format.json { render :show, status: :ok, location: @bonum }
       else
         format.html { render :edit }
