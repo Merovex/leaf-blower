@@ -5,6 +5,7 @@
   %td
     %strong= link_to event.name, event
     %span.badge= event.attendances.length
+  %td.text-center= event.starts_at.strftime("%m/%d/%Y")
   %td.text-center= bif(event.service,"")
   %td.text-center= bif(event.heritage,"")
   %td.text-center= bif(event.hobbies,"")
