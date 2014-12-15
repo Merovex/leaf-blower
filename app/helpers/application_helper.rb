@@ -21,8 +21,10 @@ module ApplicationHelper
   end
   def subdue_zero(n)
     total = 18
+    s = ""
+    s = " class='bg-primary' style='padding: 2px'" unless (n < total)
     return "<span class='text-muted'>0<small>/#{total}</small></span>".html_safe if n.to_s == '0'
-    return "<strong>#{n}</strong><small class='text-muted'>/#{total}</small>".html_safe;
+    return "<span#{s}><strong>#{n}</strong><small class='text-muted'>/#{total}</small></span>".html_safe;
   end
   def title(t)
     return "<h1>#{t.titlecase}</h1>".html_safe
