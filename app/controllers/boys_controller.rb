@@ -29,7 +29,7 @@ class BoysController < ApplicationController
     p = boy_params
     rank = p[:rank] 
     p.delete(:rank)
-    @boy = Woodland.new(boy_params)
+    @boy = Woodland.new(p)
     # raise @boy.inspect
 
     respond_to do |format|
