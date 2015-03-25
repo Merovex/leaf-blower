@@ -27,10 +27,9 @@ class BoysController < ApplicationController
   end
   def create
     b = boy_params
-    raise b.inspect
+    # raise b.inspect
     @boy = Woodland.new(boy_params)
     # raise @boy.inspect
-
 
     respond_to do |format|
       if @boy.save
