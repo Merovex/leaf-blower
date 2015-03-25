@@ -26,13 +26,15 @@ class BoysController < ApplicationController
     @rank = @boy.current_rank
   end
   def create
-    b = boy_params
-    # raise b.inspect
+    p = boy_params
+    rank = p[:rank] 
+    p.delete(:rank)
     @boy = Woodland.new(boy_params)
     # raise @boy.inspect
 
     respond_to do |format|
       if @boy.save
+        @boy.current_rank.update(rank)
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
         format.json { render :show, status: :created, location: @boy }
       else
