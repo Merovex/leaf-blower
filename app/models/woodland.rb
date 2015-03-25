@@ -1,7 +1,8 @@
 class Woodland < Boy
   before_save :recalcuate_leaves
   def recalcuate_leaves
-    self.set_current_rank if self.current_rank.nil?
+    # self.set_current_rank if self.current_rank.nil?
+    return if self.current_rank.nil?
     grace = self.current_rank.grace
   	leaves = {
        :h => grace || 0, 

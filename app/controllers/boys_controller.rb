@@ -34,6 +34,7 @@ class BoysController < ApplicationController
 
     respond_to do |format|
       if @boy.save
+        @boy.set_current_rank
         @boy.current_rank.update(rank)
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
         format.json { render :show, status: :created, location: @boy }
