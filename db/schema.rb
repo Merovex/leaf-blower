@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207204749) do
+ActiveRecord::Schema.define(version: 20150522133000) do
 
   create_table "achievements", force: true do |t|
     t.integer  "award_id"
@@ -87,6 +87,9 @@ ActiveRecord::Schema.define(version: 20141207204749) do
     t.integer  "patrol_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "grade",           default: 0
+    t.boolean  "active",          default: true
+    t.datetime "promoted_at"
   end
 
   create_table "event_series", force: true do |t|

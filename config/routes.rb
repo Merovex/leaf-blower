@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'site/contact'
 
   get 'calendar/index'
+  get 'boys/advance'
+  get '/boys/:id/promote', to: 'boys#promote', as: 'boy_promote'
 
   resources :events
 

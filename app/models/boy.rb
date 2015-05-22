@@ -20,7 +20,10 @@ class Boy < ActiveRecord::Base
     self.current_rank = r
   	self.save
   end
-
+  def lastnamefirst
+    n = self.name.split(' ').reverse.join(' ')
+    # raise n.inspect
+  end
   def check_badges
     self.set_current_rank if self.current_rank.nil?
     if self.type.nil?
@@ -36,16 +39,22 @@ class Boy < ActiveRecord::Base
     self.awards.first.set_achievements unless self.awards.first.nil?
     return self.awards.first
   end
+  def rerank(i)
+    self.patrol_id = i
+    r = self.ranks.create(:name => self.patrol.rank.downcase, :is_current => true)
+    self.current_rank = r
+  end
   def promote
-    case 
-      when type == 'Woodland'
-        n = 'Navigator'
-      when type == 'Navigator'
-        n = 'Adventurer'
-      else
-        n = 'Adventurer'
+    self.promoted_at = DateTime.now
+    case
+      when self.grade == 1
+        rerank(2)
+      when self.grade == 3
+        rerank(3)
+      when self.grade == 5
+        rerank(4)
     end
-    type = n
+    self.grade += 1
     save!
   end
   def demote

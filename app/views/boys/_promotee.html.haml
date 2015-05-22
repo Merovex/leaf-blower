@@ -1,0 +1,10 @@
+%tr
+  %td= promotee.name
+  %td= promotee.grade
+  %td
+    = promotee.current_rank.to_s.titleize
+  %td
+    - if promotee.promoted_at.nil? or promotee.promoted_at < 1.week.ago
+      = link_to 'Promote', boy_promote_path(promotee.id), :remote => true, class: "btn btn-primary"
+    - else
+      = "Promoted #{time_ago_in_words(promotee.promoted_at)} ago"

@@ -1,10 +1,18 @@
 %p#notice= notice
 
-= title( @boy.name)
+= title(@boy.name)
 
 %p
   %b Level:
-  = "#{@boy.type}, #{@boy.current_rank.to_s}"
+  = "#{@boy.current_rank.to_s.titleize}"
+  %b= "(Active)" if @boy.active
+  %b= "(Inactive)" unless @boy.active
+
+%p
+  %b Grade:
+  = "#{@boy.grade}"
+
+  
 
 %p
   %b Grace:

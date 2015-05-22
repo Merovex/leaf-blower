@@ -42,6 +42,10 @@ class PatrolsController < ApplicationController
   def update
     respond_to do |format|
       if @patrol.update(patrol_params)
+        if @patrol.rank.nil?
+          @patrol.rank = @patrol.name.downcase
+          @patrol.save
+        end
         format.html { redirect_to @patrol, notice: 'Patrol was successfully updated.' }
         format.json { render :show, status: :ok, location: @patrol }
       else
@@ -69,6 +73,6 @@ class PatrolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patrol_params
-      params.require(:patrol).permit(:name, :pack_id)
+      params.require(:patrol).permit(:name, :pack_id, :rank)
     end
 end
