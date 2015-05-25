@@ -6,11 +6,12 @@ class ApplicationController < ActionController::Base
     @candidates = {
       :fox => [],
       :hawk => [],
-      :lion => [],
+      :lion => []
     }
-    # @candidates = (Boy.all - @event.boys).sort_by(&:name)
+    # @candidates = (Boy.all - @event.boys).sort_by(&:lastnamefirst)
     (Boy.all - @event.boys).each do |b|
       next if b.current_rank.nil?
+      next if @candidates[b.current_rank.name.to_sym].nil?
       @candidates[b.current_rank.name.to_sym] << b
     end
   end

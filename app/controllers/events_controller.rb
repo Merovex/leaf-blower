@@ -107,17 +107,9 @@ class EventsController < ApplicationController
     # render :json => { :form => render_to_string(:partial => 'edit_form') } 
   end
   def show
-    @attendees = @event.attendances.sort_by(&:lastnamefirst)
-    # @attendees = @event.attendances.sort_by(&:name)
-    # @candidates = {
-    #   :fox => [],
-    #   :hawk => [],
-    #   :lion => [],
-    # }
-    # (Boy.all - @event.boys).each do |b|
-    #   @candidates[:fox] << b
-    # end
-    # @candidates = (Boy.all - @event.boys).sort_by(&:name)
+    
+    @attendees = @event.attendances.sort_by { |a| a.boy.lastnamefirst }
+
     find_candidates
   end
   def update
