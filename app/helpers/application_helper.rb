@@ -21,10 +21,19 @@ module ApplicationHelper
   end
   def subdue_zero(n)
     total = 18
-    s = ""
-    s = " class='bg-primary' style='padding: 2px'" unless (n < total)
-    return "<span class='text-muted'>0<small>/#{total}</small></span>".html_safe if n.to_s == '0'
-    return "<span#{s}><strong>#{n}</strong><small class='text-muted'>/#{total}</small></span>".html_safe;
+    case 
+      when n.to_s == '0' then
+        return "<span class='text-muted'>0<small>/#{total}</small></span>".html_safe
+      when n > (total + 4) then
+        x = ((n - total) / 4).floor
+        return "<span class='bg-danger' style='padding: 2px'><abbr title='#{n} /#{total} leaves'><strong>#{x}</strong> star#{x==1 ? '' : 's'}</abbr></span>".html_safe;
+      when n < total
+        return "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>".html_safe;
+      else
+        return "<span class='bg-success' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>Branch</strong></abbr></span>".html_safe;
+        # return "<span class='bg-success' style='padding: 2px'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></span>".html_safe;
+    end
+    
   end
   def title(t)
     return "<h1>#{t.titlecase}</h1>".html_safe
