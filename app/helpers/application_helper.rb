@@ -24,7 +24,7 @@ module ApplicationHelper
     case 
       when n.to_s == '0' then
         return "<span class='text-muted'>0<small>/#{total}</small></span>".html_safe
-      when n > (total + 0) then
+      when n >= total then
         x = ((n - total) / 4).floor
         # return "<span class='bg-danger' style='padding: 2px'><abbr title='#{n} /#{total} leaves'><strong>#{x}</strong> star#{x==1 ? '' : 's'}</abbr></span>".html_safe;
         return "<span class='bg-success' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>B + #{x}</strong></abbr></span>".html_safe;
