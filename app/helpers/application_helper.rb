@@ -26,12 +26,9 @@ module ApplicationHelper
         return "<span class='text-muted'>0<small>/#{total}</small></span>".html_safe
       when n >= total then
         x = ((n - total) / 4).floor
-        # return "<span class='bg-danger' style='padding: 2px'><abbr title='#{n} /#{total} leaves'><strong>#{x}</strong> star#{x==1 ? '' : 's'}</abbr></span>".html_safe;
-        return "<span class='bg-success' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>B + #{x}</strong></abbr></span>".html_safe;
-      when n < total
-        return "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>".html_safe;
+        return "<span class='bg-primary' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>B + #{x}</strong></abbr></span>".html_safe;
       else
-        return "<span class='bg-success' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>Br + 0</strong></abbr></span>".html_safe;
+        return "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>".html_safe;
     end
     
   end
