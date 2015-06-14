@@ -24,9 +24,10 @@ module ApplicationHelper
     case 
       when n.to_s == '0' then
         return "<span class='text-muted'>0<small>/#{total}</small></span>".html_safe
+      when n >= (total + 4) then
+        return "<span class='bg-primary' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>Star</strong></abbr></span>".html_safe;
       when n >= total then
-        x = ((n - total) / 4).floor
-        return "<span class='bg-primary' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>B + #{x}</strong></abbr></span>".html_safe;
+        return "<span class='bg-primary' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>B + #{n - total}</strong></abbr></span>".html_safe;
       else
         return "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>".html_safe;
     end
