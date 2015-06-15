@@ -11,12 +11,9 @@
 
   - @requirements.each do |requirement|
     %tr
-      %td= requirement.name
+      %td= link_to requirement.name, requirement
       %td= requirement.text
-      %td= requirement.badge
-      %td= link_to 'Show', requirement
-      %td= link_to 'Edit', edit_requirement_path(requirement)
-      %td= link_to 'Destroy', requirement, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= requirement.badge.name
 
 %br
 
