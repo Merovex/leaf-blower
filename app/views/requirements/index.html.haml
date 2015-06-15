@@ -2,18 +2,15 @@
 
 %table
   %tr
-    %th Name
-    %th Text
-    %th Badge
-    %th
-    %th
-    %th
+    %th.col-md-3 Name
+    %th.col-md-3 Badge
+    %th.col-md-6 Text
 
   - @requirements.each do |requirement|
     %tr
       %td= link_to requirement.name, requirement
-      %td= requirement.text
       %td= requirement.badge.name
+      %td= requirement.text
 
 %br
 
