@@ -22,6 +22,8 @@ class Ability
       cannot :read, Patrol
       cannot :read, Pack
       cannot :read, Rank
+    else
+       can :manage, :all
     end
     #
     # The first argument to `can` is the action you are giving the user 
