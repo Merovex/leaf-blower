@@ -6,25 +6,23 @@ class Ability
     #
       alias_action :create, :read, :update, :destroy, :to => :crud
       user ||= User.new # guest user (not logged in)
-      if user.nil?
         can :manage, :all
         return
-      end
-    if user.role? :ranger
-      can :manage, :all
-    elsif user.role? :leader
-        can :crud, Event
-        can :crud, Boy
-        can :crud, Bonum
-        can :manage, Advancement
-        can :read, Template
-    elsif user.role? :parent
-      can :read, :all
-      cannot :read, Template
-      cannot :read, Patrol
-      cannot :read, Pack
-      cannot :read, Rank
-    else
+    # if user.role? :ranger
+    #   can :manage, :all
+    # elsif user.role? :leader
+    #     can :crud, Event
+    #     can :crud, Boy
+    #     can :crud, Bonum
+    #     can :manage, Advancement
+    #     can :read, Template
+    # elsif user.role? :parent
+    #   can :read, :all
+    #   cannot :read, Template
+    #   cannot :read, Patrol
+    #   cannot :read, Pack
+    #   cannot :read, Rank
+    # else
 
     #
     # The first argument to `can` is the action you are giving the user 
