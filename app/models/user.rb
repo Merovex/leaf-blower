@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
   def role?(r)
-  	(self.role.to_sym == r)
+    m = (self.role.nil?) ? 'Nobody' : self.role.to_sym
+  	(m == r)
   end
 
 end
