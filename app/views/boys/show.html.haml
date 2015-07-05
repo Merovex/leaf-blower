@@ -24,7 +24,7 @@
   %b Patrol:
   = @boy.patrol.name
 
-= link_to 'Edit', edit_boy_path(@boy), :class => "btn btn-primary"
+= link_to 'Edit', edit_boy_path(@boy), :class => "btn btn-primary" if can? :edit, @boy
 
 %h2 Progress
 
@@ -41,7 +41,7 @@
 
 %div.row
   %div.col-md-12
-    = link_to 'Add Bonus', new_boy_bonum_path(@boy), :class => "btn btn-primary"
+    = link_to 'Add Bonus', new_boy_bonum_path(@boy), :class => "btn btn-primary" if can? :edit, Bonum
 
 %h2 Attendance
 

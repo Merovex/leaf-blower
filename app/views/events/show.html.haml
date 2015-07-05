@@ -1,6 +1,6 @@
 = render :partial => "events/header"
 
-= link_to 'Edit Event', edit_event_path(@event), :class => "btn btn-primary"
+= link_to 'Edit Event', edit_event_path(@event), :class => "btn btn-primary" if can? :edit, @event
 
 %h2 Roster
 
@@ -8,11 +8,12 @@
 
 %div#present
   = render :partial => 'attendances/attendance', :collection => @attendees
-      
-%h3 Absent
 
-%div#absent
-  =render :partial => "events/candidates"
+- if can? :edit, @event      
+  %h3 Absent
+
+  %div#absent
+    =render :partial => "events/candidates"
 
 / = link_to 'Destroy', @event,  :method => :delete
 

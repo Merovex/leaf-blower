@@ -1,4 +1,4 @@
 %div.row.candidate
   %div.col-xs-6= link_to candidate.name, candidate.becomes(Boy)
   %div.col-xs-4= candidate.patrol.name
-  %div.col-xs-2= link_to 'Present', add_event_attendance_path(@event.id, candidate.id), :remote => true, class: "btn btn-primary"
+  %div.col-xs-2= link_to 'Present', add_event_attendance_path(@event.id, candidate.id), :remote => true, class: "btn btn-primary" if can? :edit, @event

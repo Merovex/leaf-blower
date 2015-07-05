@@ -24,6 +24,7 @@ gem 'breadcrumbs_on_rails'
 gem 'fullcalendar-rails'
 gem 'jquery-ui-rails'
 gem 'friendly_id', '~> 5.0.4'
+gem 'cancan'
 
 
 group :development do

@@ -1,5 +1,5 @@
 %div.row.candidate
   %div.col-xs-6= link_to attendance.name, attendance.boy.becomes(Boy)
   %div.col-xs-2= attendance.boy.patrol.name
-  %div.col-xs-2= "HERE"
-  %div.col-xs-2= link_to 'Remove', del_event_attendance_path(@event, attendance), class: "btn btn-danger", :remote => true
+  %div.col-xs-2 &nbsp;
+  %div.col-xs-2= link_to 'Remove', del_event_attendance_path(@event, attendance), class: "btn btn-danger", :remote => true if can? :edit, @event

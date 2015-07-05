@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
 
   add_breadcrumb "Home", :root_path
+  # check_authorization
+  load_and_authorize_resource
 
   def find_candidates
     @candidates = {
@@ -14,6 +16,10 @@ class ApplicationController < ActionController::Base
       next if @candidates[b.current_rank.name.to_sym].nil?
       @candidates[b.current_rank.name.to_sym] << b
     end
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to :back, :alert => exception.message
   end
 
   include Pundit

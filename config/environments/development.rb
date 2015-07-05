@@ -32,16 +32,18 @@ Rails.application.configure do
     port: 587,
     domain: Rails.application.secrets.domain_name,
     authentication: "plain",
-    enable_starttls_auto: true,
+    # enable_starttls_auto: true,
     user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_password
+    password: Rails.application.secrets.email_provider_password,
+    openssl_verify_mode: 'none'
   }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   # Send email in development mode?
-  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
 
 
   # Adds additional error checking when serving assets at runtime.
