@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  root :to => "visitors#index"
+  root :to => "boys#index"
   devise_for :users
   resources :users
 end

@@ -8,6 +8,10 @@ module ApplicationHelper
           when :alert then "alert alert-error"
       end
   end
+  def keep(word,t=4)
+    # return word unless current_user.nil?
+    return word.truncate(t+3)
+  end
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
