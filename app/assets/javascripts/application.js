@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require fullcalendar
-//= require gcal
 //= require_tree .
 $(document).ready(function(){
       // page is now ready, initialize the calendar...
