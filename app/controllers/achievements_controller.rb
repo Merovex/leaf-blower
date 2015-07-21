@@ -1,4 +1,5 @@
 class AchievementsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_achievement
   def fine
     @achievement.completed_on = Date.today

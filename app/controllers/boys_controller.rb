@@ -1,6 +1,7 @@
 class BoysController < ApplicationController
   before_action :set_boy, only: [:show, :edit, :update, :destroy, :promote]
   before_action :breadcrumb, only: [:show, :edit, :new]
+  load_and_authorize_resource
 
   def breadcrumb
     add_breadcrumb "Woodland Boys", boys_path, :title => "Back to the Events List"

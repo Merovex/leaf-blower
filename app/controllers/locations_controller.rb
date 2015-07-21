@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
-
   before_action :breadcrumb, only: [:show, :edit, :new]
+  load_and_authorize_resource
 
   def breadcrumb
     add_breadcrumb "Locations", locations_path, :title => "Back to the locations List"

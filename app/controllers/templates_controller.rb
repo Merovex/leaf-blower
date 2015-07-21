@@ -1,6 +1,7 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
   before_action :breadcrumb, only: [:show, :edit, :new]
+  load_and_authorize_resource
 
   def breadcrumb
     add_breadcrumb "Templates", templates_path, :title => "Back to the Templates List"

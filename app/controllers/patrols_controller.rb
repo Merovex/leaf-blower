@@ -1,5 +1,6 @@
 class PatrolsController < ApplicationController
   before_action :set_patrol, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /patrols
   # GET /patrols.json

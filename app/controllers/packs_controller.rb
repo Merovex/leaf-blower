@@ -1,5 +1,6 @@
 class PacksController < ApplicationController
   before_action :set_pack, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /packs
   # GET /packs.json

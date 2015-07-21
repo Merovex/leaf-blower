@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   add_breadcrumb "Home", :root_path
   # check_authorization
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   def find_candidates
     @candidates = {
