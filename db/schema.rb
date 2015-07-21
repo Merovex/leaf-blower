@@ -222,7 +222,7 @@ ActiveRecord::Schema.define(version: 20150721100438) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "role",                   limit: 255
+    t.integer  "role",                   limit: 255, default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

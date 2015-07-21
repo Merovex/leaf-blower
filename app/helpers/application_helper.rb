@@ -10,7 +10,7 @@ module ApplicationHelper
   end
   def keep(word,t=4)
     # raise (User.roles.keys[1..3]).inspect
-    return word if User.roles.keys[1..3].include?(current_user.role)
+    return word if !current_user.nil? and User.roles.keys[1..3].include?(current_user.role)
     return word.truncate(t+3)
   end
   def display_base_errors resource
