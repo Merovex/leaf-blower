@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   # enum role: [:user, :vip, :admin]
-  # enum role: [:user, :parent, :leader, :ranger]
-  after_initialize :set_default_role, :if => :new_record?
+  enum role: [:nobody, :folk, :leader, :ranger]
+  # enum status: [:draft, :review, :active, :retired]
+  # after_initialize :set_default_role, :if => :new_record?
 
   ROLES = %w[ranger leader parent user banned]
 

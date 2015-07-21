@@ -6,17 +6,17 @@ class Ability
     #
       alias_action :create, :read, :update, :destroy, :to => :crud
       user ||= User.new # guest user (not logged in)
-    if user.role? :ranger
+    if user.ranger?
       can :manage, :all
     end
-    if user.role? :leader
+    if user.leader?
         can :crud, Event
         can :crud, Boy
         can :crud, Bonum
         can :manage, Advancement
         can :read, Template
     end
-    if user.role? :parent
+    if user.folk?
       can :read, :all
       cannot :read, Template
       cannot :read, Patrol
