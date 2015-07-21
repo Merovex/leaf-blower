@@ -7,15 +7,15 @@ class TemplatePolicy
   end
 
   def index?
-    @user.admin? unless @user.nil?
+    @user.ranger? unless @user.nil?
   end
 
   def update?
-    @user.admin? unless @user.nil?
+    @user.ranger? unless @user.nil?
   end
 
   def destroy?
-    @user.admin? unless @user.nil?
+    @user.ranger? unless @user.nil?
   end
 
 end

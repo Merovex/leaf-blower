@@ -13,7 +13,7 @@ class Ability
         can :crud, Event
         can :crud, Boy
         can :crud, Bonum
-        can :manage, Advancement
+        # can :manage, Advancement
         can :read, Template
     end
     if user.folk?

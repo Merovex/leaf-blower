@@ -7,15 +7,15 @@ class UserPolicy
   end
 
   def index?
-    @user.admin?
+    @user.ranger?
   end
 
   def update?
-    @user.admin?
+    @user.ranger?
   end
 
   def destroy?
-    @user.admin?
+    @user.ranger?
   end
 
 end
