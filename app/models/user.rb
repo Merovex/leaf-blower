@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   
   enum role: [:nobody, :folk, :leader, :ranger]
   
-  # after_initialize :set_default_role, :if => :new_record?
+  before_create :set_default_role
 
   # ROLES = %w[ranger leader parent user banned]
 
