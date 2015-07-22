@@ -25,4 +25,4 @@
       =render :partial => 'shared/leaf_header'
     =render :partial => @lions
 
-= link_to 'New Boy', new_boy_path
+= link_to 'New Boy', new_boy_path if can? :create, Boy

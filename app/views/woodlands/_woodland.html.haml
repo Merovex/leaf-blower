@@ -1,6 +1,10 @@
 %tr
   %td.col-xs-4
-    = link_to keep(woodland.name), boy_path(woodland.slug)
+    - if can? :read, Bonum
+      = link_to woodland.name, boy_path(woodland.slug)
+    -else 
+      = keep(woodland.name)
+
     = " (#{woodland.current_rank.grace})"
   %td.col-xs-1.right
     = woodland.current_rank.service
