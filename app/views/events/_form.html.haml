@@ -3,37 +3,47 @@
   .form-inputs
     .form-group
       = f.input :name
-    .form-group
-      = f.association :location
+
+    %h3 Details
+
+    .row
+      .col-xs-12.col-md-5
+        .form-group
+          = f.association :location, :default => 1
+        .form-group.input-group.date
+          = f.input :starts_at, as: :string, :required => true, :placeholder => "Select Date"
+          %p.help-block Date format is important: YYYY-MM-DD
+      .col-xs-12.col-md-7
+        .form-group
+          = f.input :description
   
     %h3 Leaves
 
     %p Branches explained in greater detail below the form.
 
     .row
-      .col-xs-3
+      .col-xs-6.col-md-3
         = leaf_form(f,:heritage)
-      .col-xs-3
+      .col-xs-6.col-md-3
         = leaf_form(f,:hobbies)
-      .col-xs-3
+      .col-xs-6.col-md-3
         = leaf_form(f,:life_skills)
-      .col-xs-3
+      .col-xs-6.col-md-3
         = leaf_form(f,:outdoor_activities)
     .row
-      .col-xs-3
+      .col-xs-6.col-md-3
         = leaf_form(f,:pioneer_skills)
-      .col-xs-3
+      .col-xs-6.col-md-3
         = leaf_form(f,:sci_tech)
-      .col-xs-3
+      .col-xs-6.col-md-3
         = leaf_form(f,:values)
-      .col-xs-3
+      .col-xs-6.col-md-3
         = f.input :service
 
-    = f.input :starts_at, as: :string
-    = f.input :description
+    
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, :class => 'btn btn-primary'
     or
     = link_to "Cancel", :back
 
@@ -67,6 +77,7 @@
 
 %p Instilling biblically based values within the boys regarding any number of pertinent topics. A central focus of this branch are teachings of the Christian faith.
 
-
 :javascript
-  $('#event_starts_at').datetimepicker({dateFormat: "yy-mm-dd"});
+  $('#event_starts_at').datepicker({format: "yyyy-mm-dd", todayBtn: "linked"});
+
+/ $('#xevent_starts_at').datetimepicker({dateFormat: "yyyy-mm-dd"});

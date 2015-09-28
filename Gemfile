@@ -25,7 +25,7 @@ gem 'fullcalendar-rails'
 gem 'jquery-ui-rails'
 gem 'friendly_id', '~> 5.0.4'
 gem 'cancan'
-
+gem 'bootstrap-datepicker-rails'
 
 group :development do
   gem 'better_errors'

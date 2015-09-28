@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   has_many :attendances
   has_many :boys, through: :attendances
   
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description, :starts_at
   # validate :validate_leaf_count
   # validates_with EventValidator
   validate :validate_timings

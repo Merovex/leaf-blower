@@ -2,8 +2,10 @@
 %html
   %head
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js'
     = csrf_meta_tags
     %title= content_for?(:title) ? yield(:title) : 'Leaf Tracker'
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}

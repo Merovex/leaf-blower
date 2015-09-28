@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :breadcrumb, only: [:show, :edit, :new]
-  load_and_authorize_resource
+  load_and_authorize_resource 
 
   def breadcrumb
     add_breadcrumb "Events", events_path, :title => "Back to the Events List"  
@@ -43,24 +43,25 @@ class EventsController < ApplicationController
   end
   def create
     # raise 'here'
-    if params[:event][:period] == "Does not repeat"
-      @event = Event.new(event_params)
-    else
-      # @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starts_at => params[:event][:starts_at], :ends_at => params[:event][:ends_at], :all_day => params[:event][:all_day])
-      # event = EventSeries.new(event_params)
-      @event = Event.new(event_params)
-      # raise event.inspect
-    end
+    # if params[:event][:period] == "Does not repeat"
+    #   @event = Event.new(event_params)
+    # else
+    #   # @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starts_at => params[:event][:starts_at], :ends_at => params[:event][:ends_at], :all_day => params[:event][:all_day])
+    #   # event = EventSeries.new(event_params)
+    #   @event = Event.new(event_params)
+    #   # raise event.inspect
+    # end
+    event = Event.new(event_params)
 
     respond_to do |format|
       if @event.save
 
-      # raise @event.inspect
+      # raise "GOOD:" + @event.inspect
         format.html { redirect_to event_url @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         
-      # raise @event.inspect
+      # raise "Bad:" + @event.inspect
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
         # render :text => event.errors.full_messages.to_sentence, :status => 422
@@ -156,6 +157,7 @@ class EventsController < ApplicationController
 
   private
     def event_params
+      # params.require(:event).permit('name' ,'location_id' ,'heritage' ,'hobbies' ,'life_skills' ,'outdoor_activities' ,'pioneer_skills' ,'sci_tech' ,'values' ,'service' ,'starts_at' ,'description')
       params.require(:event).permit('name', 'description', 'starts_at', 'all_day', 'period', 'frequency', 'commit_button', :service, :heritage, :hobbies, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :location_id)    
     end
     # Use callbacks to share common setup or constraints between actions.

@@ -11,6 +11,7 @@ class Ability
     end
     if user.leader?
         can :crud, Event
+        can :crud, Location
         can :crud, Boy
         can :crud, Bonum
         # can :manage, Advancement

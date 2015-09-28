@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   add_breadcrumb "Home", :root_path
   # check_authorization
   # load_and_authorize_resource
-
+before_filter do
+  resource = controller_name.singularize.to_sym
+  method = "#{resource}_params"
+  params[resource] &&= send(method) if respond_to?(method, true)
+end
   def find_candidates
     @candidates = {
       :fox => [],
