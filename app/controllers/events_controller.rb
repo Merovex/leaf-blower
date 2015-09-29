@@ -70,8 +70,10 @@ class EventsController < ApplicationController
   end
   
   def index
+    # gem 'kaminari'
     @title = "Events"
-    @events = Event.all.sort_by(&:starts_at).reverse
+    # @events = Event.all.sort_by(&:starts_at).reverse
+    @events = Event.order(:starts_at).page params[:page]
     
   end
   def get_events

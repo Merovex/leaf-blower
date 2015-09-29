@@ -3,6 +3,7 @@
 %p.right
   = link_to 'New Event', new_event_path, {class: 'btn btn-primary btn-lg'}
 
+= paginate @events, :theme => 'twitter-bootstrap-3'
 %table.table.table-bordered
   %tr
     %th Event

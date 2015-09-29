@@ -2,7 +2,7 @@
 /   = link_to "#{event.name} - #{event.starts_at.strftime("%B %d")}", event
 /   %span.badge= event.attendances.length
 %tr
-  %td
+  %th
     %strong= link_to event.name, event
     %span.badge= event.attendances.length
   %td.text-center= event.starts_at.strftime("%m/%d/%Y")
