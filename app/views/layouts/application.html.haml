@@ -28,16 +28,10 @@
                   .li.list-group-item= link_to 'Ranks', ranks_path 
                 - if can? :read, Location
                   .li.list-group-item= link_to 'Locations', locations_path 
-                - if can? :read, Boy
-                  .li.list-group-item= link_to 'Boys', boys_path 
                 - if can? :read, Pack
                   .li.list-group-item= link_to 'Packs', packs_path 
                 - if can? :read, Patrol
                   .li.list-group-item= link_to 'Patrols', patrols_path
-                - if can? :read, Event
-                  .li.list-group-item= link_to 'Events', events_path 
-                - if can? :read, Template 
-                  .li.list-group-item= link_to 'Templates', templates_path 
       %footer{:id => "main-footer"}
         #bottom-footer.container
           .pull-left
