@@ -45,6 +45,7 @@ class BoysController < ApplicationController
     @rank = @boy.current_rank
   end
   def create
+    # raise "HERE".inspect
     p = boy_params
     rank = p[:rank] 
     p.delete(:rank)
@@ -53,7 +54,7 @@ class BoysController < ApplicationController
     respond_to do |format|
       if @boy.save
         @boy.set_current_rank
-        @boy.current_rank.update(rank)
+        # @boy.current_rank.update(rank)
         @boy.save
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
         format.json { render :show, status: :created, location: @boy }
@@ -100,7 +101,7 @@ class BoysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boy_params
-      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, :active, rank: [:grace])
+      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, :active, :rank, [:grace])
     end
     def get_active_boys(r)
       Patrol.find(r).boys.map{|b| b if b.active}.compact.sort_by{|b| b.lastnamefirst}

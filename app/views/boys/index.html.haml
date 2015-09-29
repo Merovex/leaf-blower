@@ -1,5 +1,8 @@
 = title("Woodlands Boys")
 
+%p.text-right
+  = link_to('New Boy', new_boy_path, :class=> 'btn btn-primary') if can? :create, Boy
+
 - unless @foxes.nil?
   %h2 Foxes
 
@@ -24,5 +27,3 @@
       %th Name
       =render :partial => 'shared/leaf_header'
     =render :partial => @lions
-
-= link_to 'New Boy', new_boy_path if can? :create, Boy

@@ -1,7 +1,11 @@
-%h2 Sign in
+= title("Sign in")
+
+%p.alert.alert-info
+  %strong Note:
+  There is no password reset, as this application does not send email.
+
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
   = f.input :email, :autofocus => true
   = f.input :password
   = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  = f.button :submit, "Sign in", :class => 'btn-primary'
-= render "devise/shared/links"
+  = f.button :submit, "Sign in", :class => 'btn btn-primary'
