@@ -16,6 +16,11 @@ class Boy < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
+  def correct_rank_start
+    c = self.current_rank.created_at
+    t = DateTime.new(c.strftime("%Y"),8,1)
+    self.current_rank.created_at = t if c > t
+  end
   def current_events
     puts "Current Events #{self.current_rank.created_at}"
     self.events.where("starts_at > ?", self.current_rank.created_at)
