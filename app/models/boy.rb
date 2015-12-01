@@ -18,7 +18,7 @@ class Boy < ActiveRecord::Base
 
   def correct_rank_start
     c = self.current_rank.created_at
-    t = DateTime.new(c.strftime("%Y"),8,1)
+    t = DateTime.new(c.strftime("%Y").to_i,8,1)
     self.current_rank.created_at = t if c > t
   end
   def current_events
