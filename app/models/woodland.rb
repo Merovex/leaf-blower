@@ -1,8 +1,18 @@
 class Woodland < Boy
   before_save :recalcuate_leaves
+  scope :cheaper_than, lambda { |price| where("price < ?", price) }
+
+  def current_events
+    puts "Current Events #{self.current_rank.created_at}"
+    self.events.where("starts_at > ?", self.current_rank.created_at)
+  end
+  def current_bonums
+    puts "Current Bonums #{self.current_rank.created_at}"
+    self.bonums.where("earned_on > ?", self.current_rank.created_at)
+  end
   def recalcuate_leaves
-    # self.set_current_rank if self.current_rank.nil?
     return if self.current_rank.nil?
+    
     grace = self.current_rank.grace
   	leaves = {
        :h => grace || 0, 
@@ -14,8 +24,8 @@ class Woodland < Boy
        :v => grace || 0, 
        :s => grace || 0
     }
-    # raise self.bonums.inspect
-    [self.events, self.bonums].each do |c|
+
+    [self.current_events, self.current_bonums].each do |c|
     	c.each do |event|
     		leaves[:h] += event.heritage || 0
     		leaves[:b] += event.hobbies || 0
