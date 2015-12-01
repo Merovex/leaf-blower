@@ -32,7 +32,7 @@ class BoysController < ApplicationController
   end
 
   def show
-    @events = @boy.events.sort_by &:starts_at
+    @events = @boy.current_events.sort_by &:starts_at
     @badges = Badge.all
     @boy.check_badges
     render {:show }

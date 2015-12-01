@@ -15,6 +15,16 @@ class Boy < ActiveRecord::Base
   has_many :achievements
 
   friendly_id :name, use: [:slugged, :finders]
+
+  def current_events
+    puts "Current Events #{self.current_rank.created_at}"
+    self.events.where("starts_at > ?", self.current_rank.created_at)
+  end
+  def current_bonums
+    puts "Current Bonums #{self.current_rank.created_at}"
+    self.bonums.where("earned_on > ?", self.current_rank.created_at)
+  end
+  
   def set_current_rank
     r = self.ranks.create(:name => self.patrol.rank.downcase, :is_current => true)
     self.current_rank = r

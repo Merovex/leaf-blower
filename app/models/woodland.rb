@@ -1,15 +1,6 @@
 class Woodland < Boy
   before_save :recalcuate_leaves
-  scope :cheaper_than, lambda { |price| where("price < ?", price) }
 
-  def current_events
-    puts "Current Events #{self.current_rank.created_at}"
-    self.events.where("starts_at > ?", self.current_rank.created_at)
-  end
-  def current_bonums
-    puts "Current Bonums #{self.current_rank.created_at}"
-    self.bonums.where("earned_on > ?", self.current_rank.created_at)
-  end
   def recalcuate_leaves
     return if self.current_rank.nil?
     
