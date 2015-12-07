@@ -19,16 +19,21 @@ class Boy < ActiveRecord::Base
   def correct_rank_start
     c = self.current_rank.created_at
     t = DateTime.new(c.strftime("%Y").to_i,7,1)
-    t = DateTime.new(c.strftime("%Y").to_i,1,1) if c.strftime("%Y").to_i == 2014
-    self.current_rank.created_at = t if c > t
+    o = DateTime.new(2014,1,1) 
+    if c > 0 and c < t
+      self.current_rank.created_at = o
+    else
+      self.current_rank.created_at = t if c > t
+    end
+    puts self.current_rank.created_at
   end
   def current_events
-    puts "Current Events #{self.correct_rank_start}"
-    self.events.where("starts_at > ?", self.correct_rank_start)
+    puts "Current Events #{self.current_rank.created_at}"
+    self.events.where("starts_at > ?", self.current_rank.created_at)
   end
   def current_bonums
-    puts "Current Bonums #{self.correct_rank_start}"
-    self.bonums.where("earned_on > ?", self.correct_rank_start)
+    puts "Current Bonums #{self.current_rank.created_at}"
+    self.bonums.where("earned_on > ?", self.current_rank.created_at)
   end
   
   def set_current_rank
