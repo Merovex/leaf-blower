@@ -5,7 +5,7 @@ class Woodland < Boy
     return if self.current_rank.nil?
     self.correct_rank_start
 
-    
+    # <video class="video-stream html5-main-video" src="" style="width: 480px; height: 360px; left: 80px; top: 0px; transform: none;"></video>
     grace = self.current_rank.grace
   	leaves = {
        :h => grace || 0, 
