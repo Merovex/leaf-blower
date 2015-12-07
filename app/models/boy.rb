@@ -23,12 +23,12 @@ class Boy < ActiveRecord::Base
     self.current_rank.created_at = t if c > t
   end
   def current_events
-    puts "Current Events #{correct_rank_start}"
-    self.events.where("starts_at > ?", correct_rank_start)
+    puts "Current Events #{self.correct_rank_start}"
+    self.events.where("starts_at > ?", self.correct_rank_start)
   end
   def current_bonums
-    puts "Current Bonums #{correct_rank_start}"
-    self.bonums.where("earned_on > ?", correct_rank_start)
+    puts "Current Bonums #{self.correct_rank_start}"
+    self.bonums.where("earned_on > ?", self.correct_rank_start)
   end
   
   def set_current_rank
