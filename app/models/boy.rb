@@ -17,6 +17,7 @@ class Boy < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :finders]
 
   def correct_rank_start
+    return if self.current_rank.nil?
     c = self.current_rank.created_at
     t = DateTime.new(c.strftime("%Y").to_i,7,1)
     o = DateTime.new(2014,1,1) 
