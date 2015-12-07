@@ -20,7 +20,7 @@ class Boy < ActiveRecord::Base
     c = self.current_rank.created_at
     t = DateTime.new(c.strftime("%Y").to_i,7,1)
     o = DateTime.new(2014,1,1) 
-    if c > 0 and c < t
+    if c > o and c < t
       self.current_rank.created_at = o
     else
       self.current_rank.created_at = t if c > t
