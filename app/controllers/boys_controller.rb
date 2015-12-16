@@ -73,7 +73,7 @@ class BoysController < ApplicationController
       p.delete(:rank)
       # raise [p, rank].inspect
       if @boy.update(p)
-        @boy.current_rank.update(rank)
+        @boy.current_rank.update({:rank => rank}) unless rank.nil?
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully updated.' }
         format.json { render :show, status: :ok, location: @boy }
       else
