@@ -5,6 +5,7 @@
 
 - Color-Code Branches, so that user can quickly orient the branch/star to the branch patch. [\#10](https://github.com/Merovex/leaf-blower/issues/10)
 - Add a method to track awarded in tracker accrued/awarded [\#9](https://github.com/Merovex/leaf-blower/issues/9)
+- Need to be able to soft-delete an event. [\#5](https://github.com/Merovex/leaf-blower/issues/5)
 
 **Fixed bugs:**
 
