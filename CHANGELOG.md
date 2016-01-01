@@ -3,9 +3,12 @@
 ## [v16.1](https://github.com/Merovex/leaf-blower/tree/v16.1) (2016-01-01)
 **Implemented enhancements:**
 
+- Deprecate Bonum.reported\_on in favor of Bonum.created\_at/.updated\_at [\#13](https://github.com/Merovex/leaf-blower/issues/13)
+- Use current\_user for Bonum reported\_by [\#12](https://github.com/Merovex/leaf-blower/issues/12)
 - Color-Code Branches, so that user can quickly orient the branch/star to the branch patch. [\#10](https://github.com/Merovex/leaf-blower/issues/10)
 - Add a method to track awarded in tracker accrued/awarded [\#9](https://github.com/Merovex/leaf-blower/issues/9)
 - Need to be able to soft-delete an event. [\#5](https://github.com/Merovex/leaf-blower/issues/5)
+- Revised Bonums by removing Earned and Reported. [\#19](https://github.com/Merovex/leaf-blower/pull/19) ([Merovex](https://github.com/Merovex))
 
 **Fixed bugs:**
 
