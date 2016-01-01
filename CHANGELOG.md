@@ -4,6 +4,7 @@
 **Implemented enhancements:**
 
 - Color-Code Branches, so that user can quickly orient the branch/star to the branch patch. [\#10](https://github.com/Merovex/leaf-blower/issues/10)
+- Add a method to track awarded in tracker accrued/awarded [\#9](https://github.com/Merovex/leaf-blower/issues/9)
 
 **Fixed bugs:**
 
@@ -13,6 +14,10 @@
 - No Procfile detected, using the default web server \(webrick\) [\#3](https://github.com/Merovex/leaf-blower/issues/3)
 - Breaks when adding Grace Leaves to a Fox. [\#2](https://github.com/Merovex/leaf-blower/issues/2)
 - Previous boy's rank events being counted in new rank [\#1](https://github.com/Merovex/leaf-blower/issues/1)
+
+**Merged pull requests:**
+
+- Iss9 [\#16](https://github.com/Merovex/leaf-blower/pull/16) ([Merovex](https://github.com/Merovex))
 
 
 
