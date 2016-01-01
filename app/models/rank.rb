@@ -22,13 +22,35 @@ class Rank < ActiveRecord::Base
       self.save
   end
   def check_accruals
-    self.heritage_on = Date.today if self.heritage_on.nil? and self.heritage > 17
-    self.hobbies_on  = Date.today if self.hobbies_on.nil? and self.hobbies > 17
-    self.life_on     = Date.today if self.life_on.nil? and self.life_skills > 17
-    self.outdoor_on  = Date.today if self.outdoor_on.nil? and self.outdoor_activities > 17
-    self.pioneer_on  = Date.today if self.pioneer_on.nil? and self.pioneer_skills > 17
-    self.values_on   = Date.today if self.values_on.nil? and self.values > 17
-    self.science_on  = Date.today if self.science_on.nil? and self.sci_tech > 17
-    self.save!
+    branches = [
+      ['heritage','heritage'],
+      ['life','life_skills'],
+      ['hobbies','hobbies'],
+      ['outdoor','outdoor_activities'],
+      ['pioneer','pioneer_skills'],
+      ['values','values'],
+      ['science','sci_tech']
+    ]
+
+    [[17,'branch'], [21,'star'] ].each do |test|
+      branches.each do |b|
+        on = self.public_send("#{b[0]}_on".to_sym)
+        leaves = self.public_send("#{b[1]}".to_sym)
+        t = self.public_send("#{b[0]}_type".to_sym)
+        # puts [on, leaves, t,(test[1] == 'star' and t != 'star' and leaves > test[0])].inspect
+        puts [test[1], t , leaves, test[0], leaves > test[0]].inspect if test[1] == 'star'
+        if (test[1] == 'star' and t != 'star' and leaves > test[0])
+          self.public_send("#{b[0]}_on=".to_sym,Date.today)
+          self.public_send("#{b[0]}_tt_on=".to_sym,"")
+          self.public_send("#{b[0]}_tt_by=".to_sym,nil)
+          self.public_send("#{b[0]}_type=".to_sym,test[1])
+          self.save!
+        elsif (on.nil? and leaves > test[0])
+          self.public_send("#{b[0]}_on=".to_sym,Date.today)
+          self.public_send("#{b[0]}_type=".to_sym,test[1])
+          self.save!
+        end
+      end
+    end
   end
 end

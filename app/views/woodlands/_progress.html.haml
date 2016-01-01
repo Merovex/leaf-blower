@@ -7,8 +7,8 @@
       %th{:width => "22%"} Branch
       %th{:width => "8%"} Leaves
       %th{:width => "15%"} Accrued On
-      %th{:width => "15%"} TT'd On
-      %th{:width => "20%"} TT'd By
+      %th{:width => "15%"} Recorded On
+      %th{:width => "20%"} Recorded By
   %tbody
     %tr
       %td.bg-brown Brown
@@ -66,3 +66,25 @@
       %td &nbsp;
       %td &nbsp;
       %td &nbsp;
+
+%h4 Progress Table Key
+
+%ul
+  %li
+    %strong Color:
+    Color is the branch color found on the branch patch.
+  %li
+    %strong Leaves:
+    %ul
+      %li Total leaves accrued until 18
+      %li Branch + additional leaves accruing to Star
+      %li Silvan Star
+  %li
+    %strong Accrued On:
+    When Leaf Tracker identified the branch was earned by accumulation of leaves
+  %li
+    %strong Recorded On:
+    When branch award was Recorded in Troop Track.
+  %li
+    %strong Recorded By:
+    Who reported the recording
