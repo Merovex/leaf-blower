@@ -5,11 +5,11 @@ Leaf Tracker seeks to provide an orderly way of tracking woodland boys progress 
 
 ### Change Log
 
-See something you didn't see before? Check out the [Change Log](/Merovex/leaf-blower/blob/master/CHANGELOG.md) to get information on features and bug-fixes.
+See something you didn't see before? Check out the [Change Log](https://github.com//Merovex/leaf-blower/blob/master/CHANGELOG.md) to get information on features and bug-fixes.
 
 ### Issues
 
-Have a bug or a feature request? Please first search for [existing and closed issues](/Merovex/leaf-blower/issues). If your problem or idea is not addressed yet, [please open a new issue](/Merovex/leaf-blower/issues/new)or email dausha [at] gmail/com.
+Have a bug or a feature request? Please first search for [existing and closed issues](https://github.com/Merovex/leaf-blower/issues). If your problem or idea is not addressed yet, [please open a new issue](https://github.com/Merovex/leaf-blower/issues/new)or email dausha [at] gmail/com.
 
 Contributing
 ------------
