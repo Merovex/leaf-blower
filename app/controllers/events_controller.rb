@@ -162,7 +162,7 @@ class EventsController < ApplicationController
       @event.attendances.delete_all
       @event.destroy
     end
-    Boys.all.each do |boy|
+    Boy.all.each do |boy|
       boy.recalcuate_leaves
     end
     
