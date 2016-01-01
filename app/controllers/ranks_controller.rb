@@ -30,7 +30,7 @@ class RanksController < ApplicationController
       @rank.public_send("#{params[:key]}_tt_on=".to_sym,Date.today)
       @rank.public_send("#{params[:key]}_tt_by=".to_sym,current_user.id)
       if @rank.save
-        format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
+        format.html { redirect_to @boy.becomes(Boy), notice: 'Branch was successfully recorded.' }
         format.json { render :show, status: :created, location: @rank }
       else
         format.html { render :new }

@@ -8,6 +8,17 @@ class Ability
       user ||= User.new # guest user (not logged in)
     if user.ranger?
       can :manage, :all
+
+      # 
+      # can :crud, Event
+      # can :crud, Location
+      # can :crud, Boy
+      # can :crud, Bonum
+      # # can :manage, Advancement
+      # can :read, Template
+    end
+    if user.chair?
+      can :record, Rank
     end
     if user.leader?
         can :crud, Event

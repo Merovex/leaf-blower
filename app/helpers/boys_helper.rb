@@ -10,7 +10,8 @@ module BoysHelper
       when accrued_on.blank?
         return ""
       when (ttd_on.blank? or ttd_on < accrued_on)
-        return raw("<a href='/boys/#{boy.id}/record/#{key}' class='btn btn-primary'>Recorded</a>")
+        return "" unless can? :record, Rank
+        return raw("<a href='/boys/#{boy.id}/record/#{key}' class='btn btn-primary'>Record!</a>")
       else
         return accrued_on.strftime("%e %b '%y")
     end

@@ -3,66 +3,66 @@
 %table.table.table-bordered
   %thead
     %tr
-      %th{:width => "22%"} Branch
       %th{:width => "10%"} Color
+      %th{:width => "22%"} Branch
       %th{:width => "8%"} Leaves
       %th{:width => "15%"} Accrued On
       %th{:width => "15%"} TT'd On
       %th{:width => "20%"} TT'd By
   %tbody
     %tr
-      %td (S) Service Hours
-      %td= r.service || 0
-      %td &nbsp;
-      %td &nbsp;
-      %td &nbsp;
-      %td &nbsp;
-    %tr
-      %td (H) Heritage
       %td.bg-brown Brown
+      %td (H) Heritage
       %td= subdue_zero(r,'heritage')
       %td= show_date(@boy.current_rank.heritage_on)
       %td= show_tt_status(@boy,"heritage")
       %td= show_tt_by(@boy.current_rank.heritage_tt_by)
     %tr
-      %td (L) Life Skills
       %td.bg-burgundy Burgundy
+      %td (L) Life Skills
       %td= subdue_zero(r,'life_skills')
       %td= show_date(@boy.current_rank.life_on)
       %td= show_tt_status(@boy,"life")
       %td= show_tt_by(@boy.current_rank.life_tt_by)
     %tr
-      %td (T) Sci Tech
       %td.bg-yellow Yellow
+      %td (T) Sci Tech
       %td= subdue_zero(r,'sci_tech')
       %td= show_date(@boy.current_rank.science_on)
       %td= show_tt_status(@boy,"science")
       %td= show_tt_by(@boy.current_rank.science_tt_by)
     %tr
-      %td (B) Hobbies
       %td.bg-black Black
+      %td (B) Hobbies
       %td= subdue_zero(r,'hobbies')
       %td= show_date(@boy.current_rank.hobbies_on)
       %td= show_tt_status(@boy,"hobbies")
       %td= show_tt_by(@boy.current_rank.hobbies_tt_by)
     %tr
-      %td (V) Values
       %td.bg-red Red
+      %td (V) Values
       %td= subdue_zero(r,'values')
       %td= show_date(@boy.current_rank.values_on)
       %td= show_tt_status(@boy,"values")
       %td= show_tt_by(@boy.current_rank.values_tt_by)
     %tr
-      %td (O) Outdoor Activities
       %td.bg-green Green
+      %td (O) Outdoor Activities
       %td= subdue_zero(r,'outdoor_activities')
       %td= show_date(@boy.current_rank.outdoor_on)
       %td= show_tt_status(@boy,"outdoor")
       %td= show_tt_by(@boy.current_rank.outdoor_tt_by)
     %tr
-      %td (P) Pioneer Skills
       %td.bg-blue Blue
+      %td (P) Pioneer Skills
       %td= subdue_zero(r,'pioneer_skills')
       %td= show_date(@boy.current_rank.pioneer_on)
       %td= show_tt_status(@boy,"pioneer")
       %td= show_tt_by(@boy.current_rank.pioneer_tt_by)
+    %tr
+      %td &nbsp;
+      %td (S) Service Hours
+      %td= r.service || 0
+      %td &nbsp;
+      %td &nbsp;
+      %td &nbsp;
