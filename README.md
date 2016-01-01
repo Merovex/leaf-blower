@@ -5,7 +5,7 @@ Leaf Tracker seeks to provide an orderly way of tracking woodland boys progress 
 
 ### Change Log
 
-See something you didn't see before? Check out the [releases](/Merovex/leaf-blower/releases) to get information on features and bug-fixes.
+See something you didn't see before? Check out the [Change Log](/Merovex/leaf-blower/blob/master/CHANGELOG.md) to get information on features and bug-fixes.
 
 ### Issues
 
