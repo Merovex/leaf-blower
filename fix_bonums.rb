@@ -66,5 +66,6 @@
 {"id" => 66, "name" => "Fixing Unlinked Bonus"}].each do |b|
 	# puts [b["id"], b["name"]].inspect
 	b = Bonum.find(b["id"])
-	puts b.inspect
+	b.name = b["name"]
+	b.save
 end
