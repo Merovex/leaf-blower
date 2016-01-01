@@ -38,7 +38,7 @@ class Boy < ActiveRecord::Base
   end
   def current_bonums
     puts "Current Bonums #{self.current_rank.created_at}"
-    self.bonums.where("earned_on > ?", self.current_rank.created_at)
+    self.bonums.where("created_at > ?", self.current_rank.created_at)
   end
   
   def set_current_rank(g)

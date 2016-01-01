@@ -1,5 +1,5 @@
-%div.row.bonum
-  %div.col-md-4= link_to bonum.name, boy_bonum_path(@boy, bonum)
-  %div.col-md-2= (bonum.reported_by.empty?) ? "No Reporter" : bonum.reported_by
-  %div.col-md-2= (bonum.earned_on.blank?) ? "No Date" : bonum.earned_on
-  %div.col-md-4= leaf_list(bonum)
+%tr
+  %td= link_to bonum.name, boy_bonum_path(@boy, bonum)
+  %td= leaf_list(bonum)
+  %td= bonum.reporter.name
+  %td= bonum.created_at.strftime("%e %b '%y")

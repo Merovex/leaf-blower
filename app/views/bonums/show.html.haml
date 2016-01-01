@@ -7,13 +7,13 @@
     %h2 Details
     %p
       %b Reported by:
-      = @bonum.reported_by
+      = @bonum.reporter.name
     %p
       %b Summary:
       = @bonum.summary
     %p
-      %b Earned On:
-      = @bonum.earned_on
+      %b Reported On:
+      = @bonum.created_at.strftime("%e %b '%y")
 
   %div.col-md-6.col-xs-12
     %h2 Leaves
