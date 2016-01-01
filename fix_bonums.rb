@@ -2,7 +2,7 @@
 {"id" => 1, "name" => "Remove"},
 {"id" => 3, "name" => "Remove"},
 {"id" => 5, "name" => "Ethan Bender"},
-{"id" => 6, "name" => ""},
+{"id" => 6, "name" => "Unnamed"},
 {"id" => 7, "name" => "Extra Hobby Leaves"},
 {"id" => 8, "name" => "Asa Gleeson"},
 {"id" => 9, "name" => "Tyler Solomon"},
@@ -64,8 +64,9 @@
 {"id" => 65, "name" => "Home repair, Life Skills"},
 {"id" => 59, "name" => "Labeling Sewers for Run Off"},
 {"id" => 66, "name" => "Fixing Unlinked Bonus"}].each do |b|
-	puts [b["id"], b["name"]].inspect
+	# puts [b["id"], b["name"]].inspect
 	b = Bonum.find(b["id"])
+	puts b.inspect
 	b.name = b["name"]
 	b.save!
 end
