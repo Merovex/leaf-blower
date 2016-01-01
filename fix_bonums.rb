@@ -67,7 +67,8 @@
 	# puts [b["id"], b["name"]].inspect
 	b = Bonum.find(b["id"])
 	puts b.inspect
-	# b.name = b["name"]
-	# b.save!
-	b.update({:name => b["name"]})
+	b.name = b["name"]
+	b.reported_by = "Unknown" if b.reported_by == ""
+	b.save!
+	# b.update({:name => b["name"]})
 end
