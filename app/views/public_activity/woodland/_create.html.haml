@@ -1,14 +1,1 @@
-%i.fa.fa-plus-square.fa-2x
-- if activity.owner.nil?
-  Unknown
-- else
-  =activity.owner.name
-created
-- if activity.trackable.nil?
-  Boy, who has since been removed
--else
-  =activity.trackable.name
--end
-%br
-=time_ago_in_words(activity.created_at)
-ago
+= render :partial => 'shared/activity', :locals => {:activity => activity, :b => "fa-square fa-inverse", :f => "fa-user-plus", :klass => "Boy", :action => "added"}

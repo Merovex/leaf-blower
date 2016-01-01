@@ -132,6 +132,9 @@ class EventsController < ApplicationController
     # render :show    
     respond_to do |format|
       if @event.update(event_params)
+        @event.attendances.each do |a|
+          a.boy.recalcuate_leaves
+        end
         @event.create_activity :update, owner: current_user
         format.html { redirect_to @event, notice: 'event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
@@ -148,14 +151,23 @@ class EventsController < ApplicationController
   
   def destroy
     @event = Event.find_by_id(params[:id])
+    
+
     if params[:delete_all] == 'true'
       @event.event_series.destroy
     elsif params[:delete_all] == 'future'
       @events = @event.event_series.events.find(:all, :conditions => ["starts_at > '#{@event.starts_at.to_formatted_s(:db)}' "])
       @event.event_series.events.delete(@events)
     else
+      boys = @event.boys.clone
+      @event.attendances.delete_all
       @event.destroy
+      boys.each do |boy|
+        puts "Processing: #{boy.inspect}"
+      end
     end
+    
+    @event.create_activity :destroy, owner: current_user
     redirect_to :action => 'index' 
   end
 

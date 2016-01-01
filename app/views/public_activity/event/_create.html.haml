@@ -1,13 +1,1 @@
-%i.fa.fa-calendar.fa-2x
-- if activity.owner.nil?
-  Unknown
-- else
-  =activity.owner.name
-created event:
-- if activity.trackable.nil?
-  Event, which has since been removed
--else
-  =link_to activity.trackable.name, event_path(activity.trackable.id)
-%br
-=time_ago_in_words(activity.created_at)
-ago
+= render :partial => 'shared/activity', :locals => {:activity => activity, :b => "fa-square fa-inverse", :f => "fa-calendar", :klass => "Event", :action => "created"}

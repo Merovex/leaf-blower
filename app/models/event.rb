@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   include ActiveModel::Validations
   include PublicActivity::Common
 
+  acts_as_paranoid
+
   attr_accessor :period, :frequency, :commit_button
 
   belongs_to :location

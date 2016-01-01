@@ -15,3 +15,5 @@ revised Bonus Leaves for
 %br
 =time_ago_in_words(activity.created_at)
 ago
+
+= render :partial => 'shared/activity', :locals => {:activity => activity, :b => "fa-square", :f => "fa-leaf fa-inverse", :klass => "Bonus Leaf", :action => 'recorded new'}

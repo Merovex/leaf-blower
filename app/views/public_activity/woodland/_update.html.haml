@@ -1,11 +1,1 @@
-%i.fa.fa-pencil-square-o.fa-2x
-- if activity.owner.nil?
-  Unknown
-- else
-  =activity.owner.name
-
-updated
-=link_to activity.trackable.name, boy_path(activity.trackable.id)
-%br
-=time_ago_in_words(activity.created_at)
-ago
+= render :partial => 'shared/activity', :locals => {:activity => activity, :b => "fa-square", :f => "fa-user  fa-inverse", :klass => "Boy", :action => "updated"}

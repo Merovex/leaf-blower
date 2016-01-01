@@ -1,0 +1,20 @@
+.row
+  .col-xs-2
+    %span.fa-stack.fa-lg
+      %i{:class => "fa fa-stack-2x #{b}"} 
+      %i{:class => "fa fa-stack-1x #{f}"} 
+  .col-xs-10
+    - if activity.owner.nil?
+      Unknown
+    - else
+      =activity.owner.name
+    =action
+    =klass
+    %br
+    - if activity.trackable.nil?
+      (which has since been removed)
+    -else
+      =link_to activity.trackable.name, event_path(activity.trackable.id)
+    %br
+    =time_ago_in_words(activity.created_at)
+    ago

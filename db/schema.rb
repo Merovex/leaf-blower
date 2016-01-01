@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101051502) do
+ActiveRecord::Schema.define(version: 20160101071406) do
 
   create_table "achievements", force: true do |t|
     t.integer  "award_id"
@@ -138,8 +138,10 @@ ActiveRecord::Schema.define(version: 20160101051502) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
+  add_index "events", ["deleted_at"], name: "index_events_on_deleted_at"
   add_index "events", ["event_series_id"], name: "index_events_on_event_series_id"
   add_index "events", ["location_id"], name: "index_events_on_location_id"
 
