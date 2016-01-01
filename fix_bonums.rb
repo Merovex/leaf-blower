@@ -63,16 +63,16 @@
 {"id" => 64, "name" => "Prepared Meal"},
 {"id" => 65, "name" => "Home repair, Life Skills"},
 {"id" => 59, "name" => "Labeling Sewers for Run Off"},
-{"id" => 66, "name" => "Fixing Unlinked Bonus"}].each do |n|
+{"id" => 66, "name" => "Fixing Unlinked Bonus"}].each do |b|
 	# puts [b["id"], b["name"]].inspect
-	b = Bonum.find(b["id"])
+	bonum = Bonum.find(b["id"])
 	
-	b.name = n["name"]
-	b.reported_by = "Unknown" if b.reported_by == ""
-	b.earned_on = b.created_at if b.earned_on.nil?
-	puts b.inspect
-	b.save!
-	puts b.inspect
+	bonum.name = b["name"]
+	bonum.reported_by = "Unknown" if bonum.reported_by == ""
+	bonum.earned_on = bonum.created_at if bonum.earned_on.nil?
+	puts bonum.inspect
+	bonum.save!
+	puts bonum.inspect
 	# v = {
 	# 	:name => b["name"]
 	# }
