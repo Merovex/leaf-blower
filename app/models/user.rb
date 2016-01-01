@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, #:confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  enum role: [:nobody, :folk, :leader, :ranger]
+  enum role: [:nobody, :folk, :leader, :ranger, :chair]
   
   before_create :set_default_role
 

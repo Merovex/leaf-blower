@@ -1,129 +1,15 @@
-Leaf Blower
+Leaf Tracker
 =========
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+Leaf Tracker seeks to provide an orderly way of tracking woodland boys progress in Trail Life, a stop-gap in how Troop Track tracks leaves.
 
-Diagnostics
------------
+### Change Log
 
-This application was built with recipes that are NOT known to work together.
+See something you didn't see before? Check out the [Change Log](/Merovex/leaf-blower/blob/master/CHANGELOG.md) to get information on features and bug-fixes.
 
-This application was built with preferences that are NOT known to work
-together.
+### Issues
 
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include these diagnostics:
-
-We’d also like to know if you’ve found combinations of recipes or
-preferences that do work together.
-
-Recipes:
-
-* controllers
-* core
-* deployment
-* email
-* extras
-* frontend
-* gems
-* git
-* init
-* learn_rails
-* models
-* prelaunch
-* rails_bootstrap
-* rails_devise
-* rails_devise_pundit
-* rails_foundation
-* rails_omniauth
-* rails_signup_download
-* railsapps
-* readme
-* routes
-* saas
-* setup
-* testing
-* tests4
-* views
-
-Preferences:
-
-* git: true
-* apps4: rails-devise-pundit
-* authentication: devise
-* authorization: pundit
-* better_errors: true
-* deployment: none
-* local_env_file: false
-* pry: false
-* quiet_assets: true
-* starter_app: false
-* dev_webserver: unicorn
-* prod_webserver: unicorn
-* database: sqlite
-* templates: haml
-* tests: rspec
-* continuous_testing: guard
-* frontend: bootstrap3
-* email: gmail
-* devise_modules: confirmable
-* form_builder: simple_form
-* rvmrc: true
-* ban_spiders: true
-* github: true
-
-Ruby on Rails
--------------
-
-This application requires:
-
--   Ruby
--   Rails
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Database
---------
-
-This application uses SQLite with ActiveRecord.
-
-Development
------------
-
--   Template Engine: Haml
--   Testing Framework: Test::Unit
--   Front-end Framework: Bootstrap 3.0 (Sass)
--   Form Builder: SimpleForm
--   Authentication: Devise
--   Authorization: None
--   Admin: None
-
-Email
------
-
-The application is configured to send email using a Gmail account.
-
-Email delivery is disabled in development.
-
-Getting Started
----------------
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-Documentation and Support
--------------------------
-
-This is the only documentation.
-
-#### Issues
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-Similar Projects
-----------------
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Have a bug or a feature request? Please first search for [existing and closed issues](/Merovex/leaf-blower/issues). If your problem or idea is not addressed yet, [please open a new issue](/Merovex/leaf-blower/issues/new)or email dausha [at] gmail/com.
 
 Contributing
 ------------
@@ -147,4 +33,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 License
 -------
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Code and documentation copyright Ben Wilson, 2014-2016.

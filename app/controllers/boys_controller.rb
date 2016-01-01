@@ -22,7 +22,6 @@ class BoysController < ApplicationController
     @lions = get_active_boys(3)
   end
   def advance
-    # @boy.create_activity :advance, owner: current_user
     @boys = Boy.all.map{|b| b if (b.active and b.grade < 6)}.compact.sort_by &:lastnamefirst
   end
   def promote
@@ -37,6 +36,7 @@ class BoysController < ApplicationController
     @events = @boy.current_events.sort_by &:starts_at
     @badges = Badge.all
     @boy.check_badges
+    @boy.current_rank.check_accruals
     load_activities
     render {:show }
   end
@@ -74,6 +74,7 @@ class BoysController < ApplicationController
       if @boy.update(p)
         @boy.create_activity :update, owner: current_user
         @boy.current_rank.update(rank) unless rank.nil?
+        @boy.current_rank.check_accruals
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully updated.' }
         format.json { render :show, status: :ok, location: @boy }
       else

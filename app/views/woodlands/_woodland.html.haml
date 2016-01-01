@@ -1,3 +1,4 @@
+- r = woodland.current_rank
 %tr
   %td.col-xs-4
     - if can? :read, Bonum
@@ -7,12 +8,12 @@
 
     = " (#{woodland.current_rank.grace})"
   %td.col-xs-1.right
-    = woodland.current_rank.service
+    = r.service
     %small.text-muted hrs
-  %td.col-xs-1.right= subdue_zero(woodland.current_rank.heritage)
-  %td.col-xs-1.right= subdue_zero(woodland.current_rank.hobbies)
-  %td.col-xs-1.right= subdue_zero(woodland.current_rank.life_skills)
-  %td.col-xs-1.right= subdue_zero(woodland.current_rank.outdoor_activities)
-  %td.col-xs-1.right= subdue_zero(woodland.current_rank.pioneer_skills)
-  %td.col-xs-1.right= subdue_zero(woodland.current_rank.sci_tech)
-  %td.col-xs-1.right= subdue_zero(woodland.current_rank.values)
+  %td.col-xs-1.right= subdue_zero(r,'heritage')
+  %td.col-xs-1.right= subdue_zero(r,'life_skills')
+  %td.col-xs-1.right= subdue_zero(r,'sci_tech')
+  %td.col-xs-1.right= subdue_zero(r,'hobbies')
+  %td.col-xs-1.right= subdue_zero(r,'values')
+  %td.col-xs-1.right= subdue_zero(r,'outdoor_activities')
+  %td.col-xs-1.right= subdue_zero(r,'pioneer_skills')

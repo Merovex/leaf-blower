@@ -24,18 +24,35 @@ module ApplicationHelper
     HTML
     html.html_safe
   end
-  def subdue_zero(n)
+  def subdue_zero(r,branch)
     total = 18
-    case 
-      when n.to_s == '0' then
-        return "<span class='text-muted'>0<small>/#{total}</small></span>".html_safe
-      when n >= (total + 4) then
-        return "<span class='bg-primary' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>Star</strong></abbr></span>".html_safe;
-      when n >= total then
-        return "<span class='bg-primary' style='padding: 2px'><abbr title='#{n}/#{total} leaves'><strong>B + #{n - total}</strong></abbr></span>".html_safe;
-      else
-        return "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>".html_safe;
+
+    key = branch_to_track(branch)
+
+    accrued_on = r.public_send("#{key}_on".to_sym)
+    ttd_on = r.public_send("#{key}_tt_on".to_sym)
+
+    n = r.public_send(branch.to_sym)
+    bang = ""
+    klass = 'info'
+    
+    if (!accrued_on.blank? and ttd_on.blank?)
+      bang = "!" 
+      klass = 'primary'
     end
+
+    answer = case 
+      when n.to_s == '0' then
+        "<span class='text-muted'>0<small>/#{total}</small></span>";
+      when n >= (total + 4) then
+        "<strong class='bg-#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>Star</abbr></strong>";
+      when n >= total then
+        "<strong class='bg-#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>B+#{n - total}</abbr>#{bang}</strong>";
+      else
+        "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>";
+    end
+    answer = "<a href='#{boy_path(r.boy)}'>#{answer}</a>" if (!accrued_on.blank? and ttd_on.blank?)
+    return answer.html_safe
     
   end
   def title(t)

@@ -17,6 +17,7 @@ gem 'pundit'
 gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'github_changelog_generator'
 
 # To add watching
 gem 'public_activity'
