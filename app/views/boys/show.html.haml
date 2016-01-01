@@ -37,11 +37,18 @@
 
 %h2 Bonus Leaves
 
-= render :partial => @boy.bonums
+%p.text-right
+  = link_to 'Add Bonus', new_boy_bonum_path(@boy), :class => "btn btn-primary" if can? :edit, Bonum
 
-%div.row
-  %div.col-md-12
-    = link_to 'Add Bonus', new_boy_bonum_path(@boy), :class => "btn btn-primary" if can? :edit, Bonum
+%table.table
+  %thead
+    %tr
+      %th{width: "35%"} Activity
+      %th{width: "35%"} Leave Summary
+      %th{width: "15%"} Reported by
+      %th{width: "15%"} Reported on
+  %tbody
+    = render :partial => @boy.bonums
 
 %h2 Attendance
 

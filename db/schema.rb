@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101194206) do
+ActiveRecord::Schema.define(version: 20160101213144) do
 
   create_table "achievements", force: true do |t|
     t.integer  "award_id"
@@ -77,9 +77,8 @@ ActiveRecord::Schema.define(version: 20160101194206) do
     t.integer  "boy_id"
     t.integer  "rank_id"
     t.string   "name"
-    t.string   "reported_by"
+    t.integer  "reported_by",        limit: 255
     t.string   "summary"
-    t.date     "earned_on"
     t.integer  "service"
     t.integer  "heritage"
     t.integer  "hobbies"

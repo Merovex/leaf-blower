@@ -66,6 +66,6 @@ class BonumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bonum_params
-      params.require(:bonum).permit(:boy_id, :rank_id, :name, :reported_by, :summary, :service, :heritage, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :nights,:earned_on)
+      params.require(:bonum).permit(:boy_id, :rank_id, :name, :reported_by, :summary, :service, :heritage, :hobbies, :life_skills, :outdoor_activities, :pioneer_skills, :sci_tech, :values, :nights)
     end
 end
