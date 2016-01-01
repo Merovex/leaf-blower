@@ -18,49 +18,69 @@
     %td= subdue_zero(@boy.current_rank.sci_tech || 0)
     %td= subdue_zero(@boy.current_rank.values || 0)
 
-%table.table
+%table.table.table-bordered
   %thead
     %tr
-      %th{:width => "25%"} Category
-      %th{:width => "15%"} Color
-      %th{:colspan => 2} Leaves
+      %th{:width => "22%"} Category
+      %th{:width => "10%"} Color
+      %th{:width => "8%"} Leaves
+      %th{:width => "15%"} Accrued On
+      %th{:width => "15%"} TT'd On
+      %th{:width => "20%"} TT'd By
   %tbody
     %tr
-      %td{:colspan => 2} (S) Service Hours
+      %td (S) Service Hours
       %td= subdue_zero(@boy.current_rank.service || 0)
+      %td &nbsp;
+      %td &nbsp;
+      %td &nbsp;
       %td &nbsp;
     %tr
       %td (H) Heritage
       %td Brown
       %td= subdue_zero(@boy.current_rank.heritage || 0)
-      %td= show_leaves(@boy.current_rank.heritage)
+      %td= show_date(@boy.current_rank.heritage_on)
+      %td= show_tt_status(@boy,"heritage")
+      %td= show_tt_by(@boy.current_rank.heritage_tt_by)
     %tr
       %td (B) Hobbies
       %td Black
       %td= subdue_zero(@boy.current_rank.hobbies || 0)
-      %td= show_leaves(@boy.current_rank.hobbies)
+      %td= show_date(@boy.current_rank.hobbies_on)
+      %td= show_tt_status(@boy,"hobbies")
+      %td= show_tt_by(@boy.current_rank.hobbies_tt_by)
     %tr
       %td (L) Life Skills
       %td Burgundy
       %td= subdue_zero(@boy.current_rank.life_skills || 0)
-      %td= show_leaves(@boy.current_rank.life_skills)
+      %td= show_date(@boy.current_rank.life_on)
+      %td= show_tt_status(@boy,"life")
+      %td= show_tt_by(@boy.current_rank.life_tt_by)
     %tr
       %td (O) Outdoor Activities
       %td Green
       %td= subdue_zero(@boy.current_rank.outdoor_activities || 0)
-      %td= show_leaves(@boy.current_rank.outdoor_activities)
+      %td= show_date(@boy.current_rank.outdoor_on)
+      %td= show_tt_status(@boy,"outdoor")
+      %td= show_tt_by(@boy.current_rank.outdoor_tt_by)
     %tr
       %td (P) Pioneer Skills
       %td Blue
       %td= subdue_zero(@boy.current_rank.pioneer_skills || 0)
-      %td= show_leaves(@boy.current_rank.pioneer_skills)
+      %td= show_date(@boy.current_rank.pioneer_on)
+      %td= show_tt_status(@boy,"pioneer")
+      %td= show_tt_by(@boy.current_rank.pioneer_tt_by)
     %tr
       %td (T) Sci Tech
       %td Yellow
       %td= subdue_zero(@boy.current_rank.sci_tech || 0)
-      %td= show_leaves(@boy.current_rank.sci_tech)
+      %td= show_date(@boy.current_rank.science_on)
+      %td= show_tt_status(@boy,"science")
+      %td= show_tt_by(@boy.current_rank.science_tt_by)
     %tr
       %td (V) Values
       %td Red
       %td= subdue_zero(@boy.current_rank.values || 0)
-      %td= show_leaves(@boy.current_rank.values)
+      %td= show_date(@boy.current_rank.values_on)
+      %td= show_tt_status(@boy,"values")
+      %td= show_tt_by(@boy.current_rank.values_tt_by)

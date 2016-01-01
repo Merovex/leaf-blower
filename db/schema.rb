@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101071406) do
+ActiveRecord::Schema.define(version: 20160101145041) do
 
   create_table "achievements", force: true do |t|
     t.integer  "award_id"
@@ -193,6 +193,30 @@ ActiveRecord::Schema.define(version: 20160101071406) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "grace",              default: 0
+    t.date     "joining_on"
+    t.date     "joining_tt_on"
+    t.integer  "joining_tt_by"
+    t.date     "heritage_on"
+    t.date     "heritage_tt_on"
+    t.integer  "heritage_tt_by"
+    t.date     "hobbies_on"
+    t.date     "hobbies_tt_on"
+    t.integer  "hobbies_tt_by"
+    t.date     "life_on"
+    t.date     "life_tt_on"
+    t.integer  "life_tt_by"
+    t.date     "outdoor_on"
+    t.date     "outdoor_tt_on"
+    t.integer  "outdoor_tt_by"
+    t.date     "pioneer_on"
+    t.date     "pioneer_tt_on"
+    t.integer  "pioneer_tt_by"
+    t.date     "science_on"
+    t.date     "science_tt_on"
+    t.integer  "science_tt_by"
+    t.date     "values_on"
+    t.date     "values_tt_on"
+    t.integer  "values_tt_by"
   end
 
   add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id"

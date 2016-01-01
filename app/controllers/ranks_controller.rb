@@ -21,6 +21,23 @@ class RanksController < ApplicationController
   # GET /ranks/1/edit
   def edit
   end
+  def record
+    @boy  = set_boy
+    @rank = @boy.current_rank
+    accrued_on = @rank.public_send("#{params[:key]}_on".to_sym)
+    respond_to do |format|
+      format.html { redirect_to @boy.becomes(Boy), notice: 'Nice Try.' } if accrued_on.nil?
+      @rank.public_send("#{params[:key]}_tt_on=".to_sym,Date.today)
+      @rank.public_send("#{params[:key]}_tt_by=".to_sym,current_user.id)
+      if @rank.save
+        format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
+        format.json { render :show, status: :created, location: @rank }
+      else
+        format.html { render :new }
+        format.json { render json: @rank.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # POST /ranks
   # POST /ranks.json

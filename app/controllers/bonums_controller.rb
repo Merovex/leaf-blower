@@ -26,6 +26,7 @@ class BonumsController < ApplicationController
       if @bonum.save
         @boy.create_activity :new_bonum, owner: current_user
         @boy.recalcuate_leaves
+        @boy.current_rank.check_accruals
         format.html { redirect_to boy_path(@boy), notice: 'Bonum was successfully created.' }
         format.json { render :show, status: :created, location: @bonum }
       else
@@ -39,6 +40,7 @@ class BonumsController < ApplicationController
       if @bonum.update(bonum_params)
         @boy.create_activity :update_bonum, owner: current_user
         @boy.recalcuate_leaves
+        @boy.current_rank.check_accruals
         format.html { redirect_to boy_path(@boy), notice: 'Bonum was successfully updated.' }
         format.json { render :show, status: :ok, location: @bonum }
       else

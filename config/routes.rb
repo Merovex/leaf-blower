@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'calendar/index'
   get 'boys/advance'
   get '/boys/:id/promote', to: 'boys#promote', as: 'boy_promote'
+  get '/boys/:boy_id/record/:key', to: 'ranks#record', as: 'rank_record'
 
   resources :events
 
