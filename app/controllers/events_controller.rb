@@ -159,12 +159,11 @@ class EventsController < ApplicationController
       @events = @event.event_series.events.find(:all, :conditions => ["starts_at > '#{@event.starts_at.to_formatted_s(:db)}' "])
       @event.event_series.events.delete(@events)
     else
-      boys = @event.boys.clone
       @event.attendances.delete_all
       @event.destroy
-      boys.each do |boy|
-        puts "Processing: #{boy.inspect}"
-      end
+    end
+    Boys.all.each do |boy|
+      boy.recalcuate_leaves
     end
     
     @event.create_activity :destroy, owner: current_user
