@@ -70,6 +70,7 @@
 	b.name = b["name"]
 	b.reported_by = "Unknown" if b.reported_by == ""
 	b.earned_on = b.created_at if b.earned_on.nil?
+	puts b.inspect
 	b.save!
 	puts b.inspect
 	# v = {
