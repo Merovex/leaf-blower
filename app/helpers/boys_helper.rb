@@ -23,4 +23,12 @@ module BoysHelper
 		return "" if u.nil?
 		return User.find(u).name
 	end
+	def show_award_bang(r,key)
+		accrued_on = r.public_send("#{key}_on".to_sym)
+		ttd_on = r.public_send("#{key}_tt_on".to_sym)
+		# return "" unless (accrued_on.blank? and !y.blank?)
+		return "" if accrued_on.blank?
+		return "" unless ttd_on.blank?
+		return "<span class='bg-primary' style='padding: 2px'>!</span>"
+	end
 end
