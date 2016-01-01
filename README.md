@@ -3,14 +3,13 @@ Leaf Tracker
 
 Leaf Tracker seeks to provide an orderly way of tracking woodland boys progress in Trail Life, a stop-gap in how Troop Track tracks leaves.
 
-#### Issues
+### Change Log
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+See something you didn't see before? Check out the [releases](/Merovex/leaf-blower/releases) to get information on features and bug-fixes.
 
-Similar Projects
-----------------
+### Issues
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Have a bug or a feature request? Please first search for [existing and closed issues](/Merovex/leaf-blower/issues). If your problem or idea is not addressed yet, [please open a new issue](/Merovex/leaf-blower/issues/new)or email dausha [at] gmail/com.
 
 Contributing
 ------------
@@ -34,4 +33,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 License
 -------
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Code and documentation copyright Ben Wilson, 2014-2016.
