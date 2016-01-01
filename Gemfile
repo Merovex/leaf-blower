@@ -18,6 +18,9 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
 
+# To add watching
+gem 'public_activity'
+
 # App Specific
 gem 'geocoder'
 gem 'breadcrumbs_on_rails'

@@ -1,6 +1,7 @@
 class BoysController < ApplicationController
   before_action :set_boy, only: [:show, :edit, :update, :destroy, :promote]
   before_action :breadcrumb, only: [:show, :edit, :new]
+  before_action :load_activities
   load_and_authorize_resource
 
   def breadcrumb
@@ -21,6 +22,7 @@ class BoysController < ApplicationController
     @lions = get_active_boys(3)
   end
   def advance
+    # @boy.create_activity :advance, owner: current_user
     @boys = Boy.all.map{|b| b if (b.active and b.grade < 6)}.compact.sort_by &:lastnamefirst
   end
   def promote
@@ -35,6 +37,7 @@ class BoysController < ApplicationController
     @events = @boy.current_events.sort_by &:starts_at
     @badges = Badge.all
     @boy.check_badges
+    load_activities
     render {:show }
   end
   def new
@@ -43,18 +46,17 @@ class BoysController < ApplicationController
   end
   def edit
     @rank = @boy.current_rank
-
   end
   def create
     p = boy_params
-    rank = p[:rank] 
-    p.delete(:rank)
+    rank = p[:ranks_attributes] 
+    p.delete(:ranks_attributes)
     @boy = Woodland.new(p)
 
     respond_to do |format|
       if @boy.save
-        @boy.set_current_rank
-        # @boy.current_rank.update(rank)
+        @boy.create_activity :create, owner: current_user
+        @boy.set_current_rank(rank)
         @boy.save
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
         format.json { render :show, status: :created, location: @boy }
@@ -67,9 +69,10 @@ class BoysController < ApplicationController
   def update
     respond_to do |format|
       p = boy_params
-      rank = p[:rank] 
-      p.delete(:rank)
+      rank = p[:ranks_attributes]["0"]
+      p.delete(:ranks_attributes)
       if @boy.update(p)
+        @boy.create_activity :update, owner: current_user
         @boy.current_rank.update(rank) unless rank.nil?
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully updated.' }
         format.json { render :show, status: :ok, location: @boy }
@@ -95,10 +98,9 @@ class BoysController < ApplicationController
     end
   end
   private
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def boy_params
-      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, :active, rank: [:grace])
+      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, :active, :grade, :ranks_attributes => [:grace])
     end
     def get_active_boys(r)
       Patrol.find(r).boys.map{|b| b if b.active}.compact.sort_by{|b| b.lastnamefirst}

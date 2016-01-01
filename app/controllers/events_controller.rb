@@ -55,6 +55,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        @event.create_activity :create, owner: current_user
 
       # raise "GOOD:" + @event.inspect
         format.html { redirect_to event_url @event, notice: 'Event was successfully created.' }
@@ -131,6 +132,7 @@ class EventsController < ApplicationController
     # render :show    
     respond_to do |format|
       if @event.update(event_params)
+        @event.create_activity :update, owner: current_user
         format.html { redirect_to @event, notice: 'event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else

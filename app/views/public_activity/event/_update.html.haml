@@ -1,0 +1,16 @@
+%span.fa-stack.fa-lg
+  %i.fa.fa-square.fa-stack-2x
+  %i.fa.fa-calendar.fa-stack-1x.fa-inverse
+- if activity.owner.nil?
+  Unknown
+- else
+  =activity.owner.name
+
+updated event
+- if activity.trackable.nil?
+  , which has since been removed
+-else
+  =link_to activity.trackable.name, boy_path(activity.trackable.id)
+%br
+=time_ago_in_words(activity.created_at)
+ago

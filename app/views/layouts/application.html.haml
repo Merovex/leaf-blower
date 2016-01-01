@@ -4,6 +4,7 @@
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
     = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js'
     = csrf_meta_tags
@@ -23,7 +24,7 @@
                 = render_breadcrumbs :tag => :li, :separator => ""
               = yield
             .col-sm-4.col-xs-12
-              .ul.list-group
+              %ul.list-group
                 - if can? :read, Rank
                   .li.list-group-item= link_to 'Ranks', ranks_path 
                 - if can? :read, Location
@@ -32,6 +33,13 @@
                   .li.list-group-item= link_to 'Packs', packs_path 
                 - if can? :read, Patrol
                   .li.list-group-item= link_to 'Patrols', patrols_path
+              - unless @activities.nil?
+                %h2
+                  Activities
+                  %ul.list-group
+                    - @activities.each do |activity|
+                      %li.list-group-item= render_activity(activity)
+                      
       %footer{:id => "main-footer"}
         #bottom-footer.container
           .pull-left

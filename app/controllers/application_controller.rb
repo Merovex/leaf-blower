@@ -1,13 +1,14 @@
 class ApplicationController < ActionController::Base
 
   add_breadcrumb "Home", :root_path
-  # check_authorization
-  # load_and_authorize_resource
-before_filter do
-  resource = controller_name.singularize.to_sym
-  method = "#{resource}_params"
-  params[resource] &&= send(method) if respond_to?(method, true)
-end
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
+  include PublicActivity::StoreController
+
   def find_candidates
     @candidates = {
       :fox => [],
@@ -32,29 +33,23 @@ end
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # after_filter :verify_authorized,  except: :index
-  # after_filter :verify_policy_scoped, only: :index
-
   protected
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
   end
 
-
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
   def set_boy
-    # id = 
     @boy = Boy.find(params[:boy_id] || params[:id])
-    # raise @boy.inspect
   end
   def user_not_authorized
-    # flash[:alert] = "Access denied."
     flash[:error] = "You are not authorized to perform this action."
     redirect_to (request.referrer || root_path)
   end
-
+  def load_activities
+    @activities = PublicActivity::Activity.order('created_at DESC').limit(20)
+  end
 end

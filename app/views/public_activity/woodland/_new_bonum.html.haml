@@ -1,0 +1,14 @@
+%i.fa.fa-leaf.fa-2x
+- if activity.owner.nil?
+  Unknown
+- else
+  =activity.owner.name
+recorded Bonus Leaves for
+- if activity.trackable.nil?
+  Boy, who has since been removed
+-else
+  =link_to activity.trackable.name, boy_path(activity.trackable.id)
+
+%br
+=time_ago_in_words(activity.created_at)
+ago

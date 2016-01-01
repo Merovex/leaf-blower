@@ -1,4 +1,6 @@
 class Boy < ActiveRecord::Base
+  include PublicActivity::Common
+  
   extend FriendlyId
   validates :name, presence: true
   
@@ -15,6 +17,8 @@ class Boy < ActiveRecord::Base
   has_many :achievements
 
   friendly_id :name, use: [:slugged, :finders]
+
+  accepts_nested_attributes_for :ranks
 
   def correct_rank_start
     return if self.current_rank.nil?
@@ -37,14 +41,16 @@ class Boy < ActiveRecord::Base
     self.bonums.where("earned_on > ?", self.current_rank.created_at)
   end
   
-  def set_current_rank
-    r = self.ranks.create(:name => self.patrol.rank.downcase, :is_current => true)
+  def set_current_rank(g)
+    grace = g["0"][:grace]
+    puts self.inspect
+    puts self.patrol.inspect
+    r = self.ranks.create(:name => self.patrol.rank.downcase, :grace => grace, :is_current => true)
     self.current_rank = r
   	self.save
   end
   def lastnamefirst
     n = self.name.split(' ').reverse.join(' ')
-    # raise n.inspect
   end
   def check_badges
     self.set_current_rank if self.current_rank.nil?

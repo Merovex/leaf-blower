@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   include ActiveModel::Validations
+  include PublicActivity::Common
 
   attr_accessor :period, :frequency, :commit_button
 
