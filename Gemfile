@@ -51,15 +51,17 @@ group :development do
 end
 group :development, :test do
   gem 'sqlite3'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', '>= 3.0.0.beta2'
+  # gem 'rspec-rails', '>= 3.0.0.beta2'
+  # gem 'factory_girl_rails'
 end
 group :test do
   gem 'capybara'
-  gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'faker'
   gem 'launchy'
+    gem 'rspec-rails', '>= 3.0.0.beta2'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers', '~> 3.0', require: false
   gem 'selenium-webdriver'
 end
 

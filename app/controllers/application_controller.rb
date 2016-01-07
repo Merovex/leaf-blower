@@ -15,12 +15,15 @@ class ApplicationController < ActionController::Base
       :hawk => [],
       :lion => []
     }
-    # @candidates = (Boy.all - @event.boys).sort_by(&:lastnamefirst)
-    (Boy.all - @event.boys).each do |b|
+    # @xx = 
+    (Boy.all - @event.boys).sort_by(&:lastnamefirst).each do |b|
+    # (Boy.all - @event.boys).each do |b|
       next if b.current_rank.nil?
       next if @candidates[b.current_rank.name.to_sym].nil?
       @candidates[b.current_rank.name.to_sym] << b
     end
+    # raise @candidates.inspect
+
   end
 
   rescue_from CanCan::AccessDenied do |exception|

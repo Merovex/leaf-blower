@@ -4,4 +4,7 @@ class Attendance < ActiveRecord::Base
   def name
   	boy.name
   end
+  def lastnamefirst
+  	boy.name.split(' ').reverse.join(' ').downcase
+  end
 end

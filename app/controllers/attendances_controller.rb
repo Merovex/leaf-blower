@@ -27,9 +27,8 @@ class AttendancesController < ApplicationController
   private
     def update_candidates
       @boy.recalcuate_leaves
-      # @candidates = (Boy.all - @event.boys).sort_by(&:name)
+      
       find_candidates
-
       respond_to do |format|
         format.js { render :update_roster }
       end
