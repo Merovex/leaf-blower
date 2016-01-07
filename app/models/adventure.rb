@@ -1,1 +1,0 @@
-class Adventurer < Boy; end
