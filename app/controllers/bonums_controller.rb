@@ -21,6 +21,7 @@ class BonumsController < ApplicationController
   end
   def create
     @bonum = @boy.bonums.new(bonum_params)
+    @bonum.reporter = current_user
 
     respond_to do |format|
       if @bonum.save
