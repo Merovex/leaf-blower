@@ -9,7 +9,7 @@
 %h3 Present
 
 %div#present
-  = render :partial => 'attendances/attendance', :collection => @attendees
+  = render :partial => 'attendances/attendance', :collection => @attendees.map {|a| a if a.boy.is_active? }.compact
 
 - if can? :edit, @event      
   %h3 Absent

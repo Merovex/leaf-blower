@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     (Boy.all - @event.boys).sort_by(&:lastnamefirst).each do |b|
     # (Boy.all - @event.boys).each do |b|
       next if b.current_rank.nil?
+      next unless b.is_active?
       next if @candidates[b.current_rank.name.to_sym].nil?
       @candidates[b.current_rank.name.to_sym] << b
     end
