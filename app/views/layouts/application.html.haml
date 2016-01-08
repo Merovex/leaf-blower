@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', :media => 'screen, print'
     = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
@@ -13,7 +13,7 @@
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Leaf Tracker'}"}
   %body
     #wrapper
-      %header
+      %header.hidden-print
         = render 'layouts/navigation'
       %main{:role => "main"}
         .container
@@ -23,8 +23,8 @@
               %ol.breadcrumb
                 = render_breadcrumbs :tag => :li, :separator => ""
               = yield
-            .col-sm-4.col-xs-12
-              %ul.list-group
+            .col-sm-4.col-xs-12.hidden-print
+              %ul.list-group.hidden-print
                 - if can? :read, Rank
                   .li.list-group-item= link_to 'Ranks', ranks_path 
                 - if can? :read, Location
@@ -34,9 +34,9 @@
                 - if can? :read, Patrol
                   .li.list-group-item= link_to 'Patrols', patrols_path
               - unless @activities.nil?
-                %h2
+                %h2.hidden-print
                   Activities
-                  %ul.list-group
+                  %ul.list-group.hidden-print
                     - @activities.each do |activity|
                       %li.list-group-item= render_activity(activity)
                       
