@@ -14,7 +14,10 @@
     - if activity.trackable.nil?
       (which has since been removed)
     -else
-      =link_to activity.trackable.name, event_path(activity.trackable.id)
+      - if activity.trackable.is_a? Woodland
+        =link_to activity.trackable.name, boy_path(activity.trackable)
+      -else  
+        =link_to activity.trackable.name, polymorphic_path(activity.trackable)
     %br
     =time_ago_in_words(activity.created_at)
     ago
