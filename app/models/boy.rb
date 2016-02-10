@@ -20,6 +20,9 @@ class Boy < ActiveRecord::Base
 
   accepts_nested_attributes_for :ranks
 
+  def active?
+    return (self.active)
+  end
   def correct_rank_start
     return if self.current_rank.nil?
     c = self.current_rank.created_at

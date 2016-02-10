@@ -42,15 +42,7 @@ class EventsController < ApplicationController
     render :index
   end
   def create
-    # raise 'here'
-    # if params[:event][:period] == "Does not repeat"
-    #   @event = Event.new(event_params)
-    # else
-    #   # @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starts_at => params[:event][:starts_at], :ends_at => params[:event][:ends_at], :all_day => params[:event][:all_day])
-    #   # event = EventSeries.new(event_params)
-    #   @event = Event.new(event_params)
-    #   # raise event.inspect
-    # end
+
     event = Event.new(event_params)
 
     respond_to do |format|
@@ -113,7 +105,7 @@ class EventsController < ApplicationController
   end
   def show
     
-    @attendees = @event.attendances.sort_by { |a| a.boy.lastnamefirst }
+    @attendees = @event.attendances.sort_by { |a| a.boy.lastnamefirst }.map {|a| a if a.boy.active?}.compact
 
     find_candidates
   end
