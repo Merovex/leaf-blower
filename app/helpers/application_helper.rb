@@ -25,8 +25,8 @@ module ApplicationHelper
     html.html_safe
   end
   def subdue_zero(r,branch)
-    # total = 18
-    total = 9
+    total = 18
+    # total = 9
 
     key = branch_to_track(branch)
 
