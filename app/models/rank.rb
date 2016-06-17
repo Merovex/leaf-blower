@@ -3,6 +3,10 @@ class Rank < ActiveRecord::Base
   # tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }
 
   belongs_to :boy
+  has_many :attendances
+  has_many :bonums
+  has_many :events, through: :attendances
+
   def self.find_or_create_by_name(name,boy_id)
     # first_name, last_name = name.split(" ", 2)
     rank = find_or_create_by(name: name, boy_id: boy_id)
@@ -21,6 +25,9 @@ class Rank < ActiveRecord::Base
       self.service = s
       self.save
   end
+  # def events 
+  #   self.current_rank
+  # end
   def check_accruals
     branches = [
       ['heritage','heritage'],
@@ -32,7 +39,7 @@ class Rank < ActiveRecord::Base
       ['science','sci_tech']
     ]
 
-    [[17,'branch'], [21,'star'] ].each do |test|
+    [[9,'branch'], [18,'star'] ].each do |test|
       branches.each do |b|
         on = self.public_send("#{b[0]}_on".to_sym)
         leaves = self.public_send("#{b[1]}".to_sym)

@@ -20,7 +20,7 @@ class BonumsController < ApplicationController
   def edit
   end
   def create
-    @bonum = @boy.bonums.new(bonum_params)
+    @bonum = @boy.current_rank.bonums.new(bonum_params)
     @bonum.reporter = current_user
 
     respond_to do |format|
@@ -62,7 +62,7 @@ class BonumsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bonum
       # raise [params, @boy].inspect
-      @bonum = @boy.bonums.find(params[:id])
+      @bonum = @boy.current_rank.bonums.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

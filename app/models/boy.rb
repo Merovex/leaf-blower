@@ -7,7 +7,7 @@ class Boy < ActiveRecord::Base
   belongs_to :current_rank, class_name: "Rank"
   belongs_to :patrol
   has_many :ranks
-  has_many :bonums
+  # has_many :bonums, through: :ranks
   
   has_many :attendances
   has_many :events, through: :attendances
@@ -36,16 +36,19 @@ class Boy < ActiveRecord::Base
     puts self.current_rank.created_at
   end
   def current_events
-    puts "Current Events #{self.current_rank.created_at}"
-    self.events.where("starts_at > ?", self.current_rank.created_at)
+    # puts "Current Events #{self.current_rank.created_at}"
+    # self.events.where("starts_at > ?", self.current_rank.created_at)
+    self.current_rank.events
   end
   def current_bonums
-    puts "Current Bonums #{self.current_rank.created_at}"
-    self.bonums.where("created_at > ?", self.current_rank.created_at)
+    self.current_rank.bonums
+    # puts "Current Bonums #{self.current_rank.created_at}"
+    # self.bonums.where("created_at > ?", self.current_rank.created_at)
   end
   
-  def set_current_rank(g)
-    grace = g["0"][:grace]
+  def set_current_rank(g=0)
+    # grace = g["0"][:grace]
+    grace = 0
     puts self.inspect
     puts self.patrol.inspect
     r = self.ranks.create(:name => self.patrol.rank.downcase, :grace => grace, :is_current => true)
