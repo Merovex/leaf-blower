@@ -14,6 +14,22 @@ class Rank < ActiveRecord::Base
   def to_s
     return name
   end
+  def starable?
+    starry = 0
+    branches = [
+      'heritage',
+      'life_skills',
+      'hobbies',
+      'outdoor_activities',
+      'pioneer_skills',
+      'values',
+      'sci_tech']
+    ]
+    branches.each do |s|
+      starry += 1 if self.public_send(s) > 9
+    end
+    puts score
+  end
   def leaves(h,b,l,o,p,t,v,s)
       self.heritage = h
       self.hobbies = b
