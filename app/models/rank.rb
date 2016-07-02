@@ -20,7 +20,7 @@ class Rank < ActiveRecord::Base
   def awarded?(a)
   end
   def starable?
-    starry = 0
+    star_score = 0
     branches = [
       'heritage',
       'life_skills',
@@ -31,9 +31,9 @@ class Rank < ActiveRecord::Base
       'sci_tech'
     ]
     branches.each do |s|
-      starry += 1 if self.public_send(s) > 9
+      star_score += 1 if self.public_send(s) > 9
     end
-    puts score
+    puts star_score
   end
   def leaves(h,b,l,o,p,t,v,s)
       self.heritage = h
