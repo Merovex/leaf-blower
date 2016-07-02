@@ -14,6 +14,11 @@ class Rank < ActiveRecord::Base
   def to_s
     return name
   end
+  def accrued?(b)
+
+  end
+  def awarded?(a)
+  end
   def starable?
     starry = 0
     branches = [
@@ -23,7 +28,7 @@ class Rank < ActiveRecord::Base
       'outdoor_activities',
       'pioneer_skills',
       'values',
-      'sci_tech']
+      'sci_tech'
     ]
     branches.each do |s|
       starry += 1 if self.public_send(s) > 9
