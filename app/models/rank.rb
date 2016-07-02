@@ -33,7 +33,7 @@ class Rank < ActiveRecord::Base
     branches.each do |s|
       star_score += 1 if self.public_send(s) > 9
     end
-    puts star_score
+    return (star_score == 7)
   end
   def leaves(h,b,l,o,p,t,v,s)
       self.heritage = h
