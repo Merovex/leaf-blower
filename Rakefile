@@ -19,7 +19,8 @@ task :fixgrades => :environment do
 	end
 end
 task :fixattendance => :environment do
-	@boys = Boy.each do |b|
+	@boys = Boy.all
+	@boys.each do |b|
 		b.attendances.each do |a|
 			a.rank = b.current_rank
 			a.save
