@@ -37,7 +37,7 @@ module ApplicationHelper
     bang = ""
     klass = 'info'
     
-    if (!accrued_on.blank? and ttd_on.blank?)
+    if (!accrued_on.blank? and (ttd_on.blank? or ttd_on.nil?))
       bang = "!" 
       klass = 'primary'
     end

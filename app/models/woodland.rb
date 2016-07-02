@@ -3,7 +3,7 @@ class Woodland < Boy
 
   def recalcuate_leaves
     return if self.current_rank.nil?
-    self.correct_rank_start
+    # self.correct_rank_start
 
     grace = self.current_rank.grace
   	leaves = {

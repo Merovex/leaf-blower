@@ -33,7 +33,7 @@ class Boy < ActiveRecord::Base
     else
       self.current_rank.created_at = t if c > t
     end
-    puts self.current_rank.created_at
+    # puts self.current_rank.created_at
   end
   def current_events
     # puts "Current Events #{self.current_rank.created_at}"
