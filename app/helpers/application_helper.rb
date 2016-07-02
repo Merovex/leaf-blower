@@ -24,37 +24,37 @@ module ApplicationHelper
     HTML
     html.html_safe
   end
-  def subdue_zero(r,branch)
-    total = 18
-    total = 9
-
-    # key = Rank.branch_to_track(branch)
-
-    # accrued_on = r.public_send("#{key}_on".to_sym)
-    # ttd_on = r.public_send("#{key}_tt_on".to_sym)
-
-    n = r.public_send(branch.to_sym)
-    bang = ""
+  def subdue_zero(r,branch,total=nil)
+    n     = r.public_send(branch.to_sym)
+    total = Rank::TARGET if total.nil?
+    bang  = ""
     klass = 'info'
     
-    # if (!accrued_on.blank? and (ttd_on.blank? or ttd_on.nil?))
-    unless (r.branch_awarded?(key))
+    unless (r.branch_awarded?(branch))
       bang = "!" 
       klass = 'primary'
     end
 
     answer = case 
+      when (branch == 'forest' and r.forest_awarded?) then
+        "Awarded"
+
+      when (branch == 'forest' and r.forest_accrued?) then
+        "Accrued"
+
       when n.to_s == '0' then
         "<span class='text-muted'>0<small>/#{total}</small></span>";
-      when (n >= (total + 4) and r.starable?) then
-      # when n >= (total + 9) then
+
+      when (r.is_star?(branch)) then
         "<strong class='bg-#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>Star</abbr></strong>";
-      when n >= total then
+
+      when (r.branch_not_star?(branch)) then
         "<strong class='bg-#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>B+#{n - total}</abbr>#{bang}</strong>";
+
       else
         "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>";
     end
-    answer = "<a href='#{boy_path(r.boy)}'>#{answer}</a>" if (!accrued_on.blank? and ttd_on.blank?)
+    answer = "<a href='#{boy_path(r.boy)}'>#{answer}</a>" unless r.branch_awarded?(branch)
     return answer.html_safe
     
   end

@@ -20,40 +20,42 @@ class Boy < ActiveRecord::Base
 
   accepts_nested_attributes_for :ranks
 
+  after_save :set_current_rank
+
   def active?
     return (self.active)
   end
-  def correct_rank_start
-    return if self.current_rank.nil?
-    c = self.current_rank.created_at
-    t = DateTime.new(c.strftime("%Y").to_i,7,1)
-    o = DateTime.new(2014,1,1) 
-    if c > o and c < t
-      self.current_rank.created_at = o
-    else
-      self.current_rank.created_at = t if c > t
-    end
-    # puts self.current_rank.created_at
+  def rank
+    self.current_rank
   end
+  
+  # def correct_rank_start
+  #   return if self.current_rank.nil?
+  #   c = self.current_rank.created_at
+  #   t = DateTime.new(c.strftime("%Y").to_i,7,1)
+  #   o = DateTime.new(2014,1,1) 
+  #   if c > o and c < t
+  #     self.current_rank.created_at = o
+  #   else
+  #     self.current_rank.created_at = t if c > t
+  #   end
+  # end
   def current_events
-    # puts "Current Events #{self.current_rank.created_at}"
-    # self.events.where("starts_at > ?", self.current_rank.created_at)
     self.current_rank.events
   end
   def current_bonums
     self.current_rank.bonums
-    # puts "Current Bonums #{self.current_rank.created_at}"
-    # self.bonums.where("created_at > ?", self.current_rank.created_at)
   end
   
   def set_current_rank(g=0)
-    # grace = g["0"][:grace]
-    grace = 0
-    puts self.inspect
-    puts self.patrol.inspect
-    r = self.ranks.create(:name => self.patrol.rank.downcase, :grace => grace, :is_current => true)
-    self.current_rank = r
-  	self.save
+    if self.current_rank.nil?
+      r = self.ranks.create(:name => self.patrol.rank.downcase, :is_current => true)
+      self.current_rank = r
+      self.save
+    elsif (self.current_rank.name != self.patrol.rank.downcase)
+      self.current_rank.name = self.patrol.rank.downcase
+      self.save
+    end
   end
   def lastnamefirst
     n = self.name.split(' ').reverse.join(' ')

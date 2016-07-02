@@ -49,14 +49,16 @@ class BoysController < ApplicationController
   end
   def create
     p = boy_params
-    rank = p[:ranks_attributes] 
-    p.delete(:ranks_attributes)
+    p[:patrol_id] = (boy_params[:grade].to_i / 2) + 1
+    # raise p.inspect
+    # rank = p[:ranks_attributes] 
+    # p.delete(:ranks_attributes)
     @boy = Woodland.new(p)
 
     respond_to do |format|
       if @boy.save
         @boy.create_activity :create, owner: current_user
-        @boy.set_current_rank(rank)
+        # @boy.set_current_rank(rank)
         @boy.save
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully created.' }
         format.json { render :show, status: :created, location: @boy }
@@ -69,12 +71,11 @@ class BoysController < ApplicationController
   def update
     respond_to do |format|
       p = boy_params
-      rank = p[:ranks_attributes]["0"]
-      p.delete(:ranks_attributes)
+      p[:patrol_id] = (boy_params[:grade].to_i / 2) + 1
       if @boy.update(p)
         @boy.create_activity :update, owner: current_user
-        @boy.current_rank.update(rank) unless rank.nil?
-        @boy.current_rank.check_accruals
+        # @boy.current_rank.update(rank) unless rank.nil?
+        @boy.rank.check_accruals
         format.html { redirect_to @boy.becomes(Boy), notice: 'Boy was successfully updated.' }
         format.json { render :show, status: :ok, location: @boy }
       else

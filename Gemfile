@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+# ruby '2.0.0'
 gem 'rails', '4.1.1'
 
 gem 'sass-rails', '~> 4.0.3'
@@ -50,7 +50,8 @@ group :development do
   gem 'rb-inotify', :require=>false
 end
 group :development, :test do
-  gem 'sqlite3'
+  # gem 'sqlite3'
+  gem 'pg'
   # gem 'rspec-rails', '>= 3.0.0.beta2'
   # gem 'factory_girl_rails'
 end

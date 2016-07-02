@@ -1,4 +1,4 @@
-- r = @boy.current_rank
+- r = @boy.rank
 
 %table.table.table-bordered
   %thead
@@ -11,54 +11,61 @@
       %th{:width => "20%"} Recorded By
   %tbody
     %tr
+      %td.xbg-brown 
+      %td Forest Award
+      %td= subdue_zero(r,'forest',7)
+      %td= show_date(@boy.rank.forest_on)
+      %td= show_tt_status(@boy,"forest")
+      %td= show_tt_by(@boy.rank.forest_tt_by)
+    %tr
       %td.bg-brown Brown
       %td (H) Heritage
       %td= subdue_zero(r,'heritage')
-      %td= show_date(@boy.current_rank.heritage_on)
+      %td= show_date(@boy.rank.heritage_on)
       %td= show_tt_status(@boy,"heritage")
-      %td= show_tt_by(@boy.current_rank.heritage_tt_by)
+      %td= show_tt_by(@boy.rank.heritage_tt_by)
     %tr
       %td.bg-burgundy Burgundy
       %td (L) Life Skills
       %td= subdue_zero(r,'life_skills')
-      %td= show_date(@boy.current_rank.life_on)
+      %td= show_date(@boy.rank.life_on)
       %td= show_tt_status(@boy,"life")
-      %td= show_tt_by(@boy.current_rank.life_tt_by)
+      %td= show_tt_by(@boy.rank.life_tt_by)
     %tr
       %td.bg-yellow Yellow
       %td (T) Sci Tech
       %td= subdue_zero(r,'sci_tech')
-      %td= show_date(@boy.current_rank.science_on)
+      %td= show_date(@boy.rank.science_on)
       %td= show_tt_status(@boy,"science")
-      %td= show_tt_by(@boy.current_rank.science_tt_by)
+      %td= show_tt_by(@boy.rank.science_tt_by)
     %tr
       %td.bg-black Black
       %td (B) Hobbies
       %td= subdue_zero(r,'hobbies')
-      %td= show_date(@boy.current_rank.hobbies_on)
+      %td= show_date(@boy.rank.hobbies_on)
       %td= show_tt_status(@boy,"hobbies")
-      %td= show_tt_by(@boy.current_rank.hobbies_tt_by)
+      %td= show_tt_by(@boy.rank.hobbies_tt_by)
     %tr
       %td.bg-red Red
       %td (V) Values
       %td= subdue_zero(r,'values')
-      %td= show_date(@boy.current_rank.values_on)
+      %td= show_date(@boy.rank.values_on)
       %td= show_tt_status(@boy,"values")
-      %td= show_tt_by(@boy.current_rank.values_tt_by)
+      %td= show_tt_by(@boy.rank.values_tt_by)
     %tr
       %td.bg-green Green
       %td (O) Outdoor Activities
       %td= subdue_zero(r,'outdoor_activities')
-      %td= show_date(@boy.current_rank.outdoor_on)
+      %td= show_date(@boy.rank.outdoor_on)
       %td= show_tt_status(@boy,"outdoor")
-      %td= show_tt_by(@boy.current_rank.outdoor_tt_by)
+      %td= show_tt_by(@boy.rank.outdoor_tt_by)
     %tr
       %td.bg-blue Blue
       %td (P) Pioneer Skills
       %td= subdue_zero(r,'pioneer_skills')
-      %td= show_date(@boy.current_rank.pioneer_on)
+      %td= show_date(@boy.rank.pioneer_on)
       %td= show_tt_status(@boy,"pioneer")
-      %td= show_tt_by(@boy.current_rank.pioneer_tt_by)
+      %td= show_tt_by(@boy.rank.pioneer_tt_by)
     %tr
       %td &nbsp;
       %td (S) Service Hours
@@ -76,8 +83,8 @@
   %li
     %strong Leaves:
     %ul
-      %li Total leaves accrued until 18
-      %li Branch + additional leaves accruing to Star
+      %li= "Total leaves accrued (#{Rank::TARGET} leaves to Branch)"
+      %li= "Branch + additional leaves accruing to Star (#{Rank::STAR_TARGET} leaves)"
       %li Silvan Star
   %li
     %strong Accrued On:

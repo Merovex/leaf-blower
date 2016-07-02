@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617231556) do
+ActiveRecord::Schema.define(version: 20160702200312) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "achievements", force: true do |t|
     t.integer  "award_id"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "updated_at"
   end
 
-  add_index "achievements", ["award_id"], name: "index_achievements_on_award_id"
-  add_index "achievements", ["requirement_id"], name: "index_achievements_on_requirement_id"
+  add_index "achievements", ["award_id"], name: "index_achievements_on_award_id", using: :btree
+  add_index "achievements", ["requirement_id"], name: "index_achievements_on_requirement_id", using: :btree
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -37,9 +40,9 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
-  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
-  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "attendances", force: true do |t|
     t.integer  "boy_id"
@@ -49,9 +52,9 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.integer  "rank_id"
   end
 
-  add_index "attendances", ["boy_id"], name: "index_attendances_on_boy_id"
-  add_index "attendances", ["event_id"], name: "index_attendances_on_event_id"
-  add_index "attendances", ["rank_id"], name: "index_attendances_on_rank_id"
+  add_index "attendances", ["boy_id"], name: "index_attendances_on_boy_id", using: :btree
+  add_index "attendances", ["event_id"], name: "index_attendances_on_event_id", using: :btree
+  add_index "attendances", ["rank_id"], name: "index_attendances_on_rank_id", using: :btree
 
   create_table "awards", force: true do |t|
     t.integer  "boy_id"
@@ -62,8 +65,8 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "updated_at"
   end
 
-  add_index "awards", ["badge_id"], name: "index_awards_on_badge_id"
-  add_index "awards", ["boy_id"], name: "index_awards_on_boy_id"
+  add_index "awards", ["badge_id"], name: "index_awards_on_badge_id", using: :btree
+  add_index "awards", ["boy_id"], name: "index_awards_on_boy_id", using: :btree
 
   create_table "badges", force: true do |t|
     t.string   "name"
@@ -79,7 +82,7 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.integer  "boy_id"
     t.integer  "rank_id"
     t.string   "name"
-    t.integer  "reported_by",        limit: 255
+    t.integer  "reported_by"
     t.string   "summary"
     t.integer  "service"
     t.integer  "heritage"
@@ -94,8 +97,8 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "updated_at"
   end
 
-  add_index "bonums", ["boy_id"], name: "index_bonums_on_boy_id"
-  add_index "bonums", ["rank_id"], name: "index_bonums_on_rank_id"
+  add_index "bonums", ["boy_id"], name: "index_bonums_on_boy_id", using: :btree
+  add_index "bonums", ["rank_id"], name: "index_bonums_on_rank_id", using: :btree
 
   create_table "boys", force: true do |t|
     t.string   "name"
@@ -142,9 +145,9 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "deleted_at"
   end
 
-  add_index "events", ["deleted_at"], name: "index_events_on_deleted_at"
-  add_index "events", ["event_series_id"], name: "index_events_on_event_series_id"
-  add_index "events", ["location_id"], name: "index_events_on_location_id"
+  add_index "events", ["deleted_at"], name: "index_events_on_deleted_at", using: :btree
+  add_index "events", ["event_series_id"], name: "index_events_on_event_series_id", using: :btree
+  add_index "events", ["location_id"], name: "index_events_on_location_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "address"
@@ -163,7 +166,7 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "updated_at"
   end
 
-  add_index "packs", ["location_id"], name: "index_packs_on_location_id"
+  add_index "packs", ["location_id"], name: "index_packs_on_location_id", using: :btree
 
   create_table "patrols", force: true do |t|
     t.string   "name"
@@ -173,7 +176,7 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "updated_at"
   end
 
-  add_index "patrols", ["pack_id"], name: "index_patrols_on_pack_id"
+  add_index "patrols", ["pack_id"], name: "index_patrols_on_pack_id", using: :btree
 
   create_table "ranks", force: true do |t|
     t.string   "name"
@@ -225,9 +228,12 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.string   "pioneer_type",       default: ""
     t.string   "science_type",       default: ""
     t.string   "values_type",        default: ""
+    t.date     "forest_on"
+    t.date     "forest_tt_on"
+    t.integer  "forest_tt_by"
   end
 
-  add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id"
+  add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id", using: :btree
 
   create_table "requirements", force: true do |t|
     t.string   "name"
@@ -237,7 +243,7 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "updated_at"
   end
 
-  add_index "requirements", ["badge_id"], name: "index_requirements_on_badge_id"
+  add_index "requirements", ["badge_id"], name: "index_requirements_on_badge_id", using: :btree
 
   create_table "templates", force: true do |t|
     t.string   "name"
@@ -256,12 +262,12 @@ ActiveRecord::Schema.define(version: 20160617231556) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                              default: "", null: false
-    t.string   "encrypted_password",                 default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -273,10 +279,10 @@ ActiveRecord::Schema.define(version: 20160617231556) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "role",                   limit: 255, default: 0
+    t.integer  "role"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

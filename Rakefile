@@ -24,9 +24,16 @@ task :fixattendance => :environment do
 		b.attendances.each do |a|
 			a.rank = b.current_rank
 			a.save
-			b.recalcuate_leaves
+			a.rank.save
 		end
 	end
+end
+task :syncdb => :environment do 
+	system "dropdb leaf_tracker;"
+	system "createdb -Obwilson -Eutf8 leaf_tracker;"
+	system "heroku pg:backups public-url"
+    system "curl -o latest.dump `heroku pg:backups public-url`"
+    system "pg_restore --verbose --clean --no-acl --no-owner -h localhost -U bwilson -d leaf_tracker latest.dump"
 end
 
 Rails.application.load_tasks

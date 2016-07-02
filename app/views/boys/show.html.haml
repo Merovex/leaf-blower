@@ -2,29 +2,30 @@
 
 = title(@boy.name)
 
-%p
-  %b Level:
-  = "#{@boy.current_rank.to_s.titleize}"
-  %b= "(Active)" if @boy.active
-  %b= "(Inactive)" unless @boy.active
+.row
+  .col-md-9
+    %h4
+      %b= "#{@boy.current_rank.to_s.titleize}"
+      = "(Active)" if @boy.active
+      = "(Inactive)" unless @boy.active
+      = ", #{show_grade(@boy.grade)}"
+  .col-md-3
+    = link_to 'Edit Boy', edit_boy_path(@boy), :class => "hidden-print btn btn-primary" if can? :edit, @boy
 
 %p
-  %b Grade:
-  = "#{@boy.grade}"
-
-  
-
-%p
-  %b Grace:
-  = @boy.current_rank.grace
-  %p.small Grace points are given to boys who arrive later in the rank cycle (e.g. 3rd Grade Hawk) to give them a chance to advance.
+  Rank started at
+  = @boy.rank.created_at.strftime('%d %B %Y')
 
 
-%p
-  %b Patrol:
-  = @boy.patrol.name
+- if @boy.ranks.count > 1
+  %hr
+  %h4 Other Ranks tracked:
 
-= link_to 'Edit', edit_boy_path(@boy), :class => "hidden-print btn btn-primary" if can? :edit, @boy
+  %ul
+    - (@boy.ranks - [@boy.rank]).each do |r|
+      %li
+        = r.name.titleize
+        = r.created_at.strftime("%m/%d/%Y")
 
 %h2 Progress
 

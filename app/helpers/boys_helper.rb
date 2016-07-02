@@ -1,4 +1,14 @@
 module BoysHelper
+  def show_grade(i)
+    return [
+      'Kindergarten',
+      '1st grade',
+      '2nd grade',
+      '3rd grade',
+      '4th grade',
+      '5th grade'
+    ][i]
+  end
   def show_leaves(i)
     i ||= 10
     return "#{["*"] * i * ' '}".html_safe
@@ -6,10 +16,11 @@ module BoysHelper
   def show_tt_status(boy,key)
     accrued_on = boy.current_rank.public_send("#{key}_on".to_sym)
     ttd_on = boy.current_rank.public_send("#{key}_tt_on".to_sym)
+    # raise [accrued_on, ttd_on].inspect
     case 
-      when accrued_on.blank?
+      when (accrued_on.blank? or accrued_on.nil?)
         return ""
-      when (ttd_on.blank? or ttd_on < accrued_on)
+      when (ttd_on.blank? or ttd_on.nil? or ttd_on < accrued_on)
         return "" unless can? :record, Rank
         return raw("<a href='/boys/#{boy.id}/record/#{key}' class='hidden-print btn btn-primary'>Record!</a>")
       else
@@ -32,14 +43,4 @@ module BoysHelper
     return "" unless ttd_on.blank?
     return "<strong class='bg-primary' style='padding: 2px'>!</strong>"
   end
-  # def branch_to_track(k)
-  #   return { 'heritage' => "heritage",
-  #     'hobbies' => "hobbies",
-  #     'life_skills' => "life",
-  #     'outdoor_activities' => "outdoor",
-  #     'pioneer_skills' => "pioneer",
-  #     'sci_tech' => "science",
-  #     'values' => "values"
-  #   }[k]
-  # end
 end

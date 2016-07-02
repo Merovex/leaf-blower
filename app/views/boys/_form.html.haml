@@ -4,11 +4,8 @@
 
   .form-inputs
     = f.input :name
-    = f.association :patrol
     = f.input :active, as: :boolean, boolean_style: :inline
-    = f.input :grade, collection: [["0 - Kindergarden",0], ["1 - First Grade",1], ["2 - Second Grade",2], ["3 - Third Grade",3], ["4 - Fourth Grade",4], ["5 - Fifth Grade",5]]
-    = f.fields_for :ranks, @rank do |r|
-      = r.input :grace, collection: [["0 - Y1 - Jul/Aug/Sep",0],["2 - Y1 - Oct/Nov/Dec",2],["4 - Y1 - Jan/Feb/Mar",4],["6 - Y1 - Apr/May/Jun",6],["8 - Y2 - Jul/Aug/Sep",8],["10 - Y2 - Oct/Nov/Dec",10],["12 - Y2 - Jan/Feb/Mar",12],["14 - Y2 - Apr/May/Jun",14]]
+    = f.input :grade, collection: [["0 - Kindergarden (Fox)",0], ["1 - First Grade (Fox)",1], ["2 - Second Grade (Hawk)",2], ["3 - Third Grade (Hawk)",3], ["4 - Fourth Grade (Lion)",4], ["5 - Fifth Grade (Lion)",5] ]
 
   .form-actions
     = f.button :submit
