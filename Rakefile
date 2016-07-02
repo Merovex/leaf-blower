@@ -24,6 +24,7 @@ task :fixattendance => :environment do
 		b.attendances.each do |a|
 			a.rank = b.current_rank
 			a.save
+			b.recalcuate_leaves
 		end
 	end
 end
