@@ -45,7 +45,7 @@ module ApplicationHelper
     answer = case 
       when n.to_s == '0' then
         "<span class='text-muted'>0<small>/#{total}</small></span>";
-      when n >= (total + 4) then
+      when n >= (total + 4) and r.starable? then
       # when n >= (total + 9) then
         "<strong class='bg-#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>Star</abbr></strong>";
       when n >= total then
