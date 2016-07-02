@@ -18,6 +18,14 @@ task :fixgrades => :environment do
 		boy.save
 	end
 end
+task :fixattendance => :environment do
+	@boys = Boy.each do |b|
+		b.attendances.each do |a|
+			a.rank = b.current_rank
+			a.save
+		end
+	end
+end
 
 Rails.application.load_tasks
 
