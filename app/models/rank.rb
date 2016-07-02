@@ -17,7 +17,21 @@ class Rank < ActiveRecord::Base
   def accrued?(b)
 
   end
-  def awarded?(a)
+  def branch_to_track(k)
+    return { 'heritage' => "heritage",
+      'hobbies' => "hobbies",
+      'life_skills' => "life",
+      'outdoor_activities' => "outdoor",
+      'pioneer_skills' => "pioneer",
+      'sci_tech' => "science",
+      'values' => "values"
+    }[k]
+  end
+  def branch_awarded?(b)
+    key = branch_to_track(b)
+    accrued_on = r.public_send("#{key}_on".to_sym)
+    ttd_on = r.public_send("#{key}_tt_on".to_sym)
+    awarded = (!accrued_on.blank? and !(ttd_on.blank? or ttd_on.nil?))
   end
   def starable?
     star_score = 0

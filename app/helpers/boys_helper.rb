@@ -32,14 +32,14 @@ module BoysHelper
     return "" unless ttd_on.blank?
     return "<strong class='bg-primary' style='padding: 2px'>!</strong>"
   end
-  def branch_to_track(k)
-    return { 'heritage' => "heritage",
-      'hobbies' => "hobbies",
-      'life_skills' => "life",
-      'outdoor_activities' => "outdoor",
-      'pioneer_skills' => "pioneer",
-      'sci_tech' => "science",
-      'values' => "values"
-    }[k]
-end
+  # def branch_to_track(k)
+  #   return { 'heritage' => "heritage",
+  #     'hobbies' => "hobbies",
+  #     'life_skills' => "life",
+  #     'outdoor_activities' => "outdoor",
+  #     'pioneer_skills' => "pioneer",
+  #     'sci_tech' => "science",
+  #     'values' => "values"
+  #   }[k]
+  # end
 end

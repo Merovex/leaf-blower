@@ -28,16 +28,17 @@ module ApplicationHelper
     total = 18
     total = 9
 
-    key = branch_to_track(branch)
+    # key = Rank.branch_to_track(branch)
 
-    accrued_on = r.public_send("#{key}_on".to_sym)
-    ttd_on = r.public_send("#{key}_tt_on".to_sym)
+    # accrued_on = r.public_send("#{key}_on".to_sym)
+    # ttd_on = r.public_send("#{key}_tt_on".to_sym)
 
     n = r.public_send(branch.to_sym)
     bang = ""
     klass = 'info'
     
-    if (!accrued_on.blank? and (ttd_on.blank? or ttd_on.nil?))
+    # if (!accrued_on.blank? and (ttd_on.blank? or ttd_on.nil?))
+    unless (r.branch_awarded?(key))
       bang = "!" 
       klass = 'primary'
     end
