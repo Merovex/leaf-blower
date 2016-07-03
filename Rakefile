@@ -19,14 +19,15 @@ task :fixgrades => :environment do
 	end
 end
 task :fixattendance => :environment do
-	@boys = Boy.all
-	@boys.each do |b|
-		b.attendances.each do |a|
-			a.rank = b.current_rank
-			a.save
-			a.rank.save
-		end
-	end
+	Rank.all.each { |r| r.save }
+	# @boys = Boy.all
+	# @boys.each do |b|
+	# 	b.attendances.each do |a|
+	# 		a.rank = b.current_rank
+	# 		a.save
+	# 		a.rank.save
+	# 	end
+	# end
 end
 task :syncdb => :environment do 
 	system "dropdb leaf_tracker;"

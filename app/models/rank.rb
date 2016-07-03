@@ -21,7 +21,7 @@ class Rank < ActiveRecord::Base
   has_many :events, through: :attendances
 
   def fix_attendances!
-    bad = self.attendances.where(["created_at < ?",  self.created_at])
+    bad = self.attendances.map { |a| a if a.event.starts_at < self.created_at }.compact
     last_rank = boy.ranks.where(["created_at < ?",  self.created_at]).last
     bad.each do |b|
       b.rank = last_rank
@@ -100,9 +100,7 @@ class Rank < ActiveRecord::Base
   def check_forest
     on = self.forest_on
     by = self.forest_tt_by
-    # raise ['check', on,ton,by,forest_accrued?].inspect
     if (forest_accrued? and on.nil? and by.nil?)
-        # "Accrued, not recorded"
         self.forest_on = Date.today
         self.save
     end
@@ -115,7 +113,7 @@ class Rank < ActiveRecord::Base
         leaves = self.public_send("#{b[1]}".to_sym)
         t      = self.public_send("#{b[0]}_type".to_sym) 
         # puts [on, leaves, t,(test[1] == 'star' and t != 'star' and leaves > test[0])].inspect
-        puts [test[1], t , leaves, test[0], leaves > test[0]].inspect if test[1] == 'star'
+        # puts [test[1], t , leaves, test[0], leaves > test[0]].inspect if test[1] == 'star'
         if (test[1] == 'branch' and leaves < test[0])
           self.public_send("#{b[0]}_on=".to_sym,nil)
           self.public_send("#{b[0]}_tt_on=".to_sym,nil)
