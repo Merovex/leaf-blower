@@ -15,13 +15,14 @@ class AttendancesController < ApplicationController
     @boy = @attendance.boy
     @attendance.destroy
     update_candidates
-
+    @i = 0
   end
   def add
     @boy = Boy.find(params[:id])
     @attendance = Attendance.new({:boy_id => @boy.id, :event_id => @event.id})
     @attendance.save
     update_candidates    
+    @i = 0
   end
 
   private
