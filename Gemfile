@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 # ruby '2.0.0'
 gem 'rails', '4.1.1'
-
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -34,6 +33,7 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
 gem "paranoia", "~> 2.0"
+gem 'pg'
 
 group :development do
   gem 'better_errors'
@@ -51,7 +51,7 @@ group :development do
 end
 group :development, :test do
   # gem 'sqlite3'
-  gem 'pg'
+  # gem 'pg'
   # gem 'rspec-rails', '>= 3.0.0.beta2'
   # gem 'factory_girl_rails'
 end
@@ -60,7 +60,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'launchy'
-    gem 'rspec-rails', '>= 3.0.0.beta2'
+  gem 'rspec-rails', '>= 3.0.0.beta2'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.0', require: false
   gem 'selenium-webdriver'
@@ -68,5 +68,5 @@ end
 
 group :production do 
   gem 'rails_12factor'
-  gem 'pg'
+  
 end

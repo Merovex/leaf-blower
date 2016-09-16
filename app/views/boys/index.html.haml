@@ -6,24 +6,30 @@
 - unless @foxes.nil?
   %h2 Foxes
 
-  %table.table.table-condensed.table-striped
-    %tr
-      %th Name
-      =render :partial => 'shared/leaf_header'
-    =render :partial => @foxes
+  %table.striped.highlight.dev
+    %thead
+      %tr
+        %th.col.s4 Name
+        =render :partial => 'shared/leaf_header'
+    %tbody
+      =render :partial => @foxes
 
 - unless @hawks.nil?
   %h2 Hawks
-  %table.table.table-condensed.table-striped
-    %tr
-      %th Name
-      =render :partial => 'shared/leaf_header'
-    =render :partial => @hawks
+  %table.striped.highlight.dev
+    %thead
+      %tr
+        %th.col.s4 Name
+        =render :partial => 'shared/leaf_header'
+    %tbody
+      =render :partial => @hawks
 
 - unless @lions.nil?
   %h2 Lions
-  %table.table.table-condensed.table-striped
-    %tr
-      %th Name
-      =render :partial => 'shared/leaf_header'
-    =render :partial => @lions
+  %table.striped.highlight.dev
+    %thead
+      %tr
+        %th.col.s4 Name
+        =render :partial => 'shared/leaf_header'
+    %tbody
+      =render :partial => @lions

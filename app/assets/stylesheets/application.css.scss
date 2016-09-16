@@ -10,12 +10,16 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
- *= require fullcalendar
- *= require fullcalendar.print
- *= require bootstrap-datepicker
+ * require_tree .
+ * require_self
+ * require fullcalendar
+ * require fullcalendar.print
+ * require bootstrap-datepicker
  */
+@import "materialize/materialize";
+.dev, .dev td, .dev th {
+  border: 1px solid red;
+}
 a.btn {
   color: white !important
 }

@@ -1,19 +1,19 @@
 - r = woodland.current_rank
 %tr
-  %td.col-xs-4
+  %td.col.s4
     - if can? :read, Bonum
       = link_to woodland.name, boy_path(woodland.slug)
     -else 
       = keep(woodland.name)
 
     = " (#{woodland.grade})"
-  %td.col-xs-1.right
+  %td.col.s1.right
     = r.service
     %small.text-muted hrs
-  %td.col-xs-1.right= subdue_zero(r,'heritage')
-  %td.col-xs-1.right= subdue_zero(r,'life_skills')
-  %td.col-xs-1.right= subdue_zero(r,'sci_tech')
-  %td.col-xs-1.right= subdue_zero(r,'hobbies')
-  %td.col-xs-1.right= subdue_zero(r,'values')
-  %td.col-xs-1.right= subdue_zero(r,'outdoor_activities')
-  %td.col-xs-1.right= subdue_zero(r,'pioneer_skills')
+  %td.col.s1.right= subdue_zero(r,'heritage')
+  %td.col.s1.right= subdue_zero(r,'life_skills')
+  %td.col.s1.right= subdue_zero(r,'sci_tech')
+  %td.col.s1.right= subdue_zero(r,'hobbies')
+  %td.col.s1.right= subdue_zero(r,'values')
+  %td.col.s1.right= subdue_zero(r,'outdoor_activities')
+  %td.col.s1.right= subdue_zero(r,'pioneer_skills')
