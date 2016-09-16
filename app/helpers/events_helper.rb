@@ -43,9 +43,9 @@ module EventsHelper
 			["Val", "Values", obj.values	]	
 		].map do |leaf|
 			next if leaf.last.nil? or leaf.last.zero?
-			"<tr><th><abbr title='#{leaf[1]}'>#{leaf.first.titlecase}</abbr></th><td>#{leaf.last}</td></tr>"
+			"<div class='col s12 m4'><b>#{leaf[1].titlecase}:</b> #{leaf.last}</div>"
 		end
-		return output.join("\n").html_safe
+		return "#{output.join("\n")}".html_safe
 	end
 	def leaf_list_item(obj)
 		output = [

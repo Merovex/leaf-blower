@@ -1,15 +1,15 @@
+=title @event.name
+
 .row
-  .col-xs-9.col-md.9
-    =title @event.name
-    .h3= event_dtg(@event)
-    %p
-      %strong Address:
-      =@event.address
-    %p
-      %strong Description:
-      = @event.description
-  .col-xs-3.col-md-3
-    %table.table
-      %tr
-        %th{:colspan => 2} Leaves
-      = leaf_header(@event)
+  .col.s8 &nbsp;
+  .col.s2= link_to "<i class='material-icons'>mode_edit</i>".html_safe, edit_event_path(@event), :class => "btn waves-effect waves-light" if can? :edit, @event
+  .col.s2.text-right= link_to "<i class='material-icons'>delete_forever</i>".html_safe,  { action: "destroy", id: @event.id }, method: :delete, :class => "btn waves-effect waves-light amber", data: { confirm: "Are you sure?" } if can? :destroy, @event
+
+%h4= event_dtg(@event)
+%p
+  %b Description:
+  = @event.description
+
+%h4 Leaves
+.row
+  = leaf_header(@event)

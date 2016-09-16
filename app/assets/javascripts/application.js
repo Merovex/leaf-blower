@@ -17,6 +17,7 @@
 //= require bootstrap
 
 //= require_tree .
+
 $(document).ready(function(){
       // page is now ready, initialize the calendar...
       // $('#new_event').click(function(event) {

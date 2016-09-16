@@ -20,17 +20,31 @@
 .dev, .dev td, .dev th {
   border: 1px solid red;
 }
-a.btn {
-  color: white !important
+strong { font-weight: bold; }
+.pagination a li.active {
+  color: #fff;
+}
+.btn {
+  @extend .green, .darken-1;
+}
+.bg-primary {
+  @extend .green, .darken-3;
+  @extend .white-text;
+  padding: 2px;
+  a {@extend .white-text; }
 }
 .odd {
-  background: #CCE;
+  @extend .grey, .lighten-2;
 }
 .center {
   text-align: center;
 }
 .right {
   text-align: right;
+}
+.candidate {
+  padding: 1em;
+  margin: 0;
 }
 html, body {
   height: 100%;
@@ -39,6 +53,7 @@ html, body {
 html {
   position: relative;
   min-height: 100%;
+  font-family: "Droid Sans";
 }
 body {
   /* Margin bottom by footer height */
@@ -73,3 +88,11 @@ h2, h3 {
 .bg-yellow {background-color: #770 !important; color: #FFF !important; }
 .bg-brown {background-color: #8B4513 !important; color: #FFF !important; }
 .bg-black {background-color: #000 !important; color: #FFF !important; }
+
+.heritage { @extend .brown, .lighten-3 }
+.hobbies { @extend .grey, .lighten-1 }
+.life_skills { @extend .purple, .lighten-4 }
+.outdoor_activities { @extend .green, .lighten-4 }
+.pioneer_skills { @extend .blue, .lighten-4 }
+.sci_tech { @extend .yellow, .lighten-4 }
+.values { @extend .red, .lighten-4 }

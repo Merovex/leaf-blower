@@ -1,20 +1,24 @@
-=title(@title)
+.row.valign-wrapper
+  .col.s12.m8.valign
+    =title(@title)
+  .col.s12.m4.valign
+    = link_to "<i class='material-icons'>add</i>".html_safe, new_event_path, {class: 'btn-floating btn-large waves-effect waves-light'}
 
-%p.right
-  = link_to 'New Event', new_event_path, {class: 'btn btn-primary btn-lg'}
+.row.center-align
+  = paginate @events
 
-= paginate @events, :theme => 'twitter-bootstrap-3'
 %table.table.table-bordered
-  %tr
-    %th Event
-    %th.text-center Date
-    %th.text-center <abbr title='Service Hours'>S</abbr>
-    %th.text-center <abbr title='Heritage'>H</abbr>
-    %th.text-center <abbr title='Hobbies'>B</abbr>
-    %th.text-center <abbr title='Life Skills'>L</abbr>
-    %th.text-center <abbr title='Outdoor Activities'>O</abbr>
-    %th.text-center <abbr title='Pioneering Skills'>P</abbr>
-    %th.text-center <abbr title='Science & Technology'>T</abbr>
-    %th.text-center <abbr title='Values'>V</abbr>
+  %thead
+    %tr
+      %th Event
+      %th.text-center Date
+      %th.text-center <abbr title='Service Hours'>S</abbr>
+      %th.text-center <abbr title='Heritage'>H</abbr>
+      %th.text-center <abbr title='Hobbies'>B</abbr>
+      %th.text-center <abbr title='Life Skills'>L</abbr>
+      %th.text-center <abbr title='Outdoor Activities'>O</abbr>
+      %th.text-center <abbr title='Pioneering Skills'>P</abbr>
+      %th.text-center <abbr title='Science & Technology'>T</abbr>
+      %th.text-center <abbr title='Values'>V</abbr>
 
   = render :partial => @events

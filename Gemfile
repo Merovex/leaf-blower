@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem 'github_changelog_generator'
+gem 'will_paginate-materialize'
 
 # To add watching
 gem 'public_activity'

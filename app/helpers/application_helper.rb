@@ -1,11 +1,11 @@
 module ApplicationHelper
 
-  def flash_class(level)
+  def toast_color(level)
       case level
-          when :notice then "alert alert-info"
-          when :success then "alert alert-success"
-          when :error then "alert alert-danger"
-          when :alert then "alert alert-danger"
+          when :notice  then "blue"
+          when :success then "green"
+          when :error   then "red"
+          when :alert   then "amber"
       end
   end
   def keep(word,t=4)
@@ -28,11 +28,11 @@ module ApplicationHelper
     n     = r.public_send(branch.to_sym)
     total = Rank::TARGET if total.nil?
     bang  = ""
-    klass = 'info'
+    klass = 'bg-info'
     
     unless (r.branch_awarded?(branch))
       bang = "!" 
-      klass = 'primary'
+      klass = 'bg-primary'
     end
 
     answer = case 
@@ -46,10 +46,10 @@ module ApplicationHelper
         "<span class='text-muted'>0<small>/#{total}</small></span>";
 
       when (r.is_star?(branch)) then
-        "<strong class='bg-#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>Star</abbr></strong>";
+        "<strong class='#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>Star</abbr></strong>";
 
       when (r.branch_not_star?(branch)) then
-        "<strong class='bg-#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>B+#{n - total}</abbr>#{bang}</strong>";
+        "<strong class='#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>B+#{n - total}</abbr>#{bang}</strong>";
 
       else
         "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>";

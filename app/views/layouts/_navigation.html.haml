@@ -1,13 +1,9 @@
--# navigation styled for Bootstrap 3.0
-%nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
-  .container
-    .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to '<i class="fa fa-leaf" aria-hidden="true"></i> Tracker'.html_safe, root_path, class: 'navbar-brand'
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        = render 'layouts/navigation_links'
+%nav.green.darken-4{:role => "navigation"}
+  .nav-wrapper.container
+    = link_to '<i class="fa fa-leaf" aria-hidden="true"></i> Tracker'.html_safe, root_path, class: 'brand-logo logo-container'
+    %ul.right.hide-on-med-and-down
+      = render 'layouts/navigation_links'
+    %ul#nav-mobile.side-nav
+      = render 'layouts/navigation_links'
+    %a.button-collapse{"data-activates" => "nav-mobile", :href => "#"}
+      %i.material-icons menu

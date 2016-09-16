@@ -2,20 +2,19 @@
 
 = title(@boy.name)
 
-.row
-  .col-md-9
+.row.valign-wrapper
+  .col.s9.valign
     %h4
       %b= "#{@boy.current_rank.to_s.titleize}"
       = "(Active)" if @boy.active
       = "(Inactive)" unless @boy.active
       = ", #{show_grade(@boy.grade)}"
-  .col-md-3
-    = link_to 'Edit Boy', edit_boy_path(@boy), :class => "hidden-print btn btn-primary" if can? :edit, @boy
+  .col.s3.valign
+    = link_to "<i class='material-icons'>mode_edit</i>".html_safe, edit_boy_path(@boy), :class => "btn waves-effect waves-light" if can? :edit, @boy
 
 %p
   Rank started at
   = @boy.rank.created_at.strftime('%d %B %Y')
-
 
 - if @boy.ranks.count > 1
   %hr
@@ -38,10 +37,10 @@
 
 %h2 Bonus Leaves
 
-%p.text-right
+%p.right-align
   = link_to 'Add Bonus', new_boy_bonum_path(@boy), :class => "hidden-print btn btn-primary" if can? :edit, Bonum
 
-%table.table
+%table.bordered
   %thead
     %tr
       %th{width: "35%"} Activity
@@ -53,17 +52,18 @@
 
 %h2 Attendance
 
-%table.table.table-bordered
-  %tr
-    %th Event
-    %th Date
-    %th <abbr title='Service Hours'>S</abbr>
-    %th <abbr title='Heritage'>H</abbr>
-    %th <abbr title='Hobbies'>B</abbr>
-    %th <abbr title='Life Skills'>L</abbr>
-    %th <abbr title='Outdoor Activities'>O</abbr>
-    %th <abbr title='Pioneering Skills'>P</abbr>
-    %th <abbr title='Science & Technology'>T</abbr>
-    %th <abbr title='Values'>V</abbr>
-
-  = render :partial => @events.reverse
+%table.striped.bordered.highlight
+  %thead
+    %tr
+      %th{:scope => 'col'} Event
+      %th{:scope => 'col'} Date
+      %th{:scope => 'col'} <abbr title='Service Hours'>S</abbr>
+      %th{:scope => 'col'} <abbr title='Heritage'>H</abbr>
+      %th{:scope => 'col'} <abbr title='Hobbies'>B</abbr>
+      %th{:scope => 'col'} <abbr title='Life Skills'>L</abbr>
+      %th{:scope => 'col'} <abbr title='Outdoor Activities'>O</abbr>
+      %th{:scope => 'col'} <abbr title='Pioneering Skills'>P</abbr>
+      %th{:scope => 'col'} <abbr title='Science & Technology'>T</abbr>
+      %th{:scope => 'col'} <abbr title='Values'>V</abbr>
+  %tbody
+    = render :partial => @events.reverse

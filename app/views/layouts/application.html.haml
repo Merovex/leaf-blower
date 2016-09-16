@@ -22,7 +22,6 @@
         .container
           .row
             .col.m8.col.s12
-              = render 'layouts/messages'
               %div
                 = render_breadcrumbs :separator => " > "
               = yield
@@ -43,13 +42,13 @@
                   - @activities.each do |activity|
                     = render_activity(activity)
                       
-      %footer{:id => "main-footer"}
-        #bottom-footer.container
+      %footer.green.darken-4
+        .container
           .pull-left
             %p
               %strong
                 %a{:href => ""} Ben Wilson
-              Copyright &copy; 2014. |
+              Copyright &copy; 2014&ndash;16 |
               %strong
                 %a{:href => "/site/about"} About
               |
@@ -66,3 +65,8 @@
               Contact at
               %strong
                 %a{:href => "mailto:dausha@gmail.com"} dausha@gmail.com
+  :javascript
+    $(document).ready(function(){$('.tooltipped').tooltip({delay: 50}); });
+
+  - if flash.any?
+    = render 'layouts/messages'

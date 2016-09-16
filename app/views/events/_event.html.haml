@@ -1,16 +1,13 @@
-/ %li.list-group-item
-/   = link_to "#{event.name} - #{event.starts_at.strftime("%B %d")}", event
-/   %span.badge= event.attendances.length
 %tr
-  %th
+  %th{:scope => 'row'}
     %strong= link_to event.name, event
     %span.badge= event.attendances.length
   %td.text-center= event.starts_at.strftime("%m/%d/%Y")
-  %td.text-center= bif(event.service,"")
-  %td.text-center= bif(event.heritage,"")
-  %td.text-center= bif(event.hobbies,"")
-  %td.text-center= bif(event.life_skills,"")
-  %td.text-center= bif(event.outdoor_activities,"")
-  %td.text-center= bif(event.pioneer_skills,"")
-  %td.text-center= bif(event.sci_tech,"")
-  %td.text-center= bif(event.values,"")
+  %td.text-center.service= bif(event.service,"")
+  %td.text-center.heritage= bif(event.heritage,"")
+  %td.text-center.hobbies= bif(event.hobbies,"")
+  %td.text-center.life_skills= bif(event.life_skills,"")
+  %td.text-center.outdoor_activities= bif(event.outdoor_activities,"")
+  %td.text-center.pioneer_skills= bif(event.pioneer_skills,"")
+  %td.text-center.sci_tech= bif(event.sci_tech,"")
+  %td.text-center.values= bif(event.values,"")
