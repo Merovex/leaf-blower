@@ -9,13 +9,6 @@ class Ability
     if user.ranger?
       can :manage, :all
 
-      # 
-      # can :crud, Event
-      # can :crud, Location
-      # can :crud, Boy
-      # can :crud, Bonum
-      # # can :manage, Advancement
-      # can :read, Template
     end
     if user.chair?
       can :record, Rank
@@ -25,7 +18,6 @@ class Ability
         can :crud, Location
         can :crud, Boy
         can :crud, Bonum
-        # can :manage, Advancement
         can :read, Template
     end
     if user.folk?

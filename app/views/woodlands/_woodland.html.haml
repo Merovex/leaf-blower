@@ -2,11 +2,11 @@
 %tr
   %td.col.s4
     - if can? :read, Bonum
+      = " (#{woodland.grade})"
       = link_to woodland.name, boy_path(woodland.slug)
     -else 
       = keep(woodland.name)
 
-    = " (#{woodland.grade})"
   %td.col.s1.right
     = r.service
     %small.text-muted hrs

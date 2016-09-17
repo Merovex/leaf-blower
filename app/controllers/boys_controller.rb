@@ -2,6 +2,7 @@ class BoysController < ApplicationController
   before_action :set_boy, only: [:show, :edit, :update, :destroy, :promote]
   before_action :breadcrumb, only: [:show, :edit, :new]
   before_action :load_activities
+  before_action :set_wide_view, except: [:index]
   load_and_authorize_resource
 
   def breadcrumb

@@ -1,6 +1,7 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
   before_action :breadcrumb, only: [:show, :edit, :new]
+  before_action :set_wide_view
   load_and_authorize_resource
 
   def breadcrumb
@@ -17,11 +18,6 @@ class TemplatesController < ApplicationController
     # @templates = Template
   end
   def index
-    # @templates = Template.all
-    # raise @templates.first.inspect
-    # @templates = {
-    #   :fox => Template.find_all_by_rank("Fox"),
-    # }
     @templates = {
       :fox => [],
       :hawk => [],
@@ -29,18 +25,14 @@ class TemplatesController < ApplicationController
     }
     Template.all.each do |t|
       key = t.rank.downcase.to_sym
-      puts key.inspect
       @templates[key] << t
     end
 
   end
 
-  # GET /templates/1
-  # GET /templates/1.json
   def show
   end
 
-  # GET /templates/new
   def new
     @template = Template.new
   end
@@ -49,8 +41,6 @@ class TemplatesController < ApplicationController
   def edit
   end
 
-  # POST /templates
-  # POST /templates.json
   def create
     @template = Template.new(template_params)
 
@@ -65,8 +55,6 @@ class TemplatesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /templates/1
-  # PATCH/PUT /templates/1.json
   def update
     respond_to do |format|
       if @template.update(template_params)
@@ -79,8 +67,6 @@ class TemplatesController < ApplicationController
     end
   end
 
-  # DELETE /templates/1
-  # DELETE /templates/1.json
   def destroy
     @template.destroy
     respond_to do |format|

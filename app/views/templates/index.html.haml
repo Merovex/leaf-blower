@@ -1,4 +1,13 @@
-%h1 Templates
+.row.valign-wrapper
+  .col.s12.m8.valign
+    =title("Templates")
+
+    %dd
+      %dt Note:
+      %dd hover your cursor over the heading for a more complete description of the branch.
+
+  .col.s12.m4.valign.right-align
+    = link_to micon('add'), new_template_path, {class: 'btn-floating btn-large waves-effect waves-light'} if can? :create, Template
 
 %ul#toc
   %li= link_to "Fox Templates", "#fox"
@@ -20,10 +29,12 @@
     %li= link_to "Lion Templates", "#lion"
 
 
-  %table.table.table-bordered
-    %tr
-      %th Event
-      =render :partial => 'shared/leaf_header'
-    = render :partial => @templates[rank], :locals => {:rank => rank}
+  %table.striped.bordered.dev
+    %thead
+      %tr
+        %th.col.s4 Event
+        =render :partial => 'shared/leaf_header'
+    %tbody
+      = render :partial => @templates[rank], :locals => {:rank => rank}
 
 = link_to 'New Template', new_template_path, :class => "btn btn-primary"

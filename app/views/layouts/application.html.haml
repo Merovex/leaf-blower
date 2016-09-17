@@ -16,28 +16,35 @@
       %header.hidden-print
         = render 'layouts/navigation'
       %main{:role => "main"}
-        .container
-          .row
-            .col.m8.col.s12
-              .card-panel
-                = render_breadcrumbs :separator => " > "
-              = yield
-            .col.m4.col.s12.hidden-print
-              %ul.list-group.hidden-print
-                - if can? :read, Rank
-                  .li.list-group-item= link_to 'Ranks', ranks_path 
-                - if can? :read, Location
-                  .li.list-group-item= link_to 'Locations', locations_path 
-                - if can? :read, Pack
-                  .li.list-group-item= link_to 'Packs', packs_path 
-                - if can? :read, Patrol
-                  .li.list-group-item= link_to 'Patrols', patrols_path
-              - unless @activities.nil?
-                %h2.hidden-print
-                  Activities
-                %div.container.hidden-print
-                  - @activities.each do |activity|
-                    = render_activity(activity)
+        - if @wide_view
+          .container
+            .card-panel
+              .row
+                .col.s12
+                  = yield
+        - else
+          .container
+            .row
+              .col.m8.col.s12
+                .card-panel
+                  = render_breadcrumbs :separator => " > "
+                = yield
+              .col.m4.col.s12.hidden-print
+                %ul.list-group.hidden-print
+                  - if can? :read, Rank
+                    .li.list-group-item= link_to 'Ranks', ranks_path 
+                  - if can? :read, Location
+                    .li.list-group-item= link_to 'Locations', locations_path 
+                  - if can? :read, Pack
+                    .li.list-group-item= link_to 'Packs', packs_path 
+                  - if can? :read, Patrol
+                    .li.list-group-item= link_to 'Patrols', patrols_path
+                - unless @activities.nil?
+                  %h2.hidden-print
+                    Activities
+                  %div.container.hidden-print
+                    - @activities.each do |activity|
+                      = render_activity(activity)
                       
       %footer.green.darken-4
         .container

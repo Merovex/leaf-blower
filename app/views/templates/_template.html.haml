@@ -1,13 +1,14 @@
 %tr
-  %td
+  %td.col.s4
     %strong= link_to "#{rank.to_s.titleize} - #{template.name}", template
     %p= template.description || 'No template Description.'
     %p= link_to "Create Event with this Template", new_event_path() + "?tid=#{template.id}", :target => "_blank"
-  %td= template.service
-  %td= template.heritage
-  %td= template.hobbies
-  %td= template.life_skills
-  %td= template.outdoor_activities
-  %td= template.pioneer_skills
-  %td= template.sci_tech
-  %td= template.values
+
+  %td.col.s1.center-align.service=             tooltip(bif(template.service,""), 'Service')
+  %td.col.s1.center-align.heritage=            tooltip(bif(template.heritage,""), 'Heritage')
+  %td.col.s1.center-align.hobbies=             tooltip(bif(template.hobbies,""), 'Hobbies')
+  %td.col.s1.center-align.life_skills=         tooltip(bif(template.life_skills,""), 'Life Skills')
+  %td.col.s1.center-align.outdoor_activities=  tooltip(bif(template.outdoor_activities,""), 'Outdoor')
+  %td.col.s1.center-align.pioneer_skills=      tooltip(bif(template.pioneer_skills,""), 'Pioneer')
+  %td.col.s1.center-align.sci_tech=            tooltip(bif(template.sci_tech,""), 'Sci & Tech')
+  %td.col.s1.center-align.values=              tooltip(bif(template.values,""), 'Values')

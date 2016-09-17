@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_wide_view
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :breadcrumb, only: [:show, :edit, :new]
   load_and_authorize_resource 

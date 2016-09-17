@@ -11,8 +11,7 @@
           = f.label :active
       .row
         .input-field.col.s12
-          = f.select(:grade, options_for_select([["0 - Kindergarden (Fox)",0], ["1 - First Grade (Fox)",1], ["2 - Second Grade (Hawk)",2], ["3 - Third Grade (Hawk)",3], ["4 - Fourth Grade (Lion)",4], ["5 - Fifth Grade (Lion)",5] ],@boy.grade),  {}, {:class => 'browser-default validate', :prompt => 'What is his grade?'})
-
+          = f.select(:grade, options_for_select(boy_grade_select(),@boy.grade), {}, {:class => 'browser-default validate', :prompt => 'What is his grade?'})
 
       .row
         .form-actions

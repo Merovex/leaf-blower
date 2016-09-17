@@ -1,4 +1,14 @@
 module BoysHelper
+  def boy_grade_select()
+    [
+      ["0 - Kindergarden (Fox)", 0],
+      ["1 - First Grade (Fox)",  1],
+      ["2 - Second Grade (Hawk)",2],
+      ["3 - Third Grade (Hawk)", 3],
+      ["4 - Fourth Grade (Lion)",4],
+      ["5 - Fifth Grade (Lion)", 5]
+    ]
+  end
   def show_grade(i)
     return [
       'Kindergarten',

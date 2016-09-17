@@ -1,24 +1,24 @@
 .row.valign-wrapper
   .col.s12.m8.valign
     =title(@title)
-  .col.s12.m4.valign
-    = link_to "<i class='material-icons'>add</i>".html_safe, new_event_path, {class: 'btn-floating btn-large waves-effect waves-light'}
+  .col.s12.m4.valign.right-align
+    = link_to micon('add'), new_event_path, {class: 'btn-floating btn-large waves-effect waves-light'} if can? :create, Event
 
 .row.center-align
   = paginate @events
 
-%table.table.table-bordered
+%table.striped.bordered
   %thead
     %tr
       %th Event
       %th.text-center Date
-      %th.text-center <abbr title='Service Hours'>S</abbr>
-      %th.text-center <abbr title='Heritage'>H</abbr>
-      %th.text-center <abbr title='Hobbies'>B</abbr>
-      %th.text-center <abbr title='Life Skills'>L</abbr>
-      %th.text-center <abbr title='Outdoor Activities'>O</abbr>
-      %th.text-center <abbr title='Pioneering Skills'>P</abbr>
-      %th.text-center <abbr title='Science & Technology'>T</abbr>
-      %th.text-center <abbr title='Values'>V</abbr>
+      %th.text-center= tooltip('S','Service Hours')
+      %th.text-center= tooltip('H','Heritage')
+      %th.text-center= tooltip('B','Hobbies')
+      %th.text-center= tooltip('L','Life Skills')
+      %th.text-center= tooltip('O','Outdoor Activities')
+      %th.text-center= tooltip('P','Pioneering Skills')
+      %th.text-center= tooltip('T','Science & Technology')
+      %th.text-center= tooltip('V','Values')
 
   = render :partial => @events

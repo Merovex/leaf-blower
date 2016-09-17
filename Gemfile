@@ -66,7 +66,7 @@ group :test do
 end
 
 group :production do 
-  ruby '2.2.4'
+  # ruby '2.2.4'
   gem 'rails_12factor'
   
 end

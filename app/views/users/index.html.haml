@@ -1,0 +1,27 @@
+= title('Users')
+.card-panel
+  %table.striped.bordered
+    %thead
+      %tr
+        %th User
+        %th Change Role
+    %tbody
+      = render @users
+
+%h2 Roles
+
+%dl
+  %dt Ranger
+  %dd Ranger is the admin role for this website, and can do anything. This is also the role that assigns roles to other users.
+
+  %dt Chair
+  %dd This is the Advancement Chair who can view boy's information and flag that a branch was submitted to Troop Track.
+
+  %dt Leader
+  %dd This is a patrol leader or someone the troop has in a leadership capacity. They can create, update and delete Events, Boys and Bonums (Bonus Leaves)
+
+  %dt Folk
+  %dd This is a parent the patrol would like to be able to view Boy's progress (not yet associated to a specific boy).
+
+  %dt Nobody
+  %dd The default access for a non-registered user. "Nobody" can view the front page, with the boys' names truncated.

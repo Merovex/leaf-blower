@@ -7,4 +7,7 @@ module AchievementsHelper
 		end
 		return s.html_safe
 	end
+	def tooltip(t,d)
+		raw "<span class='tooltipped' data-position='bottom' data-delay='50' data-tooltip='#{d}'>#{t}</span>"
+	end
 end

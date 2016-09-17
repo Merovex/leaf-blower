@@ -1,7 +1,13 @@
-= title("Woodlands Boys")
+.row.valign-wrapper
+  .col.s12.m8.valign
+    =title("Woodlands Boys")
 
-%p.text-right
-  = link_to('New Boy', new_boy_path, :class=> 'btn btn-primary') if can? :create, Boy
+    %dd
+      %dt Note:
+      %dd hover your cursor over the heading for a more complete description of the branch.
+
+  .col.s12.m4.valign.right-align
+    = link_to micon('add'), new_boy_path, {class: 'btn-floating btn-large waves-effect waves-light'} if can? :create, Boy
 
 - unless @foxes.nil?
   %h2 Foxes
