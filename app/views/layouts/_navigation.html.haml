@@ -1,9 +1,16 @@
+%ul#admin-menu.dropdown-content
+  %li= link_to 'Users', users_path
+  %li= link_to 'Ranks', ranks_path 
+  %li= link_to 'Locations', locations_path 
+  %li= link_to 'Troops', packs_path
+  %li= link_to 'Patrols', patrols_path
+
 %nav.green.darken-4{:role => "navigation"}
   .nav-wrapper.container
     = link_to '<i class="fa fa-leaf" aria-hidden="true"></i> Tracker'.html_safe, root_path, class: 'brand-logo logo-container'
     %ul.right.hide-on-med-and-down
-      = render 'layouts/navigation_links'
+      = render :partial => 'layouts/navigation_links', :locals => { :r => true }
     %ul#nav-mobile.side-nav
-      = render 'layouts/navigation_links'
+      = render :partial => 'layouts/navigation_links', :locals => { :r => false }
     %a.button-collapse{"data-activates" => "nav-mobile", :href => "#"}
       %i.material-icons menu

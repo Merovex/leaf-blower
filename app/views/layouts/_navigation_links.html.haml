@@ -1,4 +1,3 @@
-/ %li= link_to 'Take Attendance', take_attendance_events_path
 
 - unless user_signed_in?
   %li= link_to 'Sign in', new_user_session_path, {:class => 'btn'}
@@ -16,8 +15,16 @@
   %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
   
   - if can? :crud, User
-    %li
-      = link_to raw('Admin' + micon('arrow_drop_down','right')), '#!', {class: 'dropdown-button', data: {activates: 'admin', beloworigin:  true}}
-  %ul#admin.dropdown-content
-    %li= link_to 'Users', users_path
-    / data-beloworigin="true"
+    - if r
+      %li
+        %a.dropdown-button{"data-activates" => "admin-menu", :href => "#!"}
+          Admin
+          %i.material-icons.right arrow_drop_down
+    - else
+      %li.divider
+      %ul
+        %li= link_to 'Users', users_path
+        %li= link_to 'Ranks', ranks_path 
+        %li= link_to 'Locations', locations_path 
+        %li= link_to 'Troops', packs_path
+        %li= link_to 'Patrols', patrols_path

@@ -7,7 +7,7 @@
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
     
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    
+
     = csrf_meta_tags
 
     %title= content_for?(:title) ? yield(:title) : 'Leaf Tracker'
@@ -26,21 +26,13 @@
                   = yield
         - else
           .container
+
             .row
               .col.m8.col.s12
                 .card-panel
                   = render_breadcrumbs :separator => " > "
                 = yield
               .col.m4.col.s12.hidden-print
-                %ul.list-group.hidden-print
-                  - if can? :read, Rank
-                    .li.list-group-item= link_to 'Ranks', ranks_path 
-                  - if can? :read, Location
-                    .li.list-group-item= link_to 'Locations', locations_path 
-                  - if can? :read, Pack
-                    .li.list-group-item= link_to 'Packs', packs_path 
-                  - if can? :read, Patrol
-                    .li.list-group-item= link_to 'Patrols', patrols_path
                 - unless @activities.nil?
                   %h2.hidden-print
                     Activities
