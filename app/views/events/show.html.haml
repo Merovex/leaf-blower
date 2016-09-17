@@ -1,14 +1,14 @@
 = render :partial => "events/header"
 
-%h3 Roster
+%h2 Roster
 
-%h4 Present
+%h3 Present
 
 %div#present
   = render :partial => 'attendances/attendance', :collection => @attendees
 
 - if can? :edit, @event      
-  %h4 Absent
+  %h3 Absent
 
   %div#absent
     =render :partial => "events/candidates"

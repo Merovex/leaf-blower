@@ -1,6 +1,7 @@
 / %li= link_to 'Take Attendance', take_attendance_events_path
+
 - unless user_signed_in?
-  %li= link_to 'Sign in', new_user_session_path
+  %li= link_to 'Sign in', new_user_session_path, {:class => 'btn'}
   %li= link_to 'Sign up', new_user_registration_path
 
 - else
@@ -8,8 +9,15 @@
     %li= link_to 'Events', events_path 
   - if can? :read, Template 
     %li= link_to 'Templates', templates_path
-  - if can? :crud, User
-    %li= link_to 'Users', users_path
+
+  %li= link_to "Help / Problem", "https://github.com/Merovex/leaf-blower#readme"
+
   %li= link_to 'Edit account', edit_user_registration_path
   %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
-  %li= link_to "Help", "https://github.com/Merovex/leaf-blower#readme"
+  
+  - if can? :crud, User
+    %li
+      = link_to raw('Admin' + micon('arrow_drop_down','right')), '#!', {class: 'dropdown-button', data: {activates: 'admin', beloworigin:  true}}
+  %ul#admin.dropdown-content
+    %li= link_to 'Users', users_path
+    / data-beloworigin="true"

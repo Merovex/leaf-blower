@@ -1,5 +1,6 @@
 module BonumsHelper
-	def micon(i)
-		return raw("<i class='material-icons'>#{i}</i>")
+	def micon(i,side='')
+		side = " #{side}" unless side == ''
+		return raw("<i class='material-icons#{side}'>#{i}</i>")
 	end
 end

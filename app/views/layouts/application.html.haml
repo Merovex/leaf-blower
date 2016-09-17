@@ -1,10 +1,12 @@
 !!!
 %html
   %head
-    %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons|Droid+Serif:400,400italic,700,700italic|Droid+Sans:400,400italic,700,700italic", :rel => "stylesheet"}
+    %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons|Droid+Sans:400,400italic,700,700italic", :rel => "stylesheet"}
     
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
+    
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     
     = csrf_meta_tags
 
@@ -69,10 +71,11 @@
               Contact at
               %strong
                 %a{:href => "mailto:dausha@gmail.com"} dausha@gmail.com
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  
   :javascript
     $(".button-collapse").sideNav();
-    $(document).ready(function(){$('.tooltipped').tooltip({delay: 50}); });
+    $(document).ready(function(){ $('.tooltipped').tooltip({delay: 50}); });
+    $(document).ready(function(){ $(".dropdown-button").dropdown(); })
 
   - if flash.any?
     = render 'layouts/messages'
