@@ -42,7 +42,6 @@ class EventsController < ApplicationController
     render :index
   end
   def create
-
     event = Event.new(event_params)
 
     respond_to do |format|
@@ -63,11 +62,8 @@ class EventsController < ApplicationController
   end
   
   def index
-    # gem 'kaminari'
     @title = "Events"
-    # @events = Event.all.sort_by(&:starts_at).reverse
     @events = Event.order(:starts_at).reverse_order.page params[:page]
-    
   end
   def get_events
     @events = Event.find(:all, :conditions => ["starts_at >= '#{Time.at(params['start'].to_i).to_formatted_s(:db)}' and ends_at <= '#{Time.at(params['end'].to_i).to_formatted_s(:db)}'"] )

@@ -1,5 +1,5 @@
 %tr
-  %th{:scope => 'row'}
+  %th.rel{:scope => 'row'}
     %strong= link_to event.name, event
     %span.badge= event.attendances.length
   %td.text-center= event.starts_at.strftime("%m/%d/%Y")

@@ -1,6 +1,8 @@
 module EventsHelper
 	def leaf_form(f,branch)
-		return f.input branch
+		c = f.text_field branch
+		c += f.label branch
+		c
 		# return f.input branch.to_sym, as: :select, :item_wrapper_class => 'inline', collection: [0,1,2,3,5 ], default: 0
 	end
 	def event_dtg(e)

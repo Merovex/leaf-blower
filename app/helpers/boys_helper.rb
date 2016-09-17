@@ -22,7 +22,7 @@ module BoysHelper
         return ""
       when (ttd_on.blank? or ttd_on.nil? or ttd_on < accrued_on)
         return "" unless can? :record, Rank
-        return raw("<a href='/boys/#{boy.id}/record/#{key}' class='hidden-print btn waves-effect waves-light'>Record <i class='material-icons left'>cloud</i></a>")
+        return raw("<a href='/boys/#{boy.id}/record/#{key}' class='hidden-print waves-effect waves-light btn white-text'><i class='material-icons'>thumb_up</i></a>")
       else
         return accrued_on.strftime("%e %b '%y")
     end

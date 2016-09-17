@@ -1,13 +1,26 @@
+.card-panel
+  .row
+    = form_for(@boy.becomes(Boy), html: {class: 'col s12' }) do |f|
+      .row
+        .input-field.col.s12
+          = f.text_field :name, :class => 'validate'
+          = f.label :name
+      .row
+        .input-field.col.s12
+          = f.check_box :active, :class => 'filled-in validate'
+          = f.label :active
+      .row
+        .input-field.col.s12
+          = f.select(:grade, options_for_select([["0 - Kindergarden (Fox)",0], ["1 - First Grade (Fox)",1], ["2 - Second Grade (Hawk)",2], ["3 - Third Grade (Hawk)",3], ["4 - Fourth Grade (Lion)",4], ["5 - Fifth Grade (Lion)",5] ],@boy.grade),  {}, {:class => 'browser-default validate', :prompt => 'What is his grade?'})
 
-= simple_form_for(@boy.becomes(Boy), html: {class: 'form-horizontal' }) do |f|
-  = f.error_notification
 
-  .form-inputs
-    = f.input :name
-    = f.input :active, as: :boolean, boolean_style: :inline
-    = f.input :grade, collection: [["0 - Kindergarden (Fox)",0], ["1 - First Grade (Fox)",1], ["2 - Second Grade (Hawk)",2], ["3 - Third Grade (Hawk)",3], ["4 - Fourth Grade (Lion)",4], ["5 - Fifth Grade (Lion)",5] ]
+      .row
+        .form-actions
+          .button#submit.btn
+            %i.material-icons.right send
+            Submit
+          or 
+          = link_to "Cancel", :back
 
-  .form-actions
-    = f.button :submit
-    or
-    = link_to "Cancel", :back
+:javascript
+  $(document).ready(function() {Materialize.updateTextFields(); });

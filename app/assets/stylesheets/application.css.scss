@@ -52,8 +52,9 @@ html, body {
 
 html {
   position: relative;
-  min-height: 100%;
-  font-family: "Droid Sans";
+}
+.rel {
+  position: relative;
 }
 body {
   /* Margin bottom by footer height */
@@ -96,3 +97,18 @@ h2, h3 {
 .pioneer_skills { @extend .blue, .lighten-4 }
 .sci_tech { @extend .yellow, .lighten-4 }
 .values { @extend .red, .lighten-4 }
+
+span.branch {
+  display: inline-block;
+  min-width: 3rem;
+  padding: 3px 6px;
+  text-align: center;
+  font-size: 0.8rem;
+  border-radius: 2px;
+  &[data-badge-caption]::after {
+    content: " " attr(data-badge-caption);
+  }
+  a {
+    color: white !important;
+  }
+}

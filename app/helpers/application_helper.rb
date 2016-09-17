@@ -27,34 +27,46 @@ module ApplicationHelper
   def subdue_zero(r,branch,total=nil)
     n     = r.public_send(branch.to_sym)
     total = Rank::TARGET if total.nil?
-    bang  = ""
-    klass = 'bg-info'
-    
-    unless (r.branch_awarded?(branch))
-      bang = "!" 
-      klass = 'bg-primary'
-    end
+    link_it = false
 
     answer = case 
       when (branch == 'forest' and r.forest_awarded?) then
         "Awarded"
+        "<span class='branch z-depth-2 green white-text'>Awarded</span>"
 
       when (branch == 'forest' and r.forest_accrued?) then
-        "Accrued"
+        "<span class='branch z-depth-2 green white-text'>Accrued</span>"
 
       when n.to_s == '0' then
-        "<span class='text-muted'>0<small>/#{total}</small></span>";
+        "<span class='grey-text lighten-3'>0<small>/#{total}</small></span>";
 
       when (r.is_star?(branch)) then
-        "<strong class='#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>Star</abbr></strong>";
+       if r.branch_awarded?(branch)
+          w = 'Star'
+          c = 'indigo'
+        else
+          link_it = true 
+          w = 'New Star'
+          c = 'red'
+        end
+        "<span class='branch z-depth-2 #{c} white-text'><abbr title='#{n}/#{total} leaves'>#{w}</abbr></span>"
 
       when (r.branch_not_star?(branch)) then
-        "<strong class='#{klass}' style='padding: 2px'><abbr title='#{n}/#{total} leaves'>B+#{n - total}</abbr>#{bang}</strong>";
+        if r.branch_awarded?(branch)
+          w = 'Branch'
+          c = 'green'
+        else
+          link_it = true 
+          w = 'New'
+          c = 'red'
+        end
+
+        "<span class='branch z-depth-2 #{c} white-text'>#{w}</span>"
 
       else
         "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>";
     end
-    answer = "<a href='#{boy_path(r.boy)}'>#{answer}</a>" unless r.branch_awarded?(branch)
+    answer = "<a href='#{boy_path(r.boy)}'>#{answer}</a>" if link_it
     return answer.html_safe
     
   end

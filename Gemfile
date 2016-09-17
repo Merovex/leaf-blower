@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-# ruby '2.0.0'
-gem 'rails', '4.1.1'
+
+gem 'rails', '4.2.1'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -17,8 +17,6 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem 'github_changelog_generator'
-gem 'will_paginate-materialize'
-
 # To add watching
 gem 'public_activity'
 

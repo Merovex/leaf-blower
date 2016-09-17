@@ -1,22 +1,23 @@
-.row
-  .col.s2
-    %span.fa-stack.fa-lg
-      %i{:class => "material-icons"}= icon
-  .col.s10
-    - if activity.owner.nil?
-      Unknown
-    - else
-      =activity.owner.name
-    =action
-    =klass
-    %br
-    - if activity.trackable.nil?
-      (which has since been removed)
-    -else
-      - if activity.trackable.is_a? Woodland
-        =link_to activity.trackable.name, boy_path(activity.trackable)
-      -else  
-        =link_to activity.trackable.name, polymorphic_path(activity.trackable)
-    %br
-    =time_ago_in_words(activity.created_at)
-    ago
+.card-panel
+  .row
+    .col.s2
+      %span.fa-stack.fa-lg
+        %i{:class => "material-icons"}= icon
+    .col.s10
+      - if activity.owner.nil?
+        Unknown
+      - else
+        =activity.owner.name
+      =action
+      =klass
+      %br
+      - if activity.trackable.nil?
+        (which has since been removed)
+      -else
+        - if activity.trackable.is_a? Woodland
+          =link_to activity.trackable.name, boy_path(activity.trackable)
+        -else  
+          =link_to activity.trackable.name, polymorphic_path(activity.trackable)
+      %br
+      =time_ago_in_words(activity.created_at)
+      ago
