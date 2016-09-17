@@ -1,10 +1,11 @@
 <td>
-  <%= link_to user.email, user %>
+  <%= user.name %><br /><%= link_to user.email, user %>
+
 </td>
 <td>
   <%= form_for(user) do |f| %>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-    <%= f.submit 'Change Role', :class => 'button-xs' %>
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},{},:class => 'browser-default' ) %>
+    <%= f.submit 'Change Role', :class => 'btn' %>
   <% end %>
 </td>
 <td>
