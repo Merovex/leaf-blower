@@ -7,8 +7,14 @@
           = f.label :name
       .row
         .input-field.col.s12
-          = f.check_box :active, :class => 'filled-in validate'
-          = f.label :active
+          / = f.check_box :active, :class => 'filled-in validate'
+          / = f.label :active
+          .switch
+            %label
+              Inactive
+              =f.check_box :active
+              %span.lever
+              Active
       .row
         .input-field.col.s12
           = f.select(:grade, options_for_select(boy_grade_select(),@boy.grade), {}, {:class => 'browser-default validate', :prompt => 'What is his grade?'})
