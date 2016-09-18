@@ -10,10 +10,12 @@
 
 # Locations
 
-Location.create(:name => "Immanuel Bible Church", :address => "6911 Braddock Rd, Springfield, VA 22151")
+require 'ffaker'
+
+Location.create(:name => "Some Location", :address => "6911 Anywyere Rd, Springfield, GV 22151")
 Location.create(:name => "Camp Sandy Cove", :address => "RT 1 Box 471 High View, WV 26808")
 
-Pack.create(:name => "VA-1115", :location_id => 1)
+Pack.create(:name => "GV-1115", :location_id => 1)
 
 @boys = {
 	'Fox' => {
