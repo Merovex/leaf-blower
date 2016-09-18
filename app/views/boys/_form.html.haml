@@ -15,9 +15,7 @@
 
       .row
         .form-actions
-          .button#submit.btn
-            %i.material-icons.right send
-            Submit
+          = f.button :submit, :class => 'btn btn-primary'
           or 
           = link_to "Cancel", :back
 
