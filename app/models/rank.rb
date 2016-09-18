@@ -135,6 +135,7 @@ class Rank < ActiveRecord::Base
   end
   def fix_create_at
     c = self.created_at
+    c = DateTime.now if c.nil?
     t = DateTime.new(c.strftime("%Y").to_i,7,1)
     self.created_at = t if c < t
   end
