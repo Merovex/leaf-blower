@@ -27,6 +27,10 @@ class Event < ActiveRecord::Base
     "Monthly"        ,
     "Yearly"         
   ]
+  def active_attendances
+    them = self.attendances.map {|a| a if a.boy.active? }.compact
+    # raise them.inspect
+  end
   def leaf_count
     return [heritage, hobbies, life_skills, outdoor_activities, pioneer_skills, sci_tech, values ].inject(:+)
   end  
