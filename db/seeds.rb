@@ -10,7 +10,7 @@
 
 # Locations
 
-require 'ffaker'
+require 'faker'
 
 Location.create(:name => "Some Location", :address => "6911 Anywyere Rd, Springfield, GV 22151")
 Location.create(:name => "Camp Sandy Cove", :address => "RT 1 Box 471 High View, WV 26808")
