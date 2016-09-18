@@ -62,6 +62,6 @@ Rails.application.routes.draw do
   resources :locations
 
   root :to => "boys#index"
-  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' 
+  devise_for :users 
   resources :users
 end
