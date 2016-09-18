@@ -64,9 +64,11 @@ puts "- Populating Patrol:"
 	patrol.save
 	@boys[rank].keys.each do |name|
 		puts "-   -- Creating '#{name}'"
-		@kids[name] = Woodland.create(name: name, patrol: patrol.id)
+		@kids[name] = Woodland.create(name: name)#, patrol: patrol.id)
 		# @kids[name] = patrol.boys.create(:name => name)
-		# patrol.boys << @kids[name]
+		patrol.boys << @kids[name]
+		patrol.save
+
 		@kids[name].set_current_rank #(rank.downcase)
 	end
 end
