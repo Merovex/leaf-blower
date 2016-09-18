@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # ROLES = %w[ranger leader parent user banned]
 
   def set_default_role
-    # self.nobody!
+    self.leader!
   end
 
 end
