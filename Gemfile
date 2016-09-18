@@ -33,6 +33,7 @@ gem 'bootstrap-kaminari-views'
 
 gem "paranoia", "~> 2.0"
 gem 'pg'
+gem 'faker'
 
 group :development do
   gem 'better_errors'
@@ -57,7 +58,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'faker'
+  
   gem 'launchy'
   gem 'rspec-rails', '>= 3.0.0.beta2'
   gem 'factory_girl_rails'
