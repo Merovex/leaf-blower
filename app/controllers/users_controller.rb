@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     if params[:id] = "sign_out"
       sign_out current_user
-      return
+      redirect_to :root
     end
     @user = User.find(params[:id])
     unless current_user.ranger?
