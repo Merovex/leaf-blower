@@ -23,6 +23,8 @@
             .card-panel
               .row
                 .col.s12
+                  .card-panel
+                    = render_breadcrumbs :separator => " > "
                   = yield
         - else
           .container
