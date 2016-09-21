@@ -103,7 +103,7 @@ class BoysController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def boy_params
-      params.require(:boy).permit(:name, :current_rank_id, :patrol_id, :active, :grade, :ranks_attributes => [:grace])
+      params.require(:boy).permit(:name, :medical_on, :current_rank_id, :patrol_id, :active, :grade, :ranks_attributes => [:grace])
     end
     def get_active_boys(r)
       Patrol.find(r).boys.map{|b| b if b.active}.compact.sort_by{|b| b.lastnamefirst}

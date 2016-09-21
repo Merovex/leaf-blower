@@ -26,6 +26,32 @@
         = r.name.titleize
         = r.created_at.strftime("%m/%d/%Y")
 
+
+%h3 Medical Form
+
+.row
+  .col.s4 Medical Updated
+  .col.s4= @boy.medical_on
+  - if can? :edit, @boy
+    .col.s4.right-align
+      %a{href: '#medical_form', class: "waves-effect waves-light btn modal-trigger"} Update
+
+%div#medical_form.modal{style: "height: 100%;"}
+  .modal-content
+    %h3 Medical Form Date
+    .row
+      = form_for(@boy.becomes(Boy)) do |f|
+        .row
+          .input-field.col.s12
+            = f.text_field :medical_on, class: 'datepicker validate', type: 'date'
+            = f.label :medical_on
+        .row
+          .input-field.col.s12
+          = f.button :submit, :class => 'btn btn-primary'
+
+  .modal-footer
+    %a{href: '#!', class: "modal-action modal-close waves-effect waves-green btn-flat"} Close
+
 %h2 Progress
 
 =render :partial => "#{@boy.type.downcase}s/progress"
@@ -68,3 +94,11 @@
       %th{:scope => 'col'} <abbr title='Values'>V</abbr>
   %tbody
     = render :partial => @events.reverse
+
+:javascript
+  var input = $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    format: 'yyyy-mm-dd',
+    selectYears: 1
+  });
+  var picker = input.pickadate('picker')

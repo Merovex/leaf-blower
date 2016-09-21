@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702200312) do
+ActiveRecord::Schema.define(version: 20160921222700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "achievements", force: true do |t|
+  create_table "achievements", force: :cascade do |t|
     t.integer  "award_id"
     t.integer  "requirement_id"
     t.date     "completed_on"
@@ -27,15 +27,15 @@ ActiveRecord::Schema.define(version: 20160702200312) do
   add_index "achievements", ["award_id"], name: "index_achievements_on_award_id", using: :btree
   add_index "achievements", ["requirement_id"], name: "index_achievements_on_requirement_id", using: :btree
 
-  create_table "activities", force: true do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
-    t.string   "trackable_type"
+    t.string   "trackable_type", limit: 255
     t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "key"
+    t.string   "owner_type",     limit: 255
+    t.string   "key",            limit: 255
     t.text     "parameters"
     t.integer  "recipient_id"
-    t.string   "recipient_type"
+    t.string   "recipient_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160702200312) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
-  create_table "attendances", force: true do |t|
+  create_table "attendances", force: :cascade do |t|
     t.integer  "boy_id"
     t.integer  "event_id"
     t.datetime "created_at"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160702200312) do
   add_index "attendances", ["event_id"], name: "index_attendances_on_event_id", using: :btree
   add_index "attendances", ["rank_id"], name: "index_attendances_on_rank_id", using: :btree
 
-  create_table "awards", force: true do |t|
+  create_table "awards", force: :cascade do |t|
     t.integer  "boy_id"
     t.integer  "badge_id"
     t.integer  "progress"
@@ -68,22 +68,22 @@ ActiveRecord::Schema.define(version: 20160702200312) do
   add_index "awards", ["badge_id"], name: "index_awards_on_badge_id", using: :btree
   add_index "awards", ["boy_id"], name: "index_awards_on_boy_id", using: :btree
 
-  create_table "badges", force: true do |t|
-    t.string   "name"
-    t.string   "slug"
+  create_table "badges", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "slug",        limit: 255
     t.text     "description"
-    t.string   "rank"
-    t.boolean  "active",      default: true
+    t.string   "rank",        limit: 255
+    t.boolean  "active",                  default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bonums", force: true do |t|
+  create_table "bonums", force: :cascade do |t|
     t.integer  "boy_id"
     t.integer  "rank_id"
-    t.string   "name"
+    t.string   "name",               limit: 255
     t.integer  "reported_by"
-    t.string   "summary"
+    t.string   "summary",            limit: 255
     t.integer  "service"
     t.integer  "heritage"
     t.integer  "hobbies"
@@ -100,42 +100,43 @@ ActiveRecord::Schema.define(version: 20160702200312) do
   add_index "bonums", ["boy_id"], name: "index_bonums_on_boy_id", using: :btree
   add_index "bonums", ["rank_id"], name: "index_bonums_on_rank_id", using: :btree
 
-  create_table "boys", force: true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.string   "type"
+  create_table "boys", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "slug",            limit: 255
+    t.string   "type",            limit: 255
     t.integer  "current_rank_id"
     t.integer  "patrol_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "grade",           default: 0
-    t.boolean  "active",          default: true
+    t.integer  "grade",                       default: 0
+    t.boolean  "active",                      default: true
     t.datetime "promoted_at"
+    t.date     "medical_on"
   end
 
-  create_table "event_series", force: true do |t|
-    t.integer  "frequency",  default: 1
-    t.string   "period",     default: "monthly"
+  create_table "event_series", force: :cascade do |t|
+    t.integer  "frequency",              default: 1
+    t.string   "period",     limit: 255, default: "monthly"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.boolean  "all_day",    default: false
+    t.boolean  "all_day",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "events", force: true do |t|
-    t.string   "name"
+  create_table "events", force: :cascade do |t|
+    t.string   "name",               limit: 255
     t.integer  "location_id"
-    t.integer  "service",            default: 0
-    t.integer  "heritage",           default: 0
-    t.integer  "hobbies",            default: 0
-    t.integer  "life_skills",        default: 0
-    t.integer  "outdoor_activities", default: 0
-    t.integer  "pioneer_skills",     default: 0
-    t.integer  "sci_tech",           default: 0
-    t.integer  "values",             default: 0
-    t.integer  "nights",             default: 0
-    t.boolean  "all_day",            default: false
+    t.integer  "service",                        default: 0
+    t.integer  "heritage",                       default: 0
+    t.integer  "hobbies",                        default: 0
+    t.integer  "life_skills",                    default: 0
+    t.integer  "outdoor_activities",             default: 0
+    t.integer  "pioneer_skills",                 default: 0
+    t.integer  "sci_tech",                       default: 0
+    t.integer  "values",                         default: 0
+    t.integer  "nights",                         default: 0
+    t.boolean  "all_day",                        default: false
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.integer  "event_series_id"
@@ -149,18 +150,18 @@ ActiveRecord::Schema.define(version: 20160702200312) do
   add_index "events", ["event_series_id"], name: "index_events_on_event_series_id", using: :btree
   add_index "events", ["location_id"], name: "index_events_on_location_id", using: :btree
 
-  create_table "locations", force: true do |t|
-    t.string   "address"
+  create_table "locations", force: :cascade do |t|
+    t.string   "address",    limit: 255
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "name"
-    t.string   "slug"
+    t.string   "name",       limit: 255
+    t.string   "slug",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "packs", force: true do |t|
-    t.string   "name"
+  create_table "packs", force: :cascade do |t|
+    t.string   "name",        limit: 255
     t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -168,9 +169,9 @@ ActiveRecord::Schema.define(version: 20160702200312) do
 
   add_index "packs", ["location_id"], name: "index_packs_on_location_id", using: :btree
 
-  create_table "patrols", force: true do |t|
-    t.string   "name"
-    t.string   "rank"
+  create_table "patrols", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "rank",       limit: 255
     t.integer  "pack_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -178,8 +179,8 @@ ActiveRecord::Schema.define(version: 20160702200312) do
 
   add_index "patrols", ["pack_id"], name: "index_patrols_on_pack_id", using: :btree
 
-  create_table "ranks", force: true do |t|
-    t.string   "name"
+  create_table "ranks", force: :cascade do |t|
+    t.string   "name",               limit: 255
     t.integer  "boy_id"
     t.boolean  "is_current"
     t.integer  "service"
@@ -196,7 +197,7 @@ ActiveRecord::Schema.define(version: 20160702200312) do
     t.date     "awarded"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "grace",              default: 0
+    t.integer  "grace",                          default: 0
     t.date     "joining_on"
     t.date     "joining_tt_on"
     t.integer  "joining_tt_by"
@@ -221,13 +222,13 @@ ActiveRecord::Schema.define(version: 20160702200312) do
     t.date     "values_on"
     t.date     "values_tt_on"
     t.integer  "values_tt_by"
-    t.string   "heritage_type",      default: ""
-    t.string   "hobbies_type",       default: ""
-    t.string   "life_type",          default: ""
-    t.string   "outdoor_type",       default: ""
-    t.string   "pioneer_type",       default: ""
-    t.string   "science_type",       default: ""
-    t.string   "values_type",        default: ""
+    t.string   "heritage_type",      limit: 255, default: ""
+    t.string   "hobbies_type",       limit: 255, default: ""
+    t.string   "life_type",          limit: 255, default: ""
+    t.string   "outdoor_type",       limit: 255, default: ""
+    t.string   "pioneer_type",       limit: 255, default: ""
+    t.string   "science_type",       limit: 255, default: ""
+    t.string   "values_type",        limit: 255, default: ""
     t.date     "forest_on"
     t.date     "forest_tt_on"
     t.integer  "forest_tt_by"
@@ -235,8 +236,8 @@ ActiveRecord::Schema.define(version: 20160702200312) do
 
   add_index "ranks", ["boy_id"], name: "index_ranks_on_boy_id", using: :btree
 
-  create_table "requirements", force: true do |t|
-    t.string   "name"
+  create_table "requirements", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.text     "text"
     t.integer  "badge_id"
     t.datetime "created_at"
@@ -245,8 +246,8 @@ ActiveRecord::Schema.define(version: 20160702200312) do
 
   add_index "requirements", ["badge_id"], name: "index_requirements_on_badge_id", using: :btree
 
-  create_table "templates", force: true do |t|
-    t.string   "name"
+  create_table "templates", force: :cascade do |t|
+    t.string   "name",               limit: 255
     t.text     "description"
     t.integer  "heritage"
     t.integer  "hobbies"
@@ -256,29 +257,29 @@ ActiveRecord::Schema.define(version: 20160702200312) do
     t.integer  "life_skills"
     t.integer  "values"
     t.integer  "service"
-    t.string   "rank"
+    t.string   "rank",               limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.string   "confirmation_token"
+    t.string   "name",                   limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.string   "unconfirmed_email",      limit: 255
     t.integer  "role"
   end
 
