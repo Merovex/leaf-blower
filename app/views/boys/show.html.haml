@@ -9,7 +9,7 @@
       = "(Active)" if @boy.active
       = "(Inactive)" unless @boy.active
       = ", #{show_grade(@boy.grade)}"
-  .col.s3.valign
+  .col.s3.valign.right-align
     = link_to "<i class='material-icons'>mode_edit</i>".html_safe, edit_boy_path(@boy), :class => "btn waves-effect waves-light" if can? :edit, @boy
 
 %p
