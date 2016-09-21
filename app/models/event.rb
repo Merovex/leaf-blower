@@ -28,7 +28,10 @@ class Event < ActiveRecord::Base
     "Yearly"         
   ]
   def active_attendances
-    them = self.attendances.map {|a| a if a.boy.active? }.compact
+    them = self.attendances.map do
+      |a| next if a.boy.nil?;
+      a if a.boy.active? 
+    end.compact
     # raise them.inspect
   end
   def leaf_count
