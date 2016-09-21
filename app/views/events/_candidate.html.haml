@@ -1,5 +1,6 @@
 %div{:class => "row candidate #{(get_row() % 2 == 0) ? 'even' : 'odd'}"}
   %div.col.s7= link_to candidate.name, candidate.becomes(Boy)
   %div.col.s3= candidate.patrol.name
-  %div.col.s2= link_to "<i class='material-icons'>person_add</i>".html_safe, add_event_attendance_path(@event.id, candidate.id), :remote => true, class: "btn" if can? :edit, @event
+  %div.col.s2
+    = link_to micon('person_add'), add_event_attendance_path(@event.id, candidate.id), :remote => true, class: "btn" if can? :edit, @event
   - count_attendee()
