@@ -21,7 +21,10 @@ class Rank < ActiveRecord::Base
   has_many :events, through: :attendances
 
   def fix_attendances!
-    bad = self.attendances.map { |a| a if a.event.starts_at < self.created_at }.compact
+    bad = self.attendances.map do |a|
+      next if a.event.nil?
+      a if a.event.starts_at < self.created_at 
+    end.compact
     last_rank = boy.ranks.where(["created_at < ?",  self.created_at]).last
     bad.each do |b|
       b.rank = last_rank
