@@ -8,6 +8,6 @@
       = time_ago_in_words(user.last_sign_in_at)
       (#{user.sign_in_count})
     %td= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},{},:class => 'browser-default' )
-    %td= f.button micon('swap_vert'), :class => 'btn waves-effect waves-light'
+    %td= f.button :submit, :class => 'btn btn-primary'
     %td
       = link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') unless user == current_user
