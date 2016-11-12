@@ -69,5 +69,5 @@ end
 group :production do 
   # ruby '2.2.4'
   gem 'rails_12factor'
-  
+  gem 'newrelic_rpm'
 end
