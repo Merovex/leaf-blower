@@ -28,7 +28,7 @@ module ApplicationHelper
     n     = r.public_send(branch.to_sym)
     total = Rank::TARGET if total.nil?
     link_it = false
-    m = "#{branch.gsub("_",' ').titleize}: #{n}/#{total} Leaves"
+    m = "#{r.boy.name} #{branch.gsub("_",' ').titleize}: #{n}/#{total} Leaves"
 
     answer = case 
       when (branch == 'forest' and r.forest_awarded?) then
