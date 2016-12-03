@@ -28,6 +28,7 @@ module ApplicationHelper
     n     = r.public_send(branch.to_sym)
     total = Rank::TARGET if total.nil?
     link_it = false
+    m = "#{branch.gsub("_",' ').titleize}: #{n}/#{total} Leaves"
 
     answer = case 
       when (branch == 'forest' and r.forest_awarded?) then
@@ -60,15 +61,23 @@ module ApplicationHelper
           w = 'New'
           c = 'red'
         end
-
+        
         "<span class='branch z-depth-2 #{c} white-text'>#{w}</span>"
 
       else
         "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>";
     end
-    answer = "<a href='#{boy_path(r.boy)}'>#{answer}</a>" if link_it
+
+    answer = if link_it 
+        "<a href='#{boy_path(r.boy)}'>#{answer}</a>"
+    else
+        "<a #{toast(m)}>#{answer}</a>"
+    end
     return answer.html_safe
     
+  end
+  def toast(m,t=4000)
+    return "onclick=\"Materialize.toast('#{m}', #{t})\""
   end
   def title(t)
     return "<h1>#{t.titlecase}</h1>".html_safe

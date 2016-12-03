@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resource :events
+    end
+  end
+
   resources :bonums
 
   resources :achievements do
