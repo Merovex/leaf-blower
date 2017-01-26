@@ -1,6 +1,9 @@
 %h1
   .small= @bonum.boy.name
-  =@bonum.name
+  - if @bonum.name.nil?
+    None
+  - else
+    = @bonum.name
 
 %div.row
   %div.col-md-6.col-xs-12
