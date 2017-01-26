@@ -1,32 +1,37 @@
-= simple_form_for(@bonum, :url => boy_bonums_path(@boy,@bonum).gsub(".","/")) do |f|
-  = f.error_notification
+.card-panel
+  .row
+    = simple_form_for(@bonum, :url => boy_bonums_path(@boy,@bonum).gsub(".","/")) do |f|
+      = f.error_notification
 
-  .form-inputs
-    = f.input :name, label: "Activity"
-    %h3 Leaves
-    .row
-      .col-xs-3
-        = leaf_form(f,:heritage)
-      .col-xs-3
-        = leaf_form(f,:hobbies)
-      .col-xs-3
-        = leaf_form(f,:life_skills)
-      .col-xs-3
-        = leaf_form(f,:outdoor_activities)
-    .row
-      .col-xs-3
-        = leaf_form(f,:pioneer_skills)
-      .col-xs-3
-        = leaf_form(f,:sci_tech)
-      .col-xs-3
-        = leaf_form(f,:values)
-      .col-xs-3
-        = f.input :service
-  .row.form-actions
-    .col-md-12
-      = f.button :submit
-      or
-      = link_to "Cancel", :back
+      .form-inputs
+        .row
+          .input-field.col.s12
+            = f.text_field :name, :class => 'validate'
+            = f.label :name, 'Activity'
+        %h3 Leaves
+        .row
+          .input-field.col.s12.m3
+            = leaf_form(f,:heritage)
+          .input-field.col.s12.m3
+            = leaf_form(f,:hobbies)
+          .input-field.col.s12.m3
+            = leaf_form(f,:life_skills)
+          .input-field.col.s12.m3
+            = leaf_form(f,:outdoor_activities)
+        .row
+          .input-field.col.s12.m3
+            = leaf_form(f,:pioneer_skills)
+          .input-field.col.s12.m3
+            = leaf_form(f,:sci_tech)
+          .input-field.col.s12.m3
+            = leaf_form(f,:values)
+          .input-field.col.s12.m3
+            = f.input :service
+      .row
+        .form-actions
+          = f.button :submit
+          or
+          = link_to "Cancel", :back
 
-  :javascript
-    $(document).ready(function() {Materialize.updateTextFields(); });
+:javascript
+  $(document).ready(function() {Materialize.updateTextFields(); });
