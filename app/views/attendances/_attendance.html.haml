@@ -1,4 +1,4 @@
-- if attendance.nil?
+- if attendance.nil? or attendance.rank.nil?
   %div{:class => "row candidate #{(get_row() % 2 == 0) ? 'even' : 'odd'}"}
     %div.col.s12 Missing boy.
 
