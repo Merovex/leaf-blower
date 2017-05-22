@@ -1,8 +1,9 @@
 - if attendance.nil?
   %div{:class => "row candidate #{(get_row() % 2 == 0) ? 'even' : 'odd'}"}
     %div.col.s12 Missing boy.
+
 - else
-	%div{:class => "row candidate #{(get_row() % 2 == 0) ? 'even' : 'odd'}"}
+  %div{:class => "row candidate #{(get_row() % 2 == 0) ? 'even' : 'odd'}"}
     %div.col.s1= count_attendee()
     %div.col.s6= link_to attendance.name, attendance.boy.becomes(Boy)
     %div.col.s2= attendance.rank.name.titleize
