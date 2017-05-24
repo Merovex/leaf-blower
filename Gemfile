@@ -58,7 +58,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  
+
   gem 'launchy'
   gem 'rspec-rails', '>= 3.0.0.beta2'
   gem 'factory_girl_rails'
@@ -66,8 +66,9 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-group :production do 
+group :production do
   # ruby '2.2.4'
   gem 'rails_12factor'
   gem 'newrelic_rpm'
 end
+gem 'rails_12factor', group: :production
