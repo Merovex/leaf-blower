@@ -30,7 +30,7 @@ module ApplicationHelper
     link_it = false
     m = "#{r.boy.name} #{branch.gsub("_",' ').titleize}: #{n}/#{total} Leaves"
 
-    answer = case 
+    answer = case
       when (branch == 'forest' and r.forest_awarded?) then
         "Awarded"
         "<span class='branch z-depth-2 green white-text'>Awarded</span>"
@@ -46,7 +46,7 @@ module ApplicationHelper
           w = 'Star'
           c = 'indigo'
         else
-          link_it = true 
+          link_it = true
           w = 'New Star'
           c = 'red'
         end
@@ -57,24 +57,24 @@ module ApplicationHelper
           w = 'Branch'
           c = 'green'
         else
-          link_it = true 
+          link_it = true
           w = 'New'
           c = 'red'
         end
-        
-        "<span class='branch z-depth-2 #{c} white-text'>#{w}</span>"
+
+        "<span class='branch z-depth-2 #{c} white-text'><abbr title='#{n}/#{total} leaves'>#{w}</abbr></span>"
 
       else
         "<span><abbr title='#{(n.to_f / total.to_f * 100.0).to_i} %'><strong>#{n}</strong><small class='text-muted'>/#{total}</small></abbr></span>";
     end
 
-    answer = if link_it 
+    answer = if link_it
         "<a href='#{boy_path(r.boy)}'>#{answer}</a>"
     else
         "<a #{toast(m)}>#{answer}</a>"
     end
     return answer.html_safe
-    
+
   end
   def toast(m,t=4000)
     return "onclick=\"Materialize.toast('#{m}', #{t})\""
@@ -87,7 +87,7 @@ module ApplicationHelper
   end
   def show_map(location)
     return "" if location.nil?
-    html = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{location.latitude}%2C#{location.longitude}" 
+    html = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{location.latitude}%2C#{location.longitude}"
     html += p location.address
     return "<div>#{html}</div>".html_safe
   end
