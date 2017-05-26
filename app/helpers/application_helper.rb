@@ -25,14 +25,13 @@ module ApplicationHelper
     html.html_safe
   end
   def subdue_zero(r,branch,total=nil)
-    n     = r.public_send(branch.to_sym)
-    total = Rank::TARGET if total.nil?
+    n       = r.public_send(branch.to_sym)
+    total   = Rank::TARGET if total.nil?
     link_it = false
-    m = "#{r.boy.name} #{branch.gsub("_",' ').titleize}: #{n}/#{total} Leaves"
+    m       = "#{r.boy.name} #{branch.gsub("_",' ').titleize}: #{n}/#{total} Leaves"
 
     answer = case
       when (branch == 'forest' and r.forest_awarded?) then
-        "Awarded"
         "<span class='branch z-depth-2 green white-text'>Awarded</span>"
 
       when (branch == 'forest' and r.forest_accrued?) then
@@ -42,7 +41,7 @@ module ApplicationHelper
         "<span class='grey-text lighten-3'>0<small>/#{total}</small></span>";
 
       when (r.is_star?(branch)) then
-       if r.branch_awarded?(branch)
+        if r.branch_awarded?(branch)
           w = 'Star'
           c = 'indigo'
         else
@@ -61,7 +60,6 @@ module ApplicationHelper
           w = 'New'
           c = 'red'
         end
-
         "<span class='branch z-depth-2 #{c} white-text'><abbr title='#{n}/#{total} leaves'>#{w}</abbr></span>"
 
       else
