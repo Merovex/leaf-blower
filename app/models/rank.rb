@@ -23,7 +23,7 @@ class Rank < ActiveRecord::Base
   def fix_attendances!
     bad = self.attendances.map do |a|
       next if a.event.nil?
-      a if a.event.starts_at < self.created_at 
+      a if a.event.starts_at < self.created_at
     end.compact
     last_rank = boy.ranks.where(["created_at < ?",  self.created_at]).last
     bad.each do |b|
@@ -76,13 +76,13 @@ class Rank < ActiveRecord::Base
   end
   def recalcuate_leaves
     l = {
-       :heritage => 0, 
-       :hobbies => 0, 
-       :life_skills => 0, 
-       :outdoor_activities => 0, 
-       :pioneer_skills => 0, 
-       :sci_tech => 0, 
-       :values => 0, 
+       :heritage => 0,
+       :hobbies => 0,
+       :life_skills => 0,
+       :outdoor_activities => 0,
+       :pioneer_skills => 0,
+       :sci_tech => 0,
+       :values => 0,
        :service => 0
     }
 
@@ -114,14 +114,14 @@ class Rank < ActiveRecord::Base
         next if b[0] == 'forest'
         on     = self.public_send("#{b[0]}_on".to_sym)
         leaves = self.public_send("#{b[1]}".to_sym)
-        t      = self.public_send("#{b[0]}_type".to_sym) 
+        t      = self.public_send("#{b[0]}_type".to_sym)
         # puts [on, leaves, t,(test[1] == 'star' and t != 'star' and leaves > test[0])].inspect
         # puts [test[1], t , leaves, test[0], leaves > test[0]].inspect if test[1] == 'star'
         if (test[1] == 'branch' and leaves < test[0])
           self.public_send("#{b[0]}_on=".to_sym,nil)
           self.public_send("#{b[0]}_tt_on=".to_sym,nil)
           self.public_send("#{b[0]}_tt_by=".to_sym,nil)
-        elsif (test[1] == 'star' and t != 'star' and leaves > test[0])
+        elsif (test[1] == 'star' and t != 'star' and leaves >= test[0])
           self.public_send("#{b[0]}_on=".to_sym,Date.today)
           self.public_send("#{b[0]}_tt_on=".to_sym,"")
           self.public_send("#{b[0]}_tt_by=".to_sym,nil)
